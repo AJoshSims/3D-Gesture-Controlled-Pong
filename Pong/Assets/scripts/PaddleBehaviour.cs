@@ -7,16 +7,16 @@ public class PaddleBehaviour : MonoBehaviour
 
     public int paddleSpeed;
 
-    void Start()
-    {
-        if (thisPaddleUser == PaddleUser.AI)
-        {
-            Rigidbody AIPaddle = GetComponent<Rigidbody>();
+    //void Start()
+    //{
+    //    if (thisPaddleUser == PaddleUser.AI)
+    //    {
+    //        Rigidbody AIPaddle = GetComponent<Rigidbody>();
 
-            AIPaddle.AddForce(0, 0, paddleSpeed * AIPaddle.mass, 
-                ForceMode.Impulse);
-        }
-    }
+    //        AIPaddle.AddForce(0, 0, paddleSpeed * AIPaddle.mass, 
+    //            ForceMode.Impulse);
+    //    }
+    //}
 
     void FixedUpdate()
     {
