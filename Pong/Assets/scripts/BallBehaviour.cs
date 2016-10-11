@@ -1,23 +1,4 @@
-<<<<<<< Updated upstream
-﻿using UnityEngine;
-using System.Collections;
-
-public class BallBehaviour : MonoBehaviour
-{
-    public int speed;
-
-	void Start ()
-    {
-        InitiateBallMovement();
-    }
-
-    void InitiateBallMovement()
-    {
-        GetComponent<Rigidbody>().AddForce(speed, 0, 0, ForceMode.Impulse);
-    }
-}
-=======
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class BallBehaviour : MonoBehaviour
@@ -106,4 +87,3 @@ public class BallBehaviour : MonoBehaviour
     //    //sphere.GetComponent<Rigidbody>().velocity = ballVelocity * 2;
     //}
 }
->>>>>>> Stashed changes

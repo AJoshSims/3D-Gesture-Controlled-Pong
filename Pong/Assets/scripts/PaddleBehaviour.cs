@@ -7,18 +7,6 @@ public class PaddleBehaviour : MonoBehaviour
 
     public int paddleSpeed;
 
-<<<<<<< Updated upstream
-    void Start()
-    {
-        if (thisPaddleUser == PaddleUser.AI)
-        {
-            Rigidbody AIPaddle = GetComponent<Rigidbody>();
-
-            AIPaddle.AddForce(0, 0, paddleSpeed * AIPaddle.mass, 
-                ForceMode.Impulse);
-        }
-    }
-=======
     public GameObject ball;
 
     //void Start()
@@ -31,7 +19,6 @@ public class PaddleBehaviour : MonoBehaviour
     //            ForceMode.Impulse);
     //    }
     //}
->>>>>>> Stashed changes
 
     private void FixedUpdate()
     {
