@@ -7,11 +7,11 @@ public class BallBehaviour : MonoBehaviour
 
 	void Start ()
     {
-        InitiateBallMovement();
+        InitiateBallMovement(speed);
     }
 
-    void InitiateBallMovement()
+    internal void InitiateBallMovement(float xVelocity)
     {
-        GetComponent<Rigidbody>().AddForce(speed, 0, 0, ForceMode.Impulse);
+        GetComponent<Rigidbody>().AddForce(xVelocity, 0, 0, ForceMode.Impulse);
     }
 }
