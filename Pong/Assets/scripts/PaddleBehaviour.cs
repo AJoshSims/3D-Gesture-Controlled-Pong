@@ -7,6 +7,8 @@ public class PaddleBehaviour : MonoBehaviour
 
     public int paddleSpeed;
 
+    public GameObject ball;
+
     //void Start()
     //{
     //    if (thisPaddleUser == PaddleUser.AI)
@@ -18,7 +20,7 @@ public class PaddleBehaviour : MonoBehaviour
     //    }
     //}
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         float userInput = 0;
 
@@ -26,14 +28,29 @@ public class PaddleBehaviour : MonoBehaviour
         {
             case PaddleUser.Player01:
                 userInput = Input.GetAxis("Player01");
+                movePlayerPaddle(userInput);
                 break;
             case PaddleUser.Player02:
                 userInput = Input.GetAxis("Player02");
+                movePlayerPaddle(userInput);
+                break;
+            case PaddleUser.AI:
+                moveAIPaddle();
                 break;
         }
+    }
 
-        transform.position += new Vector3(0, 0, userInput * paddleSpeed * 
+    private void movePlayerPaddle(float userInput)
+    {
+        transform.position += new Vector3(0, 0, userInput * paddleSpeed *
             Time.deltaTime);
+    }
+
+    private void moveAIPaddle()
+    {
+        float zPositionOfBall = ball.GetComponent<Transform>().position.z;
+
+        GetComponent<Transform>().position = new Vector3(-8, 0.5f, zPositionOfBall);
     }
 }
 
