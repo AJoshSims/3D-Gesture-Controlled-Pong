@@ -5,22 +5,34 @@ public class PaddleBehaviour : MonoBehaviour
 {
     public PaddleUser thisPaddleUser;
 
+    private Vector3 positionOfAIPaddle;
+
+    private float fixedXPositionOfAIPaddle;
+
+    private float fixedYPositionOfAIPaddle;
+
+    private float changingZPositionOfAIPaddle = 0;
+
     public int paddleSpeed;
 
     public GameObject ball;
 
-    //void Start()
-    //{
-    //    if (thisPaddleUser == PaddleUser.AI)
-    //    {
-    //        Rigidbody AIPaddle = GetComponent<Rigidbody>();
+    private Vector3 positionOfBall;
 
-    //        AIPaddle.AddForce(0, 0, paddleSpeed * AIPaddle.mass, 
-    //            ForceMode.Impulse);
-    //    }
-    //}
+    void Start()
+    {
+        fixedXPositionOfAIPaddle = GetComponent<Transform>().position.x;
+        fixedYPositionOfAIPaddle = GetComponent<Transform>().position.y;
+        //    if (thisPaddleUser == PaddleUser.AI)
+        //    {
+        //        Rigidbody AIPaddle = GetComponent<Rigidbody>();
 
-    private void FixedUpdate()
+        //        AIPaddle.AddForce(0, 0, paddleSpeed * AIPaddle.mass, 
+        //            ForceMode.Impulse);
+        //    }
+    }
+
+private void FixedUpdate()
     {
         float userInput = 0;
 
@@ -48,9 +60,22 @@ public class PaddleBehaviour : MonoBehaviour
 
     private void moveAIPaddle()
     {
-        float zPositionOfBall = ball.GetComponent<Transform>().position.z;
+        float updatedZPositionOfAIPaddle = Mathf.SmoothDamp(
+            transform.position.z, 
+            ball.transform.position.z, 
+            ref changingZPositionOfAIPaddle, 0.5f);
 
-        GetComponent<Transform>().position = new Vector3(-8, 0.5f, zPositionOfBall);
+        transform.position = new Vector3(
+            fixedXPositionOfAIPaddle,
+            fixedYPositionOfAIPaddle,
+            updatedZPositionOfAIPaddle);
+
+        // Code for undefeatable AI.
+        //float zPositionOfBall = ball.GetComponent<Transform>().position.z;
+
+        //GetComponent<Transform>().position = 
+        //    new Vector3(fixedXPositionOfPaddle, fixedYPositionOfPaddle, 
+        //        zPositionOfBall);
     }
 }
 
