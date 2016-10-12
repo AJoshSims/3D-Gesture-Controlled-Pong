@@ -25,6 +25,10 @@ public class PaddleBehaviour : MonoBehaviour
 
     private float movementAcrossZAxis;
 
+    private const float zPositionBoundary01 = -3.75F;
+
+    private const float zPositionBoundary02 = 3.75F;
+
     public GameObject ball;
 
     private Vector3 positionOfBall;
@@ -87,9 +91,25 @@ public class PaddleBehaviour : MonoBehaviour
                 movementFromUserInput = Input.GetAxis("Player02");
                 movePlayerPaddle(movementFromUserInput);
                 break;
-            case PaddleUser.AI: 
+            case PaddleUser.AI:
                 moveAIPaddle();
                 break;
+        }
+
+        if (transform.position.z < zPositionBoundary01)
+        {
+            transform.position = new Vector3(
+                fixedXPositionOfPaddle, 
+                fixedYPositionOfPaddle, 
+                zPositionBoundary01);
+        }
+
+        else if (transform.position.z > zPositionBoundary02)
+        {
+            transform.position = new Vector3(
+                fixedXPositionOfPaddle, 
+                fixedYPositionOfPaddle, 
+                zPositionBoundary02);
         }
     }
 
