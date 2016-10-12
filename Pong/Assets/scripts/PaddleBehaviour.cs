@@ -5,22 +5,28 @@ public class PaddleBehaviour : MonoBehaviour
 {
     public PaddleUser thisPaddleUser;
 
+    private float xPositionOfPaddle;
+
+    private float yPositionOfPaddle;
+
     public int paddleSpeed;
 
     public GameObject ball;
 
-    //void Start()
-    //{
-    //    if (thisPaddleUser == PaddleUser.AI)
-    //    {
-    //        Rigidbody AIPaddle = GetComponent<Rigidbody>();
+    void Start()
+    {
+        xPositionOfPaddle = GetComponent<Transform>().position.x;
+        yPositionOfPaddle = GetComponent<Transform>().position.y;
+        //    if (thisPaddleUser == PaddleUser.AI)
+        //    {
+        //        Rigidbody AIPaddle = GetComponent<Rigidbody>();
 
-    //        AIPaddle.AddForce(0, 0, paddleSpeed * AIPaddle.mass, 
-    //            ForceMode.Impulse);
-    //    }
-    //}
+        //        AIPaddle.AddForce(0, 0, paddleSpeed * AIPaddle.mass, 
+        //            ForceMode.Impulse);
+        //    }
+    }
 
-    private void FixedUpdate()
+private void FixedUpdate()
     {
         float userInput = 0;
 
@@ -50,7 +56,8 @@ public class PaddleBehaviour : MonoBehaviour
     {
         float zPositionOfBall = ball.GetComponent<Transform>().position.z;
 
-        GetComponent<Transform>().position = new Vector3(-8, 0.5f, zPositionOfBall);
+        GetComponent<Transform>().position = 
+            new Vector3(xPositionOfPaddle, yPositionOfPaddle, zPositionOfBall);
     }
 }
 
