@@ -5,18 +5,24 @@ public class PaddleBehaviour : MonoBehaviour
 {
     public PaddleUser thisPaddleUser;
 
-    private float xPositionOfPaddle;
+    private Vector3 positionOfAIPaddle;
 
-    private float yPositionOfPaddle;
+    private float fixedXPositionOfAIPaddle;
+
+    private float fixedYPositionOfAIPaddle;
+
+    private float changingZPositionOfAIPaddle = 0;
 
     public int paddleSpeed;
 
     public GameObject ball;
 
+    private Vector3 positionOfBall;
+
     void Start()
     {
-        xPositionOfPaddle = GetComponent<Transform>().position.x;
-        yPositionOfPaddle = GetComponent<Transform>().position.y;
+        fixedXPositionOfAIPaddle = GetComponent<Transform>().position.x;
+        fixedYPositionOfAIPaddle = GetComponent<Transform>().position.y;
         //    if (thisPaddleUser == PaddleUser.AI)
         //    {
         //        Rigidbody AIPaddle = GetComponent<Rigidbody>();
@@ -54,10 +60,22 @@ private void FixedUpdate()
 
     private void moveAIPaddle()
     {
-        float zPositionOfBall = ball.GetComponent<Transform>().position.z;
+        float updatedZPositionOfAIPaddle = Mathf.SmoothDamp(
+            transform.position.z, 
+            ball.transform.position.z, 
+            ref changingZPositionOfAIPaddle, 0.5f);
 
-        GetComponent<Transform>().position = 
-            new Vector3(xPositionOfPaddle, yPositionOfPaddle, zPositionOfBall);
+        transform.position = new Vector3(
+            fixedXPositionOfAIPaddle,
+            fixedYPositionOfAIPaddle,
+            updatedZPositionOfAIPaddle);
+
+        // Code for undefeatable AI.
+        //float zPositionOfBall = ball.GetComponent<Transform>().position.z;
+
+        //GetComponent<Transform>().position = 
+        //    new Vector3(fixedXPositionOfPaddle, fixedYPositionOfPaddle, 
+        //        zPositionOfBall);
     }
 }
 
