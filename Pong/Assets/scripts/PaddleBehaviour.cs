@@ -3,83 +3,145 @@ using System.Collections;
 
 public class PaddleBehaviour : MonoBehaviour
 {
-    public PaddleUser thisPaddleUser;
+    public PaddleSpeed paddleSpeed;
 
-    private Vector3 positionOfAIPaddle;
+    private float paddleSpeedFactor;
 
-    private float fixedXPositionOfAIPaddle;
+    public PaddleUser paddleUser;
 
-    private float fixedYPositionOfAIPaddle;
+    private float fixedXPositionOfPaddle;
 
-    private float changingZPositionOfAIPaddle = 0;
+    private const float fixedYPositionOfPaddle = 0.5F;
 
-    public int paddleSpeed;
+    private float lastZPositionOfPaddle;
+
+    private float updatedZPositionOfPaddle;
+
+    private float movementFromUserInput;
+
+    private const float movementAcrossxAxis = 0;
+
+    private const float movementAcrossYAxis = 0;
+
+    private float movementAcrossZAxis;
+
+    private const float zPositionBoundary01 = -3.75F;
+
+    private const float zPositionBoundary02 = 3.75F;
 
     public GameObject ball;
 
     private Vector3 positionOfBall;
 
-    void Start()
+    private void Start()
     {
-        fixedXPositionOfAIPaddle = GetComponent<Transform>().position.x;
-        fixedYPositionOfAIPaddle = GetComponent<Transform>().position.y;
-        //    if (thisPaddleUser == PaddleUser.AI)
-        //    {
-        //        Rigidbody AIPaddle = GetComponent<Rigidbody>();
+        fixedXPositionOfPaddle = GetComponent<Transform>().position.x;
 
-        //        AIPaddle.AddForce(0, 0, paddleSpeed * AIPaddle.mass, 
-        //            ForceMode.Impulse);
-        //    }
+        bool isAI = false;
+        if (paddleUser == PaddleUser.AI)
+        {
+            isAI = true;
+        }
+        determinePaddleSpeedFactor(isAI);
     }
 
-private void FixedUpdate()
+    private void determinePaddleSpeedFactor(bool isAI)
     {
-        float userInput = 0;
+        if (isAI)
+        {
+            switch (paddleSpeed)
+            {
+                case PaddleSpeed.Slow:
+                    paddleSpeedFactor = 0.5F;
+                    break;
+                case PaddleSpeed.Moderate:
+                    paddleSpeedFactor = 0.25F;
+                    break;
+                case PaddleSpeed.Fast:
+                    paddleSpeedFactor = 0.125F;
+                    break;
+            }
+        }
+        else
+        {
+            switch (paddleSpeed)
+            {
+                case PaddleSpeed.Slow:
+                    paddleSpeedFactor = 2.5f;
+                    break;
+                case PaddleSpeed.Moderate:
+                    paddleSpeedFactor = 5;
+                    break;
+                case PaddleSpeed.Fast:
+                    paddleSpeedFactor = 10;
+                    break;
+            }
+        }
+    }
 
-        switch (thisPaddleUser)
+    private void FixedUpdate()
+    {
+        switch (paddleUser)
         {
             case PaddleUser.Player01:
-                userInput = Input.GetAxis("Player01");
-                movePlayerPaddle(userInput);
+                movementFromUserInput = Input.GetAxis("Player01");
+                movePlayerPaddle(movementFromUserInput);
                 break;
             case PaddleUser.Player02:
-                userInput = Input.GetAxis("Player02");
-                movePlayerPaddle(userInput);
+                movementFromUserInput = Input.GetAxis("Player02");
+                movePlayerPaddle(movementFromUserInput);
                 break;
             case PaddleUser.AI:
                 moveAIPaddle();
                 break;
         }
+
+        if (transform.position.z < zPositionBoundary01)
+        {
+            transform.position = new Vector3(
+                fixedXPositionOfPaddle, 
+                fixedYPositionOfPaddle, 
+                zPositionBoundary01);
+        }
+
+        else if (transform.position.z > zPositionBoundary02)
+        {
+            transform.position = new Vector3(
+                fixedXPositionOfPaddle, 
+                fixedYPositionOfPaddle, 
+                zPositionBoundary02);
+        }
     }
 
     private void movePlayerPaddle(float userInput)
     {
-        transform.position += new Vector3(0, 0, userInput * paddleSpeed *
-            Time.deltaTime);
+        movementAcrossZAxis = userInput * paddleSpeedFactor * Time.deltaTime;
+        
+        transform.position += new Vector3(
+            movementAcrossxAxis, movementAcrossYAxis, movementAcrossZAxis);
     }
 
     private void moveAIPaddle()
     {
-        float updatedZPositionOfAIPaddle = Mathf.SmoothDamp(
+        updatedZPositionOfPaddle = Mathf.SmoothDamp(
             transform.position.z, 
             ball.transform.position.z, 
-            ref changingZPositionOfAIPaddle, 0.5f);
+            ref lastZPositionOfPaddle, 
+            paddleSpeedFactor);
 
         transform.position = new Vector3(
-            fixedXPositionOfAIPaddle,
-            fixedYPositionOfAIPaddle,
-            updatedZPositionOfAIPaddle);
-
-        // Code for undefeatable AI.
-        //float zPositionOfBall = ball.GetComponent<Transform>().position.z;
-
-        //GetComponent<Transform>().position = 
-        //    new Vector3(fixedXPositionOfPaddle, fixedYPositionOfPaddle, 
-        //        zPositionOfBall);
+            fixedXPositionOfPaddle,
+            fixedYPositionOfPaddle,
+            updatedZPositionOfPaddle);
     }
 }
 
 public enum PaddleUser
 {
-    Player01, Player02, AI
+    AI, Player01, Player02
+}
+
+public enum PaddleSpeed
+{
+    Slow, Moderate, Fast
 }
