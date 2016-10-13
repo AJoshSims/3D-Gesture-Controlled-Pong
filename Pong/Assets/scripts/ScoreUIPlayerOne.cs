@@ -16,7 +16,7 @@ public class ScoreUIPlayerOne : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (ball.transform.position.x <= -9.585f)
+        if (ball.transform.position.x <= -9.5f)
         {
             scoreOne++;
         }
