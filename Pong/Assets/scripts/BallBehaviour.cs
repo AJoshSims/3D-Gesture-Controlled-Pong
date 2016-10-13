@@ -7,7 +7,7 @@ public class BallBehaviour : MonoBehaviour
 
     //public GameObject AIPaddle;
 
-	private void Start ()
+	private void Start()
     {
         InitiateBallMovement(speed);
     }
