@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Windows.Kinect;
 
 public class PaddleBehaviour : MonoBehaviour
 {
@@ -35,6 +36,7 @@ public class PaddleBehaviour : MonoBehaviour
 
     private void Start()
     {
+
         fixedXPositionOfPaddle = GetComponent<Transform>().position.x;
 
         bool isAI = false;
@@ -81,6 +83,7 @@ public class PaddleBehaviour : MonoBehaviour
 
     private void FixedUpdate()
     {
+
         switch (paddleUser)
         {
             case PaddleUser.Player01:
@@ -119,6 +122,8 @@ public class PaddleBehaviour : MonoBehaviour
         
         transform.position += new Vector3(
             movementAcrossxAxis, movementAcrossYAxis, movementAcrossZAxis);
+
+        
     }
 
     private void moveAIPaddle()
