@@ -54,24 +54,25 @@ public class GoalZoneConsumesBall : MonoBehaviour
             paddle01ScoreDisplay.text = "Player One: " +
                 paddle01Score;
 
-            //if ((paddle01Score % 5) == 0)
-            //{
-            //    ++Statistics.statistics.player01Wins;
-            //    Statistics.statistics.Save();
-            //}
+            if ((paddle01Score % 5) == 0)
+            {
+                ++Statistics.statistics.player01Wins;
+                Statistics.statistics.Save();
+            }
         }
         else if (thisGoalZoneX == goalZone01X)
         {
             ++paddle02Score;
 
+            Statistics.statistics.Load();
             paddle02ScoreDisplay.text = "Player Two: " + 
-                paddle02Score;
+                Statistics.statistics.player02Wins;
 
-            //if ((paddle02Score % 5) == 0)
-            //{
-            //    ++Statistics.statistics.player02Wins;
-            //    Statistics.statistics.Save();
-            //}
+            if ((paddle02Score % 5) == 0)
+            {
+                ++Statistics.statistics.player02Wins;
+                Statistics.statistics.Save();
+            }
         }
 
         ResetBall(ball);
