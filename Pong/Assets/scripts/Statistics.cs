@@ -12,6 +12,8 @@ public class Statistics : MonoBehaviour
 
     public int player02Wins;
 
+    public GameObject goal;
+
     private void Awake()
     {
         if (statistics == null)
@@ -23,7 +25,10 @@ public class Statistics : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
 
+    public void Start()
+    {
         Load();
     }
 
@@ -60,7 +65,7 @@ public class Statistics : MonoBehaviour
             statisticsFile.Close();
 
             player01Wins = statisticsSerializable.player01Wins;
-            player02Wins = statisticsSerializable.player01Wins;
+            player02Wins = statisticsSerializable.player02Wins;
         }
     }
 

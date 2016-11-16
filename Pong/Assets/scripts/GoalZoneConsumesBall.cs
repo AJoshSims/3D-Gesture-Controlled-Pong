@@ -46,6 +46,7 @@ public class GoalZoneConsumesBall : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         GameObject ball = collision.gameObject;
+        bool goalScored = false;
 
         if (thisGoalZoneX == goalZone02X)
         {
@@ -57,22 +58,26 @@ public class GoalZoneConsumesBall : MonoBehaviour
             if ((paddle01Score % 5) == 0)
             {
                 ++Statistics.statistics.player01Wins;
-                Statistics.statistics.Save();
+                goalScored = true;
             }
         }
         else if (thisGoalZoneX == goalZone01X)
         {
             ++paddle02Score;
 
-            Statistics.statistics.Load();
-            paddle02ScoreDisplay.text = "Player Two: " + 
-                Statistics.statistics.player02Wins;
-
             if ((paddle02Score % 5) == 0)
             {
                 ++Statistics.statistics.player02Wins;
-                Statistics.statistics.Save();
+                goalScored = true;
             }
+
+            paddle02ScoreDisplay.text = "Player Two: " +
+                paddle02Score + " :: wins " + Statistics.statistics.player02Wins;
+        }
+
+        if (goalScored == true)
+        {
+        Statistics.statistics.Save();
         }
 
         ResetBall(ball);
