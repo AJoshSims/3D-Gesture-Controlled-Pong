@@ -8,9 +8,11 @@ public class Statistics : MonoBehaviour
 {
     public static Statistics statistics;
 
-    public int wins;
+    public int player01Wins;
 
-    void Awake()
+    public int player02Wins;
+
+    private void Awake()
     {
         if (statistics == null)
         {
@@ -21,6 +23,8 @@ public class Statistics : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        Load();
     }
 
     public void Save()
@@ -31,7 +35,8 @@ public class Statistics : MonoBehaviour
 
         StatisticsSerializable statisticsSerializable = 
             new StatisticsSerializable();
-        statisticsSerializable.wins = wins;
+        statisticsSerializable.player01Wins = player01Wins;
+        statisticsSerializable.player02Wins = player02Wins;
         
         BinaryFormatter serializer = new BinaryFormatter();
         serializer.Serialize(statisticsFile, statisticsSerializable);
@@ -53,12 +58,17 @@ public class Statistics : MonoBehaviour
                 (StatisticsSerializable) deserializer.Deserialize(
                 statisticsFile);
             statisticsFile.Close();
+
+            player01Wins = statisticsSerializable.player01Wins;
+            player02Wins = statisticsSerializable.player01Wins;
         }
     }
 
     [Serializable]
     private class StatisticsSerializable
     {
-        internal int wins;
+        internal int player01Wins;
+
+        internal int player02Wins;
     }
 }

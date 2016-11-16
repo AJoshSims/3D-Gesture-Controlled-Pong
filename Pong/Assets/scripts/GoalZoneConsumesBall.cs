@@ -4,23 +4,29 @@ using UnityEngine.UI;
 
 public class GoalZoneConsumesBall : MonoBehaviour
 {
-    private float thisGoalZone;
+    private float thisGoalZoneX;
 
-    private const float goalZone01 = 10;
+    private float thisGoalZoneZ;
 
-    private const float goalZone02 = -10;
+    private const float goalZone01X = 10;
+
+    private const float goalZone01LeftZ = -2.375F;
+
+    private const float goalZone01RightZ = 2.375F;
+
+    private const float goalZone02X = -10;
+
+    private const float goalZone02LeftZ = 2.375F;
+
+    private const float goalZone02RightZ = 2.375F;
 
     public Text paddle01ScoreDisplay;
 
-    private int paddle01Score;
+    private static int paddle01Score;
 
     public Text paddle02ScoreDisplay;
 
-    private int paddle02Score;
-
-    private string scorer;
-
-    private int scorerScore;
+    private static int paddle02Score;
 
     private const float beginningXPositionOfBall = 0;
 
@@ -30,7 +36,8 @@ public class GoalZoneConsumesBall : MonoBehaviour
 
     private void Start()
     {
-        thisGoalZone = transform.position.x;
+        thisGoalZoneX = transform.position.x;
+        thisGoalZoneZ = transform.position.z;
 
         paddle01ScoreDisplay.text = "Player One: 0";
         paddle02ScoreDisplay.text = "Player Two: 0";
@@ -40,19 +47,31 @@ public class GoalZoneConsumesBall : MonoBehaviour
     {
         GameObject ball = collision.gameObject;
 
-        if (thisGoalZone == goalZone02)
+        if (thisGoalZoneX == goalZone02X)
         {
-            paddle01Score++;
+            ++paddle01Score;
 
-            paddle01ScoreDisplay.text = scorer + "Player One: " +
+            paddle01ScoreDisplay.text = "Player One: " +
                 paddle01Score;
-        }
-        else
-        {
-            paddle02Score++;
 
-            paddle02ScoreDisplay.text = scorer + "Player Two: " + 
+            //if ((paddle01Score % 5) == 0)
+            //{
+            //    ++Statistics.statistics.player01Wins;
+            //    Statistics.statistics.Save();
+            //}
+        }
+        else if (thisGoalZoneX == goalZone01X)
+        {
+            ++paddle02Score;
+
+            paddle02ScoreDisplay.text = "Player Two: " + 
                 paddle02Score;
+
+            //if ((paddle02Score % 5) == 0)
+            //{
+            //    ++Statistics.statistics.player02Wins;
+            //    Statistics.statistics.Save();
+            //}
         }
 
         ResetBall(ball);
