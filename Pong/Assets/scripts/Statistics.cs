@@ -12,8 +12,6 @@ public class Statistics : MonoBehaviour
 
     public int player02Wins;
 
-    public GameObject goal;
-
     private void Awake()
     {
         if (statistics == null)
