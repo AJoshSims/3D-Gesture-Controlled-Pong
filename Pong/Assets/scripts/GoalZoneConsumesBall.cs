@@ -10,23 +10,27 @@ public class GoalZoneConsumesBall : MonoBehaviour
 
     private const float goalZone01X = 10;
 
-    private const float goalZone01LeftZ = -2.375F;
+    private const float goalZone01LeftZ = -(9 / 3);
 
-    private const float goalZone01RightZ = 2.375F;
+    private const float goalZone01MiddleZ = 0;
+
+    private const float goalZone01RightZ = (9 / 3);
 
     private const float goalZone02X = -10;
 
-    private const float goalZone02LeftZ = 2.375F;
+    private const float goalZone02LeftZ = (9 / 3);
 
-    private const float goalZone02RightZ = 2.375F;
+    private const float goalZone02MiddleZ = 0;
 
-    public Text paddle01ScoreDisplay;
+    private const float goalZone02RightZ = -(9 / 3);
 
-    private static int paddle01Score;
+    public Text player01ScoreDisplay;
 
-    public Text paddle02ScoreDisplay;
+    private static int player01Goals;
 
-    private static int paddle02Score;
+    public Text player02ScoreDisplay;
+
+    private static int player02Goals;
 
     private const float beginningXPositionOfBall = 0;
 
@@ -39,8 +43,8 @@ public class GoalZoneConsumesBall : MonoBehaviour
         thisGoalZoneX = transform.position.x;
         thisGoalZoneZ = transform.position.z;
 
-        paddle01ScoreDisplay.text = "Player One: 0";
-        paddle02ScoreDisplay.text = "Player Two: 0";
+        player01ScoreDisplay.text = "Player One: 0 :: wins " + Statistics.statistics.player01Wins;
+        player02ScoreDisplay.text = "Player Two: 0 :: wins " + Statistics.statistics.player02Wins;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -50,29 +54,35 @@ public class GoalZoneConsumesBall : MonoBehaviour
 
         if (thisGoalZoneX == goalZone02X)
         {
-            ++paddle01Score;
+            ++player01Goals;
+            ++Statistics.statistics.player01Goals;
 
-            paddle01ScoreDisplay.text = "Player One: " +
-                paddle01Score;
+            // TODO goal zone segment goal
 
-            if ((paddle01Score % 5) == 0)
+            player01ScoreDisplay.text = "Player One: " +
+                player01Goals + " :: wins " + Statistics.statistics.player01Wins;
+
+            if ((player01Goals % 5) == 0)
             {
                 ++Statistics.statistics.player01Wins;
+                ++Statistics.statistics.player02Losses;
                 goalScored = true;
             }
         }
         else if (thisGoalZoneX == goalZone01X)
         {
-            ++paddle02Score;
+            ++player02Goals;
+            ++Statistics.statistics.player02Goals;
 
-            if ((paddle02Score % 5) == 0)
+            if ((player02Goals % 5) == 0)
             {
                 ++Statistics.statistics.player02Wins;
+                ++Statistics.statistics.player01Losses;
                 goalScored = true;
             }
 
-            paddle02ScoreDisplay.text = "Player Two: " +
-                paddle02Score + " :: wins " + Statistics.statistics.player02Wins;
+            player02ScoreDisplay.text = "Player Two: " +
+                player02Goals + " :: wins " + Statistics.statistics.player02Wins;
         }
 
         if (goalScored == true)
