@@ -43,10 +43,8 @@ public class GoalZoneConsumesBall : MonoBehaviour
         thisGoalZoneX = transform.position.x;
         thisGoalZoneZ = transform.position.z;
 
-        player01ScoreDisplay.text = 
-            "Player One: 0 :: wins " + Statistics.statistics.pongPlayer01Wins;
-        player02ScoreDisplay.text = 
-            "Player Two: 0 :: wins " + Statistics.statistics.pongPlayer02Wins;
+        player01ScoreDisplay.text = "Player One: " + player01Goals;
+        player02ScoreDisplay.text = "Player Two: " + player02Goals;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -87,8 +85,7 @@ public class GoalZoneConsumesBall : MonoBehaviour
             }
 
             player01ScoreDisplay.text =
-                "Player One: " + player01Goals +
-                " :: wins " + Statistics.statistics.pongPlayer01Wins;
+                "Player One: " + player01Goals;
         }
 
         else if (thisGoalZoneX == goalZone01X)
@@ -123,16 +120,16 @@ public class GoalZoneConsumesBall : MonoBehaviour
             }
 
             player02ScoreDisplay.text = 
-                "Player Two: " + player02Goals + 
-                " :: wins " + Statistics.statistics.pongPlayer02Wins;
+                "Player Two: " + player02Goals;
         }
+
+        ResetBall(ball);
 
         if (goalScored == true)
         {
             Statistics.statistics.Save();
         }
 
-        ResetBall(ball);
     }
 
     private void ResetBall(GameObject ball)
