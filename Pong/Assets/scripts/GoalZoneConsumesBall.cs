@@ -43,51 +43,93 @@ public class GoalZoneConsumesBall : MonoBehaviour
         thisGoalZoneX = transform.position.x;
         thisGoalZoneZ = transform.position.z;
 
-        player01ScoreDisplay.text = "Player One: 0 :: wins " + Statistics.statistics.player01Wins;
-        player02ScoreDisplay.text = "Player Two: 0 :: wins " + Statistics.statistics.player02Wins;
+        player01ScoreDisplay.text = 
+            "Player One: 0 :: wins " + Statistics.statistics.pongPlayer01Wins;
+        player02ScoreDisplay.text = 
+            "Player Two: 0 :: wins " + Statistics.statistics.pongPlayer02Wins;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         GameObject ball = collision.gameObject;
+
         bool goalScored = false;
 
         if (thisGoalZoneX == goalZone02X)
         {
             ++player01Goals;
-            ++Statistics.statistics.player01Goals;
+            ++Statistics.statistics.pongPlayer01WinGoals;
+            ++Statistics.statistics.pongPlayer02LossGoals;
 
-            // TODO goal zone segment goal
+            if (thisGoalZoneZ == goalZone02RightZ)
+            {
+                ++Statistics.statistics.pongPlayer01WinGoalsLeft;
+                ++Statistics.statistics.pongPlayer02LossGoalsRight;
+            }
 
-            player01ScoreDisplay.text = "Player One: " +
-                player01Goals + " :: wins " + Statistics.statistics.player01Wins;
+            else if (thisGoalZoneZ == goalZone02MiddleZ)
+            {
+                ++Statistics.statistics.pongPlayer01WinGoalsMiddle;
+                ++Statistics.statistics.pongPlayer02LossGoalsMiddle;
+            }
+
+            else if (thisGoalZoneZ == goalZone02LeftZ)
+            {
+                ++Statistics.statistics.pongPlayer01WinGoalsRight;
+                ++Statistics.statistics.pongPlayer02LossGoalsLeft;
+            }
 
             if ((player01Goals % 5) == 0)
             {
-                ++Statistics.statistics.player01Wins;
-                ++Statistics.statistics.player02Losses;
+                ++Statistics.statistics.pongPlayer01Wins;
+                ++Statistics.statistics.pongPlayer02Losses;
                 goalScored = true;
             }
+
+            player01ScoreDisplay.text =
+                "Player One: " + player01Goals +
+                " :: wins " + Statistics.statistics.pongPlayer01Wins;
         }
+
         else if (thisGoalZoneX == goalZone01X)
         {
             ++player02Goals;
-            ++Statistics.statistics.player02Goals;
+            ++Statistics.statistics.pongPlayer02WinGoals;
+            ++Statistics.statistics.pongPlayer01LossGoals;
+
+            if (thisGoalZoneZ == goalZone01RightZ)
+            {
+                ++Statistics.statistics.pongPlayer02WinGoalsLeft;
+                ++Statistics.statistics.pongPlayer01LossGoalsRight;
+            }
+
+            else if (thisGoalZoneZ == goalZone01MiddleZ)
+            {
+                ++Statistics.statistics.pongPlayer02WinGoalsMiddle;
+                ++Statistics.statistics.pongPlayer01LossGoalsMiddle;
+            }
+
+            else if (thisGoalZoneZ == goalZone01LeftZ)
+            {
+                ++Statistics.statistics.pongPlayer02WinGoalsRight;
+                ++Statistics.statistics.pongPlayer01LossGoalsLeft;
+            }
 
             if ((player02Goals % 5) == 0)
             {
-                ++Statistics.statistics.player02Wins;
-                ++Statistics.statistics.player01Losses;
+                ++Statistics.statistics.pongPlayer02Wins;
+                ++Statistics.statistics.pongPlayer01Losses;
                 goalScored = true;
             }
 
-            player02ScoreDisplay.text = "Player Two: " +
-                player02Goals + " :: wins " + Statistics.statistics.player02Wins;
+            player02ScoreDisplay.text = 
+                "Player Two: " + player02Goals + 
+                " :: wins " + Statistics.statistics.pongPlayer02Wins;
         }
 
         if (goalScored == true)
         {
-        Statistics.statistics.Save();
+            Statistics.statistics.Save();
         }
 
         ResetBall(ball);
