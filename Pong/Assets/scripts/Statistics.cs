@@ -210,7 +210,212 @@ internal class Statistics : MonoBehaviour
         Load();
     }
 
-    public void Calculate()
+    private void Load()
+    {
+        if (File.Exists(Application.persistentDataPath + "/statistics.dat"))
+        {
+            FileStream statisticsFile = File.Open(
+                Application.persistentDataPath + "/statistics.dat",
+                FileMode.Open);
+
+            BinaryFormatter deserializer = new BinaryFormatter();
+
+            StatisticsSerializable statisticsSerializable =
+                (StatisticsSerializable)deserializer.Deserialize(
+                statisticsFile);
+            statisticsFile.Close();
+
+            // Player 01, independent values
+            pongPlayer01Displacement =
+                statisticsSerializable.pongPlayer01Displacement;
+            pongPlayer01Hits =
+                statisticsSerializable.pongPlayer01Hits;
+            pongPlayer01WinGoals =
+                statisticsSerializable.pongPlayer01WinGoals;
+            pongPlayer01WinGoalsLeft =
+                statisticsSerializable.pongPlayer01WinGoalsLeft;
+            pongPlayer01WinGoalsMiddle =
+                statisticsSerializable.pongPlayer01WinGoalsMiddle;
+            pongPlayer01WinGoalsRight =
+                statisticsSerializable.pongPlayer01WinGoalsRight;
+            pongPlayer01Wins =
+                statisticsSerializable.pongPlayer01Wins;
+            pongPlayer01LossGoals =
+                statisticsSerializable.pongPlayer01LossGoals;
+            pongPlayer01LossGoalsLeft =
+                statisticsSerializable.pongPlayer01LossGoalsLeft;
+            pongPlayer01LossGoalsMiddle =
+                statisticsSerializable.pongPlayer01LossGoalsMiddle;
+            pongPlayer01LossGoalsRight =
+                statisticsSerializable.pongPlayer01LossGoalsRight;
+            pongPlayer01Losses =
+                statisticsSerializable.pongPlayer01Losses;
+
+            // Player 01, dependent values
+            pongPlayer01DisplacementPerHit =
+                statisticsSerializable.pongPlayer01DisplacementPerHit;
+            pongPlayer01DisplacementPerWinGoal =
+                statisticsSerializable.pongPlayer01DisplacementPerWinGoal;
+            pongPlayer01DisplacementPerWinGoalLeft =
+                statisticsSerializable.pongPlayer01DisplacementPerWinGoalLeft;
+            pongPlayer01DisplacementPerWinGoalMiddle =
+                statisticsSerializable.pongPlayer01DisplacementPerWinGoalMiddle;
+            pongPlayer01DisplacementPerWinGoalRight =
+                statisticsSerializable.pongPlayer01DisplacementPerWinGoalRight;
+            pongPlayer01DisplacementPerWin =
+                statisticsSerializable.pongPlayer01DisplacementPerWin;
+            pongPlayer01DisplacementPerLossGoal =
+                statisticsSerializable.pongPlayer01DisplacementPerLossGoal;
+            pongPlayer01DisplacementPerLossGoalLeft =
+                statisticsSerializable.pongPlayer01DisplacementPerLossGoalLeft;
+            pongPlayer01DisplacementPerLossGoalMiddle =
+                statisticsSerializable.pongPlayer01DisplacementPerLossGoalMiddle;
+            pongPlayer01DisplacementPerLossGoalRight =
+                statisticsSerializable.pongPlayer01DisplacementPerLossGoalRight;
+            pongPlayer01DisplacementPerLoss =
+                statisticsSerializable.pongPlayer01DisplacementPerLoss;
+            pongPlayer01HitsPerWinGoal =
+                statisticsSerializable.pongPlayer01HitsPerWinGoal;
+            pongPlayer01HitsPerWinGoalLeft =
+                statisticsSerializable.pongPlayer01HitsPerWinGoalLeft;
+            pongPlayer01HitsPerWinGoalMiddle =
+                statisticsSerializable.pongPlayer01HitsPerWinGoalMiddle;
+            pongPlayer01HitsPerWinGoalRight =
+                statisticsSerializable.pongPlayer01HitsPerWinGoalRight;
+            pongPlayer01HitsPerWin =
+                statisticsSerializable.pongPlayer01HitsPerWin;
+            pongPlayer01HitsPerLossGoal =
+                statisticsSerializable.pongPlayer01HitsPerLossGoal;
+            pongPlayer01HitsPerLossGoalLeft =
+                statisticsSerializable.pongPlayer01HitsPerLossGoalLeft;
+            pongPlayer01HitsPerLossGoalMiddle =
+                statisticsSerializable.pongPlayer01HitsPerLossGoalMiddle;
+            pongPlayer01HitsPerLossGoalRight =
+                statisticsSerializable.pongPlayer01HitsPerLossGoalRight;
+            pongPlayer01HitsPerLoss =
+                statisticsSerializable.pongPlayer01HitsPerLoss;
+            pongPlayer01WinGoalsLeftPerWinGoal =
+                statisticsSerializable.pongPlayer01WinGoalsLeftPerWinGoal;
+            pongPlayer01WinGoalsMiddlePerWinGoal =
+                statisticsSerializable.pongPlayer01WinGoalsMiddlePerWinGoal;
+            pongPlayer01WinGoalsRightPerWinGoal =
+                statisticsSerializable.pongPlayer01WinGoalsRightPerWinGoal;
+            pongPlayer01WinGoalsLeftPerWin =
+                statisticsSerializable.pongPlayer01WinGoalsLeftPerWin;
+            pongPlayer01WinGoalsMiddlePerWin =
+                statisticsSerializable.pongPlayer01WinGoalsMiddlePerWin;
+            pongPlayer01WinGoalsRightPerWin =
+                statisticsSerializable.pongPlayer01WinGoalsRightPerWin;
+            pongPlayer01LossGoalsLeftPerLossGoal =
+                statisticsSerializable.pongPlayer01LossGoalsLeftPerLossGoal;
+            pongPlayer01LossGoalsMiddlePerLossGoal =
+                statisticsSerializable.pongPlayer01LossGoalsMiddlePerLossGoal;
+            pongPlayer01LossGoalsRightPerLossGoal =
+                statisticsSerializable.pongPlayer01LossGoalsRightPerLossGoal;
+            pongPlayer01LossGoalsLeftPerLoss =
+                statisticsSerializable.pongPlayer01LossGoalsLeftPerLoss;
+            pongPlayer01LossGoalsMiddlePerLoss =
+                statisticsSerializable.pongPlayer01LossGoalsMiddlePerLoss;
+            pongPlayer01LossGoalsRightPerLoss =
+                statisticsSerializable.pongPlayer01LossGoalsRightPerLoss;
+
+            // Player 02, independent values
+            pongPlayer02Displacement =
+                statisticsSerializable.pongPlayer02Displacement;
+            pongPlayer02Hits =
+                statisticsSerializable.pongPlayer02Hits;
+            pongPlayer02WinGoals =
+                statisticsSerializable.pongPlayer02WinGoals;
+            pongPlayer02WinGoalsLeft =
+                statisticsSerializable.pongPlayer02WinGoalsLeft;
+            pongPlayer02WinGoalsMiddle =
+                statisticsSerializable.pongPlayer02WinGoalsMiddle;
+            pongPlayer02WinGoalsRight =
+                statisticsSerializable.pongPlayer02WinGoalsRight;
+            pongPlayer02Wins =
+                statisticsSerializable.pongPlayer02Wins;
+            pongPlayer02LossGoals =
+                statisticsSerializable.pongPlayer02LossGoals;
+            pongPlayer02LossGoalsLeft =
+                statisticsSerializable.pongPlayer02LossGoalsLeft;
+            pongPlayer02LossGoalsMiddle =
+                statisticsSerializable.pongPlayer02LossGoalsMiddle;
+            pongPlayer02LossGoalsRight =
+                statisticsSerializable.pongPlayer02LossGoalsRight;
+            pongPlayer02Losses =
+                statisticsSerializable.pongPlayer02Losses;
+
+            // Player 02, dependent values
+            pongPlayer02DisplacementPerHit =
+                statisticsSerializable.pongPlayer02DisplacementPerHit;
+            pongPlayer02DisplacementPerWinGoal =
+                statisticsSerializable.pongPlayer02DisplacementPerWinGoal;
+            pongPlayer02DisplacementPerWinGoalLeft =
+                statisticsSerializable.pongPlayer02DisplacementPerWinGoalLeft;
+            pongPlayer02DisplacementPerWinGoalMiddle =
+                statisticsSerializable.pongPlayer02DisplacementPerWinGoalMiddle;
+            pongPlayer02DisplacementPerWinGoalRight =
+                statisticsSerializable.pongPlayer02DisplacementPerWinGoalRight;
+            pongPlayer02DisplacementPerWin =
+                statisticsSerializable.pongPlayer02DisplacementPerWin;
+            pongPlayer02DisplacementPerLossGoal =
+                statisticsSerializable.pongPlayer02DisplacementPerLossGoal;
+            pongPlayer02DisplacementPerLossGoalLeft =
+                statisticsSerializable.pongPlayer02DisplacementPerLossGoalLeft;
+            pongPlayer02DisplacementPerLossGoalMiddle =
+                statisticsSerializable.pongPlayer02DisplacementPerLossGoalMiddle;
+            pongPlayer02DisplacementPerLossGoalRight =
+                statisticsSerializable.pongPlayer02DisplacementPerLossGoalRight;
+            pongPlayer02DisplacementPerLoss =
+                statisticsSerializable.pongPlayer02DisplacementPerLoss;
+            pongPlayer02HitsPerWinGoal =
+                statisticsSerializable.pongPlayer02HitsPerWinGoal;
+            pongPlayer02HitsPerWinGoalLeft =
+                statisticsSerializable.pongPlayer02HitsPerWinGoalLeft;
+            pongPlayer02HitsPerWinGoalMiddle =
+                statisticsSerializable.pongPlayer02HitsPerWinGoalMiddle;
+            pongPlayer02HitsPerWinGoalRight =
+                statisticsSerializable.pongPlayer02HitsPerWinGoalRight;
+            pongPlayer02HitsPerWin =
+                statisticsSerializable.pongPlayer02HitsPerWin;
+            pongPlayer02HitsPerLossGoal =
+                statisticsSerializable.pongPlayer02HitsPerLossGoal;
+            pongPlayer02HitsPerLossGoalLeft =
+                statisticsSerializable.pongPlayer02HitsPerLossGoalLeft;
+            pongPlayer02HitsPerLossGoalMiddle =
+                statisticsSerializable.pongPlayer02HitsPerLossGoalMiddle;
+            pongPlayer02HitsPerLossGoalRight =
+                statisticsSerializable.pongPlayer02HitsPerLossGoalRight;
+            pongPlayer02HitsPerLoss =
+                statisticsSerializable.pongPlayer02HitsPerLoss;
+            pongPlayer02WinGoalsLeftPerWinGoal =
+                statisticsSerializable.pongPlayer02WinGoalsLeftPerWinGoal;
+            pongPlayer02WinGoalsMiddlePerWinGoal =
+                statisticsSerializable.pongPlayer02WinGoalsMiddlePerWinGoal;
+            pongPlayer02WinGoalsRightPerWinGoal =
+                statisticsSerializable.pongPlayer02WinGoalsRightPerWinGoal;
+            pongPlayer02WinGoalsLeftPerWin =
+                statisticsSerializable.pongPlayer02WinGoalsLeftPerWin;
+            pongPlayer02WinGoalsMiddlePerWin =
+                statisticsSerializable.pongPlayer02WinGoalsMiddlePerWin;
+            pongPlayer02WinGoalsRightPerWin =
+                statisticsSerializable.pongPlayer02WinGoalsRightPerWin;
+            pongPlayer02LossGoalsLeftPerLossGoal =
+                statisticsSerializable.pongPlayer02LossGoalsLeftPerLossGoal;
+            pongPlayer02LossGoalsMiddlePerLossGoal =
+                statisticsSerializable.pongPlayer02LossGoalsMiddlePerLossGoal;
+            pongPlayer02LossGoalsRightPerLossGoal =
+                statisticsSerializable.pongPlayer02LossGoalsRightPerLossGoal;
+            pongPlayer02LossGoalsLeftPerLoss =
+                statisticsSerializable.pongPlayer02LossGoalsLeftPerLoss;
+            pongPlayer02LossGoalsMiddlePerLoss =
+                statisticsSerializable.pongPlayer02LossGoalsMiddlePerLoss;
+            pongPlayer02LossGoalsRightPerLoss =
+                statisticsSerializable.pongPlayer02LossGoalsRightPerLoss;
+        }
+    }
+
+    private void Calculate()
     {
         // Player 01, dependent values
         pongPlayer01DisplacementPerHit =
@@ -349,8 +554,10 @@ internal class Statistics : MonoBehaviour
             pongPlayer02LossGoalsRight / pongPlayer02Losses;
     }
 
-    public void Save()
+    internal void Save()
     {
+        Calculate();
+
         FileStream statisticsFile = File.Open(
             Application.persistentDataPath + "/statistics.dat", 
             FileMode.OpenOrCreate);
@@ -546,215 +753,22 @@ internal class Statistics : MonoBehaviour
         statisticsSerializable.pongPlayer02LossGoalsRightPerLoss =
             pongPlayer02LossGoalsRightPerLoss;
 
+        SaveToHumanReadableFile(statisticsSerializable);
+
         BinaryFormatter serializer = new BinaryFormatter();
         serializer.Serialize(statisticsFile, statisticsSerializable);
 
         statisticsFile.Close();       
     }
 
-    public void Load()
+    private void SaveToHumanReadableFile(
+        StatisticsSerializable statisticsSerializable)
     {
-        if (File.Exists(Application.persistentDataPath + "/statistics.dat"))
-        {
-            FileStream statisticsFile = File.Open(
-                Application.persistentDataPath + "/statistics.dat", 
-                FileMode.Open);
+        string statisticsJson = JsonUtility.ToJson(statisticsSerializable);
 
-            BinaryFormatter deserializer = new BinaryFormatter();
-
-            StatisticsSerializable statisticsSerializable =
-                (StatisticsSerializable) deserializer.Deserialize(
-                statisticsFile);
-            statisticsFile.Close();
-
-            // Player 01, independent values
-            pongPlayer01Displacement = 
-                statisticsSerializable.pongPlayer01Displacement;
-            pongPlayer01Hits = 
-                statisticsSerializable.pongPlayer01Hits;
-            pongPlayer01WinGoals = 
-                statisticsSerializable.pongPlayer01WinGoals;
-            pongPlayer01WinGoalsLeft = 
-                statisticsSerializable.pongPlayer01WinGoalsLeft;
-            pongPlayer01WinGoalsMiddle = 
-                statisticsSerializable.pongPlayer01WinGoalsMiddle;
-            pongPlayer01WinGoalsRight = 
-                statisticsSerializable.pongPlayer01WinGoalsRight;
-            pongPlayer01Wins = 
-                statisticsSerializable.pongPlayer01Wins;
-            pongPlayer01LossGoals = 
-                statisticsSerializable.pongPlayer01LossGoals;
-            pongPlayer01LossGoalsLeft = 
-                statisticsSerializable.pongPlayer01LossGoalsLeft;
-            pongPlayer01LossGoalsMiddle = 
-                statisticsSerializable.pongPlayer01LossGoalsMiddle;
-            pongPlayer01LossGoalsRight = 
-                statisticsSerializable.pongPlayer01LossGoalsRight;
-            pongPlayer01Losses = 
-                statisticsSerializable.pongPlayer01Losses;
-
-            // Player 01, dependent values
-            pongPlayer01DisplacementPerHit = 
-                statisticsSerializable.pongPlayer01DisplacementPerHit;
-            pongPlayer01DisplacementPerWinGoal = 
-                statisticsSerializable.pongPlayer01DisplacementPerWinGoal;
-            pongPlayer01DisplacementPerWinGoalLeft = 
-                statisticsSerializable.pongPlayer01DisplacementPerWinGoalLeft;
-            pongPlayer01DisplacementPerWinGoalMiddle = 
-                statisticsSerializable.pongPlayer01DisplacementPerWinGoalMiddle;
-            pongPlayer01DisplacementPerWinGoalRight = 
-                statisticsSerializable.pongPlayer01DisplacementPerWinGoalRight;
-            pongPlayer01DisplacementPerWin = 
-                statisticsSerializable.pongPlayer01DisplacementPerWin;
-            pongPlayer01DisplacementPerLossGoal = 
-                statisticsSerializable.pongPlayer01DisplacementPerLossGoal;
-            pongPlayer01DisplacementPerLossGoalLeft = 
-                statisticsSerializable.pongPlayer01DisplacementPerLossGoalLeft;
-            pongPlayer01DisplacementPerLossGoalMiddle = 
-                statisticsSerializable.pongPlayer01DisplacementPerLossGoalMiddle;
-            pongPlayer01DisplacementPerLossGoalRight = 
-                statisticsSerializable.pongPlayer01DisplacementPerLossGoalRight;
-            pongPlayer01DisplacementPerLoss = 
-                statisticsSerializable.pongPlayer01DisplacementPerLoss;
-            pongPlayer01HitsPerWinGoal = 
-                statisticsSerializable.pongPlayer01HitsPerWinGoal;
-            pongPlayer01HitsPerWinGoalLeft = 
-                statisticsSerializable.pongPlayer01HitsPerWinGoalLeft;
-            pongPlayer01HitsPerWinGoalMiddle = 
-                statisticsSerializable.pongPlayer01HitsPerWinGoalMiddle;
-            pongPlayer01HitsPerWinGoalRight = 
-                statisticsSerializable.pongPlayer01HitsPerWinGoalRight;
-            pongPlayer01HitsPerWin = 
-                statisticsSerializable.pongPlayer01HitsPerWin;
-            pongPlayer01HitsPerLossGoal = 
-                statisticsSerializable.pongPlayer01HitsPerLossGoal;
-            pongPlayer01HitsPerLossGoalLeft = 
-                statisticsSerializable.pongPlayer01HitsPerLossGoalLeft;
-            pongPlayer01HitsPerLossGoalMiddle = 
-                statisticsSerializable.pongPlayer01HitsPerLossGoalMiddle;
-            pongPlayer01HitsPerLossGoalRight = 
-                statisticsSerializable.pongPlayer01HitsPerLossGoalRight;
-            pongPlayer01HitsPerLoss = 
-                statisticsSerializable.pongPlayer01HitsPerLoss;
-            pongPlayer01WinGoalsLeftPerWinGoal = 
-                statisticsSerializable.pongPlayer01WinGoalsLeftPerWinGoal;
-            pongPlayer01WinGoalsMiddlePerWinGoal = 
-                statisticsSerializable.pongPlayer01WinGoalsMiddlePerWinGoal;
-            pongPlayer01WinGoalsRightPerWinGoal = 
-                statisticsSerializable.pongPlayer01WinGoalsRightPerWinGoal;
-            pongPlayer01WinGoalsLeftPerWin = 
-                statisticsSerializable.pongPlayer01WinGoalsLeftPerWin;
-            pongPlayer01WinGoalsMiddlePerWin = 
-                statisticsSerializable.pongPlayer01WinGoalsMiddlePerWin;
-            pongPlayer01WinGoalsRightPerWin = 
-                statisticsSerializable.pongPlayer01WinGoalsRightPerWin;
-            pongPlayer01LossGoalsLeftPerLossGoal = 
-                statisticsSerializable.pongPlayer01LossGoalsLeftPerLossGoal;
-            pongPlayer01LossGoalsMiddlePerLossGoal = 
-                statisticsSerializable.pongPlayer01LossGoalsMiddlePerLossGoal;
-            pongPlayer01LossGoalsRightPerLossGoal = 
-                statisticsSerializable.pongPlayer01LossGoalsRightPerLossGoal;
-            pongPlayer01LossGoalsLeftPerLoss = 
-                statisticsSerializable.pongPlayer01LossGoalsLeftPerLoss;
-            pongPlayer01LossGoalsMiddlePerLoss = 
-                statisticsSerializable.pongPlayer01LossGoalsMiddlePerLoss;
-            pongPlayer01LossGoalsRightPerLoss = 
-                statisticsSerializable.pongPlayer01LossGoalsRightPerLoss;
-
-    // Player 02, independent values
-            pongPlayer02Displacement = 
-                statisticsSerializable.pongPlayer02Displacement;
-            pongPlayer02Hits = 
-                statisticsSerializable.pongPlayer02Hits;
-            pongPlayer02WinGoals = 
-                statisticsSerializable.pongPlayer02WinGoals;
-            pongPlayer02WinGoalsLeft = 
-                statisticsSerializable.pongPlayer02WinGoalsLeft;
-            pongPlayer02WinGoalsMiddle = 
-                statisticsSerializable.pongPlayer02WinGoalsMiddle;
-            pongPlayer02WinGoalsRight = 
-                statisticsSerializable.pongPlayer02WinGoalsRight;
-            pongPlayer02Wins = 
-                statisticsSerializable.pongPlayer02Wins;
-            pongPlayer02LossGoals = 
-                statisticsSerializable.pongPlayer02LossGoals;
-            pongPlayer02LossGoalsLeft = 
-                statisticsSerializable.pongPlayer02LossGoalsLeft;
-            pongPlayer02LossGoalsMiddle = 
-                statisticsSerializable.pongPlayer02LossGoalsMiddle;
-            pongPlayer02LossGoalsRight = 
-                statisticsSerializable.pongPlayer02LossGoalsRight;
-            pongPlayer02Losses = 
-                statisticsSerializable.pongPlayer02Losses;
-
-            // Player 02, dependent values
-            pongPlayer02DisplacementPerHit =
-                statisticsSerializable.pongPlayer02DisplacementPerHit;
-            pongPlayer02DisplacementPerWinGoal =
-                statisticsSerializable.pongPlayer02DisplacementPerWinGoal;
-            pongPlayer02DisplacementPerWinGoalLeft =
-                statisticsSerializable.pongPlayer02DisplacementPerWinGoalLeft;
-            pongPlayer02DisplacementPerWinGoalMiddle =
-                statisticsSerializable.pongPlayer02DisplacementPerWinGoalMiddle;
-            pongPlayer02DisplacementPerWinGoalRight =
-                statisticsSerializable.pongPlayer02DisplacementPerWinGoalRight;
-            pongPlayer02DisplacementPerWin =
-                statisticsSerializable.pongPlayer02DisplacementPerWin;
-            pongPlayer02DisplacementPerLossGoal =
-                statisticsSerializable.pongPlayer02DisplacementPerLossGoal;
-            pongPlayer02DisplacementPerLossGoalLeft =
-                statisticsSerializable.pongPlayer02DisplacementPerLossGoalLeft;
-            pongPlayer02DisplacementPerLossGoalMiddle =
-                statisticsSerializable.pongPlayer02DisplacementPerLossGoalMiddle;
-            pongPlayer02DisplacementPerLossGoalRight =
-                statisticsSerializable.pongPlayer02DisplacementPerLossGoalRight;
-            pongPlayer02DisplacementPerLoss =
-                statisticsSerializable.pongPlayer02DisplacementPerLoss;
-            pongPlayer02HitsPerWinGoal =
-                statisticsSerializable.pongPlayer02HitsPerWinGoal;
-            pongPlayer02HitsPerWinGoalLeft =
-                statisticsSerializable.pongPlayer02HitsPerWinGoalLeft;
-            pongPlayer02HitsPerWinGoalMiddle =
-                statisticsSerializable.pongPlayer02HitsPerWinGoalMiddle;
-            pongPlayer02HitsPerWinGoalRight =
-                statisticsSerializable.pongPlayer02HitsPerWinGoalRight;
-            pongPlayer02HitsPerWin =
-                statisticsSerializable.pongPlayer02HitsPerWin;
-            pongPlayer02HitsPerLossGoal =
-                statisticsSerializable.pongPlayer02HitsPerLossGoal;
-            pongPlayer02HitsPerLossGoalLeft =
-                statisticsSerializable.pongPlayer02HitsPerLossGoalLeft;
-            pongPlayer02HitsPerLossGoalMiddle =
-                statisticsSerializable.pongPlayer02HitsPerLossGoalMiddle;
-            pongPlayer02HitsPerLossGoalRight =
-                statisticsSerializable.pongPlayer02HitsPerLossGoalRight;
-            pongPlayer02HitsPerLoss =
-                statisticsSerializable.pongPlayer02HitsPerLoss;
-            pongPlayer02WinGoalsLeftPerWinGoal =
-                statisticsSerializable.pongPlayer02WinGoalsLeftPerWinGoal;
-            pongPlayer02WinGoalsMiddlePerWinGoal =
-                statisticsSerializable.pongPlayer02WinGoalsMiddlePerWinGoal;
-            pongPlayer02WinGoalsRightPerWinGoal =
-                statisticsSerializable.pongPlayer02WinGoalsRightPerWinGoal;
-            pongPlayer02WinGoalsLeftPerWin =
-                statisticsSerializable.pongPlayer02WinGoalsLeftPerWin;
-            pongPlayer02WinGoalsMiddlePerWin =
-                statisticsSerializable.pongPlayer02WinGoalsMiddlePerWin;
-            pongPlayer02WinGoalsRightPerWin =
-                statisticsSerializable.pongPlayer02WinGoalsRightPerWin;
-            pongPlayer02LossGoalsLeftPerLossGoal =
-                statisticsSerializable.pongPlayer02LossGoalsLeftPerLossGoal;
-            pongPlayer02LossGoalsMiddlePerLossGoal =
-                statisticsSerializable.pongPlayer02LossGoalsMiddlePerLossGoal;
-            pongPlayer02LossGoalsRightPerLossGoal =
-                statisticsSerializable.pongPlayer02LossGoalsRightPerLossGoal;
-            pongPlayer02LossGoalsLeftPerLoss =
-                statisticsSerializable.pongPlayer02LossGoalsLeftPerLoss;
-            pongPlayer02LossGoalsMiddlePerLoss =
-                statisticsSerializable.pongPlayer02LossGoalsMiddlePerLoss;
-            pongPlayer02LossGoalsRightPerLoss =
-                statisticsSerializable.pongPlayer02LossGoalsRightPerLoss;
-        }
+        File.WriteAllText(
+            Application.persistentDataPath + "/statisticsJson.json",
+            statisticsJson);
     }
 
     [Serializable]
