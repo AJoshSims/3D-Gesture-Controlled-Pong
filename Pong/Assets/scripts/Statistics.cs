@@ -767,7 +767,7 @@ internal class Statistics : MonoBehaviour
         string statisticsJson = JsonUtility.ToJson(statisticsSerializable);
 
         File.WriteAllText(
-            Application.persistentDataPath + "/statisticsJson.json",
+            @"C:\Users\JoshuaSims\statisticsJson.json",
             statisticsJson);
     }
 

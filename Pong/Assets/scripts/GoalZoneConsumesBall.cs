@@ -123,12 +123,13 @@ public class GoalZoneConsumesBall : MonoBehaviour
                 "Player Two: " + player02Goals;
         }
 
+        ResetBall(ball);
+
         if (goalScored == true)
         {
             Statistics.statistics.Save();
         }
 
-        ResetBall(ball);
     }
 
     private void ResetBall(GameObject ball)
