@@ -26,9 +26,9 @@ public class PaddleBehaviour : MonoBehaviour
 
     private float movementAcrossZAxis;
 
-    private const float zPositionBoundary01 = -3.75F;
+    private const float positionBoundaryZ01 = -3.75F;
 
-    private const float zPositionBoundary02 = 3.75F;
+    private const float positionBoundaryZ02 = 3.75F;
 
     public GameObject ball;
 
@@ -83,47 +83,55 @@ public class PaddleBehaviour : MonoBehaviour
 
     private void FixedUpdate()
     {
-
         switch (paddleUser)
         {
             case PaddleUser.Player01:
                 movementFromUserInput = Input.GetAxis("Player01");
-                movePlayerPaddle(movementFromUserInput);
+                Statistics.statistics.pongPlayer01Displacement +=
+                    movePlayerPaddle(movementFromUserInput);
                 break;
             case PaddleUser.Player02:
                 movementFromUserInput = Input.GetAxis("Player02");
-                movePlayerPaddle(movementFromUserInput);
+                Statistics.statistics.pongPlayer02Displacement += 
+                    movePlayerPaddle(movementFromUserInput);
                 break;
             case PaddleUser.AI:
                 moveAIPaddle();
                 break;
         }
-
-        if (transform.position.z < zPositionBoundary01)
-        {
-            transform.position = new Vector3(
-                fixedXPositionOfPaddle, 
-                fixedYPositionOfPaddle, 
-                zPositionBoundary01);
-        }
-
-        else if (transform.position.z > zPositionBoundary02)
-        {
-            transform.position = new Vector3(
-                fixedXPositionOfPaddle, 
-                fixedYPositionOfPaddle, 
-                zPositionBoundary02);
-        }
     }
 
-    private void movePlayerPaddle(float userInput)
+    private float movePlayerPaddle(float userInput)
     {
         movementAcrossZAxis = userInput * paddleSpeedFactor * Time.deltaTime;
-        
-        transform.position += new Vector3(
-            movementAcrossxAxis, movementAcrossYAxis, movementAcrossZAxis);
 
-        
+        float previousPositionZ = transform.position.z;
+
+        float nextPositionZ = previousPositionZ + movementAcrossZAxis;
+
+        if (nextPositionZ < positionBoundaryZ01)
+        {
+            transform.position = new Vector3(
+                fixedXPositionOfPaddle,
+                fixedYPositionOfPaddle,
+                positionBoundaryZ01);
+        }
+
+        else if (nextPositionZ > positionBoundaryZ02)
+        {
+            transform.position = new Vector3(
+                fixedXPositionOfPaddle,
+                fixedYPositionOfPaddle,
+                positionBoundaryZ02);
+        }
+
+        else
+        {
+            transform.position += new Vector3(
+                movementAcrossxAxis, movementAcrossYAxis, movementAcrossZAxis);
+        }
+
+        return transform.position.z - previousPositionZ;
     }
 
     private void moveAIPaddle()
@@ -138,6 +146,25 @@ public class PaddleBehaviour : MonoBehaviour
             fixedXPositionOfPaddle,
             fixedYPositionOfPaddle,
             updatedZPositionOfPaddle);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        GameObject ball = collision.gameObject;
+
+        if (ball.GetComponent<BallBehaviour>() != null)
+        {
+            switch (paddleUser)
+            {
+                case PaddleUser.Player01:
+                    ++Statistics.statistics.pongPlayer01Hits;
+                    break;
+                case PaddleUser.Player02:
+                    ++Statistics.statistics.pongPlayer02Hits;
+                    break;
+            }
+
+        }
     }
 }
 

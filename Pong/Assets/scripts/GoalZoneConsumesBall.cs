@@ -4,23 +4,33 @@ using UnityEngine.UI;
 
 public class GoalZoneConsumesBall : MonoBehaviour
 {
-    private float thisGoalZone;
+    private float thisGoalZoneX;
 
-    private const float goalZone01 = 10;
+    private float thisGoalZoneZ;
 
-    private const float goalZone02 = -10;
+    private const float goalZone01X = 10;
 
-    public Text paddle01ScoreDisplay;
+    private const float goalZone01LeftZ = -(9 / 3);
 
-    private int paddle01Score;
+    private const float goalZone01MiddleZ = 0;
 
-    public Text paddle02ScoreDisplay;
+    private const float goalZone01RightZ = (9 / 3);
 
-    private int paddle02Score;
+    private const float goalZone02X = -10;
 
-    private string scorer;
+    private const float goalZone02LeftZ = (9 / 3);
 
-    private int scorerScore;
+    private const float goalZone02MiddleZ = 0;
+
+    private const float goalZone02RightZ = -(9 / 3);
+
+    public Text player01ScoreDisplay;
+
+    private static int player01Goals;
+
+    public Text player02ScoreDisplay;
+
+    private static int player02Goals;
 
     private const float beginningXPositionOfBall = 0;
 
@@ -30,29 +40,96 @@ public class GoalZoneConsumesBall : MonoBehaviour
 
     private void Start()
     {
-        thisGoalZone = transform.position.x;
+        thisGoalZoneX = transform.position.x;
+        thisGoalZoneZ = transform.position.z;
 
-        paddle01ScoreDisplay.text = "Player One: 0";
-        paddle02ScoreDisplay.text = "Player Two: 0";
+        player01ScoreDisplay.text = 
+            "Player One: 0 :: wins " + Statistics.statistics.pongPlayer01Wins;
+        player02ScoreDisplay.text = 
+            "Player Two: 0 :: wins " + Statistics.statistics.pongPlayer02Wins;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         GameObject ball = collision.gameObject;
 
-        if (thisGoalZone == goalZone02)
-        {
-            paddle01Score++;
+        bool goalScored = false;
 
-            paddle01ScoreDisplay.text = scorer + "Player One: " +
-                paddle01Score;
+        if (thisGoalZoneX == goalZone02X)
+        {
+            ++player01Goals;
+            ++Statistics.statistics.pongPlayer01WinGoals;
+            ++Statistics.statistics.pongPlayer02LossGoals;
+
+            if (thisGoalZoneZ == goalZone02RightZ)
+            {
+                ++Statistics.statistics.pongPlayer01WinGoalsLeft;
+                ++Statistics.statistics.pongPlayer02LossGoalsRight;
+            }
+
+            else if (thisGoalZoneZ == goalZone02MiddleZ)
+            {
+                ++Statistics.statistics.pongPlayer01WinGoalsMiddle;
+                ++Statistics.statistics.pongPlayer02LossGoalsMiddle;
+            }
+
+            else if (thisGoalZoneZ == goalZone02LeftZ)
+            {
+                ++Statistics.statistics.pongPlayer01WinGoalsRight;
+                ++Statistics.statistics.pongPlayer02LossGoalsLeft;
+            }
+
+            if ((player01Goals % 5) == 0)
+            {
+                ++Statistics.statistics.pongPlayer01Wins;
+                ++Statistics.statistics.pongPlayer02Losses;
+                goalScored = true;
+            }
+
+            player01ScoreDisplay.text =
+                "Player One: " + player01Goals +
+                " :: wins " + Statistics.statistics.pongPlayer01Wins;
         }
-        else
-        {
-            paddle02Score++;
 
-            paddle02ScoreDisplay.text = scorer + "Player Two: " + 
-                paddle02Score;
+        else if (thisGoalZoneX == goalZone01X)
+        {
+            ++player02Goals;
+            ++Statistics.statistics.pongPlayer02WinGoals;
+            ++Statistics.statistics.pongPlayer01LossGoals;
+
+            if (thisGoalZoneZ == goalZone01RightZ)
+            {
+                ++Statistics.statistics.pongPlayer02WinGoalsLeft;
+                ++Statistics.statistics.pongPlayer01LossGoalsRight;
+            }
+
+            else if (thisGoalZoneZ == goalZone01MiddleZ)
+            {
+                ++Statistics.statistics.pongPlayer02WinGoalsMiddle;
+                ++Statistics.statistics.pongPlayer01LossGoalsMiddle;
+            }
+
+            else if (thisGoalZoneZ == goalZone01LeftZ)
+            {
+                ++Statistics.statistics.pongPlayer02WinGoalsRight;
+                ++Statistics.statistics.pongPlayer01LossGoalsLeft;
+            }
+
+            if ((player02Goals % 5) == 0)
+            {
+                ++Statistics.statistics.pongPlayer02Wins;
+                ++Statistics.statistics.pongPlayer01Losses;
+                goalScored = true;
+            }
+
+            player02ScoreDisplay.text = 
+                "Player Two: " + player02Goals + 
+                " :: wins " + Statistics.statistics.pongPlayer02Wins;
+        }
+
+        if (goalScored == true)
+        {
+            Statistics.statistics.Save();
         }
 
         ResetBall(ball);
