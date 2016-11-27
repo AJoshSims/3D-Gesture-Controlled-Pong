@@ -84,8 +84,9 @@ public class GoalZoneConsumesBall : MonoBehaviour
                 goalScored = true;
             }
 
-            player01ScoreDisplay.text =
-                "Player One: " + player01Goals;
+            // TODO restore
+            //player01ScoreDisplay.text =
+            //    "Player One: " + player01Goals;
         }
 
         else if (thisGoalZoneX == goalZone01X)
@@ -119,17 +120,20 @@ public class GoalZoneConsumesBall : MonoBehaviour
                 goalScored = true;
             }
 
-            player02ScoreDisplay.text = 
-                "Player Two: " + player02Goals;
+            // TODO restore
+            //player02ScoreDisplay.text =
+            //    "Player Two: " + player02Goals;
         }
 
         ResetBall(ball);
 
-        if (goalScored == true)
-        {
-            Statistics.statistics.Save();
-        }
+        // TODO remove
+        player01ScoreDisplay.text =
+            "Player One: " + player01Goals;
+        player02ScoreDisplay.text =
+            "Player Two: " + player02Goals;
 
+        Statistics.statistics.Save();
     }
 
     private void ResetBall(GameObject ball)

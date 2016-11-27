@@ -100,8 +100,6 @@
     <Compile Include="Assets\scripts\DetectJoint.cs" />
     <Compile Include="Assets\scripts\GoalZoneConsumesBall.cs" />
     <Compile Include="Assets\scripts\PaddleBehaviour.cs" />
-    <Compile Include="Assets\scripts\ScoreUIPlayer01.cs" />
-    <Compile Include="Assets\scripts\ScoreUIPlayer02.cs" />
     <Compile Include="Assets\scripts\Statistics.cs" />
   </ItemGroup>
   <ItemGroup>

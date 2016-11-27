@@ -753,22 +753,10 @@ internal class Statistics : MonoBehaviour
         statisticsSerializable.pongPlayer02LossGoalsRightPerLoss =
             pongPlayer02LossGoalsRightPerLoss;
 
-        SaveToHumanReadableFile(statisticsSerializable);
-
         BinaryFormatter serializer = new BinaryFormatter();
         serializer.Serialize(statisticsFile, statisticsSerializable);
 
         statisticsFile.Close();       
-    }
-
-    private void SaveToHumanReadableFile(
-        StatisticsSerializable statisticsSerializable)
-    {
-        string statisticsJson = JsonUtility.ToJson(statisticsSerializable);
-
-        File.WriteAllText(
-            @"C:\Users\JoshuaSims\statisticsJson.json",
-            statisticsJson);
     }
 
     [Serializable]
