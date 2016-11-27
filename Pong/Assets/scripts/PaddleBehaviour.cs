@@ -16,8 +16,6 @@ public class PaddleBehaviour : MonoBehaviour
 
     private float lastZPositionOfPaddle;
 
-    private float updatedZPositionOfPaddle;
-
     private float movementFromUserInput;
 
     private const float movementAcrossxAxis = 0;
@@ -136,16 +134,35 @@ public class PaddleBehaviour : MonoBehaviour
 
     private void moveAIPaddle()
     {
-        updatedZPositionOfPaddle = Mathf.SmoothDamp(
+        float nextPositionZ = Mathf.SmoothDamp(
             transform.position.z, 
             ball.transform.position.z, 
             ref lastZPositionOfPaddle, 
             paddleSpeedFactor);
 
-        transform.position = new Vector3(
-            fixedXPositionOfPaddle,
-            fixedYPositionOfPaddle,
-            updatedZPositionOfPaddle);
+        if (nextPositionZ < positionBoundaryZ01)
+        {
+            transform.position = new Vector3(
+                fixedXPositionOfPaddle,
+                fixedYPositionOfPaddle,
+                positionBoundaryZ01);
+        }
+
+        else if (nextPositionZ > positionBoundaryZ02)
+        {
+            transform.position = new Vector3(
+                fixedXPositionOfPaddle,
+                fixedYPositionOfPaddle,
+                positionBoundaryZ02);
+        }
+
+        else
+        {
+            transform.position = new Vector3(
+                fixedXPositionOfPaddle,
+                fixedYPositionOfPaddle,
+                nextPositionZ);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
