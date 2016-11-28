@@ -16,8 +16,6 @@ public class PaddleBehaviour : MonoBehaviour
 
     private float lastZPositionOfPaddle;
 
-    private float movementFromUserInput;
-
     private const float movementAcrossxAxis = 0;
 
     private const float movementAcrossYAxis = 0;
@@ -84,14 +82,12 @@ public class PaddleBehaviour : MonoBehaviour
         switch (paddleUser)
         {
             case PaddleUser.Player01:
-                movementFromUserInput = Input.GetAxis("Player01");
                 Statistics.statistics.pongPlayer01Displacement +=
-                    movePlayerPaddle(movementFromUserInput);
+                    movePlayerPaddle(Input.GetAxis("PongPlayer01"));
                 break;
             case PaddleUser.Player02:
-                movementFromUserInput = Input.GetAxis("Player02");
                 Statistics.statistics.pongPlayer02Displacement += 
-                    movePlayerPaddle(movementFromUserInput);
+                    movePlayerPaddle(Input.GetAxis("PongPlayer02"));
                 break;
             case PaddleUser.AI:
                 moveAIPaddle();
