@@ -51,8 +51,6 @@ public class GoalZoneConsumesBall : MonoBehaviour
     {
         GameObject ball = collision.gameObject;
 
-        bool goalScored = false;
-
         if (thisGoalZoneX == goalZone02X)
         {
             ++player01Goals;
@@ -81,7 +79,6 @@ public class GoalZoneConsumesBall : MonoBehaviour
             {
                 ++Statistics.statistics.pongPlayer01Wins;
                 ++Statistics.statistics.pongPlayer02Losses;
-                goalScored = true;
             }
 
             // TODO restore
@@ -117,7 +114,6 @@ public class GoalZoneConsumesBall : MonoBehaviour
             {
                 ++Statistics.statistics.pongPlayer02Wins;
                 ++Statistics.statistics.pongPlayer01Losses;
-                goalScored = true;
             }
 
             // TODO restore

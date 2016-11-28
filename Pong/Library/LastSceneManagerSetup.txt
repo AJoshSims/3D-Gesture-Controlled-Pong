@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/scenes/arcade-main-menu.unity
+- path: Assets/scenes/pong-main-menu.unity
   isLoaded: 1
   isActive: 1
