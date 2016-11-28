@@ -16,10 +16,6 @@ public class PaddleBehaviour : MonoBehaviour
 
     private float lastZPositionOfPaddle;
 
-    private float updatedZPositionOfPaddle;
-
-    private float movementFromUserInput;
-
     private const float movementAcrossxAxis = 0;
 
     private const float movementAcrossYAxis = 0;
@@ -86,14 +82,12 @@ public class PaddleBehaviour : MonoBehaviour
         switch (paddleUser)
         {
             case PaddleUser.Player01:
-                movementFromUserInput = Input.GetAxis("Player01");
                 Statistics.statistics.pongPlayer01Displacement +=
-                    movePlayerPaddle(movementFromUserInput);
+                    movePlayerPaddle(Input.GetAxis("PongPlayer01"));
                 break;
             case PaddleUser.Player02:
-                movementFromUserInput = Input.GetAxis("Player02");
                 Statistics.statistics.pongPlayer02Displacement += 
-                    movePlayerPaddle(movementFromUserInput);
+                    movePlayerPaddle(Input.GetAxis("PongPlayer02"));
                 break;
             case PaddleUser.AI:
                 moveAIPaddle();
@@ -136,16 +130,35 @@ public class PaddleBehaviour : MonoBehaviour
 
     private void moveAIPaddle()
     {
-        updatedZPositionOfPaddle = Mathf.SmoothDamp(
+        float nextPositionZ = Mathf.SmoothDamp(
             transform.position.z, 
             ball.transform.position.z, 
             ref lastZPositionOfPaddle, 
             paddleSpeedFactor);
 
-        transform.position = new Vector3(
-            fixedXPositionOfPaddle,
-            fixedYPositionOfPaddle,
-            updatedZPositionOfPaddle);
+        if (nextPositionZ < positionBoundaryZ01)
+        {
+            transform.position = new Vector3(
+                fixedXPositionOfPaddle,
+                fixedYPositionOfPaddle,
+                positionBoundaryZ01);
+        }
+
+        else if (nextPositionZ > positionBoundaryZ02)
+        {
+            transform.position = new Vector3(
+                fixedXPositionOfPaddle,
+                fixedYPositionOfPaddle,
+                positionBoundaryZ02);
+        }
+
+        else
+        {
+            transform.position = new Vector3(
+                fixedXPositionOfPaddle,
+                fixedYPositionOfPaddle,
+                nextPositionZ);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
