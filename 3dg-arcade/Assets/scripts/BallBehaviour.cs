@@ -9,7 +9,15 @@ public class BallBehaviour : MonoBehaviour
 
 	private void Start()
     {
+        StartCoroutine(WaitAndInitiateBallMovement());
+    }
+
+    private IEnumerator WaitAndInitiateBallMovement()
+    {
+        yield return new WaitForSecondsRealtime(2);
+
         InitiateBallMovement(speed);
+
     }
 
     internal void InitiateBallMovement(float xVelocityAsSpecifiedBySpeed)
