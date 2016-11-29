@@ -34,7 +34,7 @@ public class GoalZoneConsumesBall : MonoBehaviour
 
     private const float beginningXPositionOfBall = 0;
 
-    private const float fixedYPositionOfBall = 0.25F;
+    private const float fixedYPositionOfBall = 0.5F;
 
     private const float beginningZPositionOfBall = 0;
 
