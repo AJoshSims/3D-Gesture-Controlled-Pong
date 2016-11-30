@@ -9,6 +9,10 @@ internal class selectProfile : MonoBehaviour
 
     public GameObject inputField;
 
+    public Text placeHolder;
+
+    public Text profileEntered;
+
     private void Awake()
     {
         this.inputField.SetActive(false);
@@ -20,6 +24,20 @@ internal class selectProfile : MonoBehaviour
         {
             this.gameObject.SetActive(false);
             inputField.SetActive(true);
+        }
+    }
+
+    public void Create()
+    {
+        foreach (Dropdown.OptionData profile in dropDown.options)
+        {
+            if (profile.text.Equals(profileEntered.text))
+            {
+                placeHolder.text = "unavailable";
+                InputField inputField = 
+                    this.inputField.GetComponent<InputField>();
+                inputField.text = "";
+            }
         }
     }
 }
