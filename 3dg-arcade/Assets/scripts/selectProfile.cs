@@ -5,7 +5,7 @@ internal class selectProfile : MonoBehaviour
 {
     public Dropdown dropDown;
 
-    public Text label;
+    public Text profileSelected;
 
     public GameObject inputField;
 
@@ -16,10 +16,10 @@ internal class selectProfile : MonoBehaviour
 
     public void Select()
     {
-        string profileChoice = label.text;
-        if (profileChoice.Equals("<create profile>"))
+        if (profileSelected.text.Equals("<create profile>"))
         {
-            dropDown.Hide();
+            this.gameObject.SetActive(false);
+            inputField.SetActive(true);
         }
     }
 }
