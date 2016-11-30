@@ -102,6 +102,7 @@
     <Compile Include="Assets\scripts\PaddleBehaviour.cs" />
     <Compile Include="Assets\scripts\SelectScene.cs" />
     <Compile Include="Assets\scripts\Statistics.cs" />
+    <Compile Include="Assets\scripts\selectProfile.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\GreenScreen\Materials\GreenScreenShader.shader" />
