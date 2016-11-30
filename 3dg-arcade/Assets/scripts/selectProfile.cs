@@ -3,19 +3,23 @@ using UnityEngine.UI;
 
 internal class selectProfile : MonoBehaviour
 {
-    Dropdown dropDown;
+    public Dropdown dropDown;
 
-    private void Start()
+    public Text label;
+
+    public GameObject inputField;
+
+    private void Awake()
     {
-        dropDown = this.gameObject.GetComponent<Dropdown>();
+        this.inputField.SetActive(false);
     }
 
-    internal void select()
+    public void Select()
     {
-        string profileChoice = this.gameObject.GetComponent<Text>().text;
+        string profileChoice = label.text;
         if (profileChoice.Equals("<create profile>"))
         {
-
+            dropDown.Hide();
         }
     }
 }
