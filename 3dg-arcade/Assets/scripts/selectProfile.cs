@@ -22,7 +22,7 @@ internal class selectProfile : MonoBehaviour
     {
         if (profileSelected.text.Equals("<create profile>"))
         {
-            this.gameObject.SetActive(false);
+            //this.gameObject.SetActive(false);
             inputField.SetActive(true);
         }
     }
@@ -34,10 +34,17 @@ internal class selectProfile : MonoBehaviour
             if (profile.text.Equals(profileEntered.text))
             {
                 placeHolder.text = "unavailable";
-                InputField inputField = 
+
+                InputField inputFieldClearable = 
                     this.inputField.GetComponent<InputField>();
-                inputField.text = "";
+                inputFieldClearable.text = dropDown.options[dropDown.value].text;
+                return;
             }
         }
+
+        dropDown.options[dropDown.value] = 
+            new Dropdown.OptionData(profileEntered.text);
+        inputField.SetActive(false);
+        //this.gameObject.SetActive(true);
     }
 }
