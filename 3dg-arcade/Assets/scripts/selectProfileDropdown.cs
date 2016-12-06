@@ -7,9 +7,9 @@ internal class selectProfileDropdown : MonoBehaviour
 
     public Text profileSelected;
 
-    public GameObject inputField;
+    public InputField inputField;
 
-    public Text placeHolder;
+    public Text placeholder;
 
     public Text profileEntered;
 
@@ -30,6 +30,7 @@ internal class selectProfileDropdown : MonoBehaviour
             gameObject.transform.position = new Vector3(-999, -999, -999);
 
             inputField.transform.position = originalPosition;
+            inputField.ActivateInputField();
         }
     }
 
@@ -43,8 +44,8 @@ internal class selectProfileDropdown : MonoBehaviour
         {
             if (profile.text.ToLower().Equals(profileEnteredLower))
             {
-                originalPlaceHolderText = placeHolder.text;
-                placeHolder.text = "unavailable";
+                originalPlaceHolderText = placeholder.text;
+                placeholder.text = "unavailable";
 
                 inputFieldClearable.text = "";
                 return;
