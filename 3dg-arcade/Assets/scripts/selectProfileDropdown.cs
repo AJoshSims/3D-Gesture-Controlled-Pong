@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-internal class selectProfile : MonoBehaviour
+internal class selectProfileDropdown : MonoBehaviour
 {
     public Dropdown dropDown;
 
