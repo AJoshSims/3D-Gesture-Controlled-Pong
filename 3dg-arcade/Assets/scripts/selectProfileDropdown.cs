@@ -15,9 +15,11 @@ internal class selectProfileDropdown : MonoBehaviour
 
     private Vector3 originalPosition;
 
+    private string originalPlaceHolderText;
+
     private void Awake()
     {
-        this.inputField.SetActive(false);
+        inputField.transform.position = new Vector3(-999, -999, -999);
     }
 
     public void Select()
@@ -26,28 +28,34 @@ internal class selectProfileDropdown : MonoBehaviour
         {
             originalPosition = gameObject.transform.position;
             gameObject.transform.position = new Vector3(-999, -999, -999);
-            inputField.SetActive(true);
+
+            inputField.transform.position = originalPosition;
         }
     }
 
     public void Create()
     {
+        InputField inputFieldClearable = 
+            inputField.GetComponent<InputField>();
+
+        string profileEnteredLower = profileEntered.text.ToLower();
         foreach (Dropdown.OptionData profile in dropDown.options)
         {
-            if (profile.text.Equals(profileEntered.text))
+            if (profile.text.ToLower().Equals(profileEnteredLower))
             {
+                originalPlaceHolderText = placeHolder.text;
                 placeHolder.text = "unavailable";
 
-                InputField inputFieldClearable = 
-                    this.inputField.GetComponent<InputField>();
                 inputFieldClearable.text = "";
                 return;
             }
         }
 
-        inputField.SetActive(false);
-        gameObject.transform.position = originalPosition;
-        dropDown.options[dropDown.value] = 
+        dropDown.options[dropDown.value] =
             new Dropdown.OptionData(profileEntered.text);
+        inputFieldClearable.text = "";
+        inputField.transform.position = new Vector3(-999, -999, -999);
+        gameObject.transform.position = originalPosition;
+        dropDown.itemText = profileEntered;
     }
 }
