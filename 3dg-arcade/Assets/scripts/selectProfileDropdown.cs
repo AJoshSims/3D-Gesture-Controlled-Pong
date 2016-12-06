@@ -13,6 +13,8 @@ internal class selectProfileDropdown : MonoBehaviour
 
     public Text profileEntered;
 
+    private Vector3 originalPosition;
+
     private void Awake()
     {
         this.inputField.SetActive(false);
@@ -22,7 +24,8 @@ internal class selectProfileDropdown : MonoBehaviour
     {
         if (profileSelected.text.Equals("<create profile>"))
         {
-            //this.gameObject.SetActive(false);
+            originalPosition = gameObject.transform.position;
+            gameObject.transform.position = new Vector3(-999, -999, -999);
             inputField.SetActive(true);
         }
     }
@@ -37,14 +40,14 @@ internal class selectProfileDropdown : MonoBehaviour
 
                 InputField inputFieldClearable = 
                     this.inputField.GetComponent<InputField>();
-                inputFieldClearable.text = dropDown.options[dropDown.value].text;
+                inputFieldClearable.text = "";
                 return;
             }
         }
 
+        inputField.SetActive(false);
+        gameObject.transform.position = originalPosition;
         dropDown.options[dropDown.value] = 
             new Dropdown.OptionData(profileEntered.text);
-        inputField.SetActive(false);
-        //this.gameObject.SetActive(true);
     }
 }
