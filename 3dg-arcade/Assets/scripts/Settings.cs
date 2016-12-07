@@ -3,6 +3,8 @@ using System.Collections;
 using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class Settings : MonoBehaviour
 {
@@ -51,8 +53,7 @@ public class Settings : MonoBehaviour
             settingsFile.Close();
 
             settingsProfiles = settingsSerializable.settingsProfiles;
-            profilesActual = settingsSerializable.profilesActual;
-        }
+            profilesActual = settingsSerializable.profilesActual;        }
 
         else
         {

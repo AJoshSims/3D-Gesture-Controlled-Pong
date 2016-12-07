@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 internal class selectProfileDropdown : MonoBehaviour
 {
-    public Dropdown dropDown;
+    public Dropdown playerOneDropdown;
+
+    public Dropdown playerTwoDropdown;
 
     public Text profileSelected;
 
@@ -14,8 +17,6 @@ internal class selectProfileDropdown : MonoBehaviour
     public Text profileEntered;
 
     private Vector3 originalPosition;
-
-    private string originalPlaceHolderText;
 
     private void Awake()
     {
@@ -40,11 +41,10 @@ internal class selectProfileDropdown : MonoBehaviour
             inputField.GetComponent<InputField>();
 
         string profileEnteredLower = profileEntered.text.ToLower();
-        foreach (Dropdown.OptionData profile in dropDown.options)
+        foreach (Dropdown.OptionData profile in playerOneDropdown.options)
         {
             if (profile.text.ToLower().Equals(profileEnteredLower))
             {
-                originalPlaceHolderText = placeholder.text;
                 placeholder.text = "unavailable";
 
                 inputFieldClearable.text = "";
@@ -52,11 +52,14 @@ internal class selectProfileDropdown : MonoBehaviour
             }
         }
 
-        dropDown.options[dropDown.value] =
+        // TODO error handling
+        //playerTwoDropdown.options[playerOneDropdown.value] =
+        //    new Dropdown.OptionData(profileEntered.text);
+        playerOneDropdown.options[playerOneDropdown.value] =
             new Dropdown.OptionData(profileEntered.text);
         inputFieldClearable.text = "";
         inputField.transform.position = new Vector3(-999, -999, -999);
         gameObject.transform.position = originalPosition;
-        dropDown.itemText = profileEntered;
+        playerOneDropdown.itemText = profileEntered;
     }
 }
