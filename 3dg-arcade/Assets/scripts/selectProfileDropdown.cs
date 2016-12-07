@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 internal class selectProfileDropdown : MonoBehaviour
 {
+    private Dropdown thisDropdown;
+
     public Dropdown playerOneDropdown;
 
     public Dropdown playerTwoDropdown;
@@ -18,9 +20,17 @@ internal class selectProfileDropdown : MonoBehaviour
 
     private Vector3 originalPosition;
 
+    private string originalPlaceholderText;
+
     private void Awake()
     {
         inputField.transform.position = new Vector3(-999, -999, -999);
+    }
+
+    private void Start()
+    {
+        thisDropdown = gameObject.GetComponent<Dropdown>();
+        originalPlaceholderText = placeholder.text;
     }
 
     public void Select()
@@ -41,25 +51,36 @@ internal class selectProfileDropdown : MonoBehaviour
             inputField.GetComponent<InputField>();
 
         string profileEnteredLower = profileEntered.text.ToLower();
-        foreach (Dropdown.OptionData profile in playerOneDropdown.options)
+
+        bool invalidProfileEntered = false;
+        if (profileEnteredLower.Equals(""))
+        {
+            invalidProfileEntered = true;
+        }
+        foreach (Dropdown.OptionData profile in thisDropdown.options)
         {
             if (profile.text.ToLower().Equals(profileEnteredLower))
             {
-                placeholder.text = "unavailable";
-
-                inputFieldClearable.text = "";
-                return;
+                invalidProfileEntered = true;
             }
         }
+        if (invalidProfileEntered == true)
+        {
+            placeholder.text = "unavailable";
+            inputFieldClearable.text = "";
+            inputField.ActivateInputField();
+            return;
+        }
 
-        // TODO error handling
-        //playerTwoDropdown.options[playerOneDropdown.value] =
-        //    new Dropdown.OptionData(profileEntered.text);
-        playerOneDropdown.options[playerOneDropdown.value] =
+        playerOneDropdown.options[thisDropdown.value] =
             new Dropdown.OptionData(profileEntered.text);
+        playerTwoDropdown.options[thisDropdown.value] =
+            new Dropdown.OptionData(profileEntered.text);
+
+        placeholder.text = originalPlaceholderText;
         inputFieldClearable.text = "";
         inputField.transform.position = new Vector3(-999, -999, -999);
         gameObject.transform.position = originalPosition;
-        playerOneDropdown.itemText = profileEntered;
+        thisDropdown.itemText = profileEntered;
     }
 }
