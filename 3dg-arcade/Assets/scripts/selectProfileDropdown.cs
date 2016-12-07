@@ -30,6 +30,19 @@ internal class selectProfileDropdown : MonoBehaviour
     private void Start()
     {
         thisDropdown = gameObject.GetComponent<Dropdown>();
+
+        thisDropdown.options = 
+            new List<Dropdown.OptionData>(Settings.profilesMax);
+        for (
+            int profileIndex = 0; 
+            profileIndex < Settings.profilesMax;
+            ++profileIndex)
+        {
+            thisDropdown.options[profileIndex] =
+                new Dropdown.OptionData(
+                Settings.settings.getProfileName(profileIndex));
+        }
+
         originalPlaceholderText = placeholder.text;
     }
 
@@ -76,6 +89,8 @@ internal class selectProfileDropdown : MonoBehaviour
             new Dropdown.OptionData(profileEntered.text);
         playerTwoDropdown.options[thisDropdown.value] =
             new Dropdown.OptionData(profileEntered.text);
+        Settings.settings.CreateProfile(
+            profileEntered.text, thisDropdown.value);
 
         placeholder.text = originalPlaceholderText;
         inputFieldClearable.text = "";

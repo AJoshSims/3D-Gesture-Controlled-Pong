@@ -12,13 +12,31 @@ public class Settings : MonoBehaviour
 
     private object[,] settingsProfiles;
 
-    private const int profilesMax = 5;
+    public const int profilesMax = 5;
 
     private int profilesActual;
 
     private const int profileSettingsNum = 1;
 
     private const int profileNameIndex = 0;
+
+    public string getProfileName(int profileIndex)
+    {
+        String profileName = null;
+        
+        if (profileIndex < profilesMax)
+        {
+            object maybeProfileName = 
+                settingsProfiles[profileIndex, profileNameIndex];
+
+            if (profileName is string)
+            {
+                profileName = (String) maybeProfileName;
+            }
+        }
+
+        return profileName;
+    }
 
     private void Awake()
     {
@@ -58,7 +76,8 @@ public class Settings : MonoBehaviour
         else
         {
             settingsProfiles = new object[profilesMax, profileSettingsNum];
-            for (int profile = 0; profile < profilesMax; ++profile)
+            settingsProfiles[0, profileNameIndex] = "AI";
+            for (int profile = 1; profile < profilesMax; ++profile)
             {
                 settingsProfiles[profile, profileNameIndex] = "";
             }
@@ -81,17 +100,10 @@ public class Settings : MonoBehaviour
         settingsFile.Close();
     }
 
-    public void CreateProfile(string profileName)
+    public void CreateProfile(string profileName, int profileIndex)
     {
-        if (profilesActual < profilesMax)
-        {
-            settingsProfiles[profilesActual - 1, profileNameIndex] = 
-                profileName;
-        }
-        else
-        {
-            // TODO print some error msg here
-        }
+        settingsProfiles[profileIndex, profileNameIndex] = 
+            profileName;
     }
 
     public void deleteProfile(int profileIndex)
