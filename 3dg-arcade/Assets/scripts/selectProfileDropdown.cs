@@ -41,6 +41,8 @@ internal class selectProfileDropdown : MonoBehaviour
                 Settings.settings.getProfileName(profileIndex));
         }
 
+        thisDropdown.captionText.text = thisDropdown.options[0].text;
+
         originalPlaceholderText = placeholder.text;
     }
 
