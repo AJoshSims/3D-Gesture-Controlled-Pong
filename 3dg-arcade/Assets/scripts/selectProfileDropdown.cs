@@ -31,11 +31,9 @@ internal class selectProfileDropdown : MonoBehaviour
     {
         thisDropdown = gameObject.GetComponent<Dropdown>();
 
-        thisDropdown.options = 
-            new List<Dropdown.OptionData>(Settings.profilesMax);
         for (
-            int profileIndex = 0; 
-            profileIndex < Settings.profilesMax;
+            int profileIndex = 0;
+            profileIndex < thisDropdown.options.Count;
             ++profileIndex)
         {
             thisDropdown.options[profileIndex] =

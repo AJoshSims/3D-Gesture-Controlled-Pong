@@ -6,7 +6,7 @@ using System.IO;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
-public class Settings : MonoBehaviour
+internal class Settings : MonoBehaviour
 {
     public static Settings settings;
 
@@ -22,23 +22,20 @@ public class Settings : MonoBehaviour
 
     public string getProfileName(int profileIndex)
     {
-        String profileName = null;
-        
+        string profileName = null;
+
         if (profileIndex < profilesMax)
         {
-            object maybeProfileName = 
+            object maybeProfileName =
                 settingsProfiles[profileIndex, profileNameIndex];
 
-            if (profileName is string)
-            {
-                profileName = (String) maybeProfileName;
-            }
+            profileName = (string) maybeProfileName;
         }
 
         return profileName;
     }
 
-    private void Awake()
+    public void Awake()
     {
         if (settings == null)
         {
@@ -79,7 +76,8 @@ public class Settings : MonoBehaviour
             settingsProfiles[0, profileNameIndex] = "AI";
             for (int profile = 1; profile < profilesMax; ++profile)
             {
-                settingsProfiles[profile, profileNameIndex] = "";
+                settingsProfiles[profile, profileNameIndex] = 
+                    "<create profile>";
             }
         }
     }
