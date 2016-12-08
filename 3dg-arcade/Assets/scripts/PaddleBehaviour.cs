@@ -86,7 +86,7 @@ public class PaddleBehaviour : MonoBehaviour
                     movePlayerPaddle(Input.GetAxis("PongPlayer01"));
                 break;
             case PaddleUser.Player02:
-                Statistics.statistics.pongPlayer02Displacement += 
+                Statistics.statistics.updateStatisticIndependent(Settings.settings.getProfileIndexPlayerTwo(), Settings.disp
                     movePlayerPaddle(Input.GetAxis("PongPlayer02"));
                 break;
             case PaddleUser.AI:

@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections.Generic;
 
-internal class selectProfileDropdown : MonoBehaviour
+internal class SelectProfile : MonoBehaviour
 {
     private Dropdown thisDropdown;
 
@@ -97,5 +97,11 @@ internal class selectProfileDropdown : MonoBehaviour
         inputField.transform.position = new Vector3(-999, -999, -999);
         gameObject.transform.position = originalPosition;
         thisDropdown.itemText = profileEntered;
+    }
+
+    internal void SetProfileIndicesForPlayers()
+    {
+        Settings.settings.setProfileIndexPlayerOne(playerOneDropdown.value);
+        Settings.settings.setProfileIndexPlayerTwo(playerTwoDropdown.value);
     }
 }

@@ -20,6 +20,10 @@ internal class Settings : MonoBehaviour
 
     private const int profileNameIndex = 0;
 
+    private int profileIndexPlayerOne = -1;
+
+    private int profileIndexPlayerTwo = -1;
+
     public string getProfileName(int profileIndex)
     {
         string profileName = null;
@@ -33,6 +37,26 @@ internal class Settings : MonoBehaviour
         }
 
         return profileName;
+    }
+
+    public int getProfileIndexPlayerOne()
+    {
+        return profileIndexPlayerOne;
+    }
+
+    public void setProfileIndexPlayerOne(int profileIndexPlayerOne)
+    {
+        this.profileIndexPlayerOne = profileIndexPlayerOne;
+    }
+
+    public int getProfileIndexPlayerTwo()
+    {
+        return profileIndexPlayerTwo;
+    }
+
+    public void setProfileIndexPlayerTwo(int profileIndexPlayerTwo)
+    {
+        this.profileIndexPlayerTwo = profileIndexPlayerTwo;
     }
 
     public void Awake()
@@ -103,12 +127,6 @@ internal class Settings : MonoBehaviour
         settingsProfiles[profileIndex, profileNameIndex] = 
             profileName;
         Save();
-    }
-
-    public void deleteProfile(int profileIndex)
-    {
-        settingsProfiles[profileIndex, profileNameIndex] = "";
-        // TODO delete statistics
     }
 
     [Serializable]
