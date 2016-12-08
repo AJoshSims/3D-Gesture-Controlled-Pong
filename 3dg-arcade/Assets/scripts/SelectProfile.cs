@@ -99,10 +99,4 @@ internal class SelectProfile : MonoBehaviour
         gameObject.transform.position = originalPosition;
         thisDropdown.itemText = profileEntered;
     }
-
-    internal void SetProfileIndicesForPlayers()
-    {
-        Settings.settings.setProfileIndexPlayerOne(playerOneDropdown.value);
-        Settings.settings.setProfileIndexPlayerTwo(playerTwoDropdown.value);
-    }
 }

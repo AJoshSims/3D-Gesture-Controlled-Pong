@@ -43,8 +43,8 @@ public class GoalZoneConsumesBall : MonoBehaviour
         thisGoalZoneX = transform.position.x;
         thisGoalZoneZ = transform.position.z;
 
-        player01ScoreDisplay.text = "Player One: " + player01Goals;
-        player02ScoreDisplay.text = "Player Two: " + player02Goals;
+        player01ScoreDisplay.text = "Player One: " + Settings.settings.getProfileIndexPlayerOne();
+        player02ScoreDisplay.text = "Player Two: " + Settings.settings.getProfileIndexPlayerTwo();
     }
 
     private void OnCollisionEnter(Collision collision)
