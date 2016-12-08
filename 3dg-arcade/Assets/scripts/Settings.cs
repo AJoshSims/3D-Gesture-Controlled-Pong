@@ -85,7 +85,7 @@ internal class Settings : MonoBehaviour
     public void Save()
     {
         FileStream settingsFile = File.Open(
-            Application.persistentDataPath + "/statistics.dat",
+            Application.persistentDataPath + "/settings.dat",
             FileMode.OpenOrCreate);
 
         SettingsSerializable settingsSerializable = new SettingsSerializable();
@@ -102,6 +102,7 @@ internal class Settings : MonoBehaviour
     {
         settingsProfiles[profileIndex, profileNameIndex] = 
             profileName;
+        Save();
     }
 
     public void deleteProfile(int profileIndex)
