@@ -172,7 +172,7 @@ internal class Statistics : MonoBehaviour
     }
 
     internal void UpdateStatisticIndependent(
-        int profileIndex, int statisticIndex, int valueToUpdateBy)
+        int profileIndex, int statisticIndex, float valueToUpdateBy)
     {
         statisticsProfilesIndependent[profileIndex, statisticIndex] =
             statisticsProfilesIndependent[profileIndex, statisticIndex]

@@ -82,12 +82,16 @@ public class PaddleBehaviour : MonoBehaviour
         switch (paddleUser)
         {
             case PaddleUser.Player01:
-                Statistics.statistics.pongPlayer01Displacement +=
-                    movePlayerPaddle(Input.GetAxis("PongPlayer01"));
+                Statistics.statistics.UpdateStatisticIndependent(
+                    Settings.settings.getProfileIndexPlayerOne(),
+                    Statistics.displacement,
+                    movePlayerPaddle(Input.GetAxis("PongPlayer01")));
                 break;
             case PaddleUser.Player02:
-                Statistics.statistics.updateStatisticIndependent(Settings.settings.getProfileIndexPlayerTwo(), Settings.disp
-                    movePlayerPaddle(Input.GetAxis("PongPlayer02"));
+                Statistics.statistics.UpdateStatisticIndependent(
+                    Settings.settings.getProfileIndexPlayerTwo(), 
+                    Statistics.displacement,
+                    movePlayerPaddle(Input.GetAxis("PongPlayer02")));
                 break;
             case PaddleUser.AI:
                 moveAIPaddle();
@@ -170,10 +174,16 @@ public class PaddleBehaviour : MonoBehaviour
             switch (paddleUser)
             {
                 case PaddleUser.Player01:
-                    ++Statistics.statistics.pongPlayer01Hits;
+                    Statistics.statistics.UpdateStatisticIndependent(
+                        Settings.settings.getProfileIndexPlayerOne(),
+                        Statistics.hits,
+                        1);
                     break;
                 case PaddleUser.Player02:
-                    ++Statistics.statistics.pongPlayer02Hits;
+                    Statistics.statistics.UpdateStatisticIndependent(
+                        Settings.settings.getProfileIndexPlayerTwo(),
+                        Statistics.hits,
+                        1);
                     break;
             }
 
