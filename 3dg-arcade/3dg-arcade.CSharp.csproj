@@ -104,7 +104,6 @@
     <Compile Include="Assets\scripts\SelectScene.cs" />
     <Compile Include="Assets\scripts\Settings.cs" />
     <Compile Include="Assets\scripts\Statistics.cs" />
-    <Compile Include="Assets\scripts\selectProfileButton.cs" />
     <Compile Include="Assets\scripts\selectProfileDropdown.cs" />
   </ItemGroup>
   <ItemGroup>
