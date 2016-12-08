@@ -174,9 +174,12 @@ internal class Statistics : MonoBehaviour
     internal void UpdateStatisticIndependent(
         int profileIndex, int statisticIndex, float valueToUpdateBy)
     {
-        statisticsProfilesIndependent[profileIndex, statisticIndex] =
-            statisticsProfilesIndependent[profileIndex, statisticIndex]
-            + valueToUpdateBy;
+        if (profileIndex < Settings.profilesMax)
+        {
+            statisticsProfilesIndependent[profileIndex, statisticIndex] =
+                statisticsProfilesIndependent[profileIndex, statisticIndex]
+                + valueToUpdateBy;
+        }
     }
 
     private void CalculateStatisticsDependent(int profile)
