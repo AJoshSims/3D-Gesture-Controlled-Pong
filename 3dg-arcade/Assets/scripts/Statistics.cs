@@ -10,7 +10,16 @@ internal class Statistics : MonoBehaviour
 
     private float[,] statisticsProfilesIndependent;
 
-    private const int statisticsIndependentNum = 12;
+    internal const int statisticsIndependentNum = 12;
+
+    internal readonly string[] statisticsIndependentNames =
+        {"displacement", "hits",
+        "win goals",
+        "win goals left", "win goals middle", "win goals right",
+        "wins",
+        "loss goals",
+        "loss goals left", "loss goals middle", "loss goals right",
+        "losses"};
 
     // Independent values indices
     internal const int displacement = 0;
@@ -39,7 +48,42 @@ internal class Statistics : MonoBehaviour
 
     private float[,] statisticsProfilesDependent;
 
-    private const int statisticsDependentNum = 33;
+    internal const int statisticsDependentNum = 33;
+
+    internal readonly String[] statisticsDependentNames =
+        {"displacement per hit",
+        "displacement per win goal",
+        "displacement per win goal left",
+        "displacement per win goal middle",
+        "displacement per win goal right",
+        "displacement per win",
+        "displacement per loss goal",
+        "displacement per loss goal left",
+        "displacement per loss goal middle",
+        "displacement per loss goal right",
+        "displacement per loss",
+        "hits per win goal",
+        "hits per win goal left",
+        "hits per win goal middle",
+        "hits per win goal right",
+        "hits per win",
+        "hits per loss goal",
+        "hits per loss goal left",
+        "hits per loss goal middle",
+        "hits per loss goal right",
+        "hits per loss",
+        "win goals left per win goal",
+        "win goals middle per win goal",
+        "win goals right per win goal",
+        "win goals left per win",
+        "win goals middle per win",
+        "win goals right per win",
+        "loss goals left per loss goal",
+        "loss goals middle per loss goal",
+        "loss goals right per loss goal",
+        "loss goals left per loss",
+        "loss goals middle per loss",
+        "loss goals right per loss"};
 
     // Dependent values indices
     internal const int displacementPerHit = 0;
@@ -182,7 +226,17 @@ internal class Statistics : MonoBehaviour
         }
     }
 
-    private void CalculateStatisticsDependent(int profile)
+    internal float[,] getStatisticsIndependent(int profile)
+    {
+        return statisticsProfilesIndependent;
+    }
+
+    internal float[,] getStatisticsDependent(int profile)
+    {
+        return statisticsProfilesDependent;
+    }
+
+    internal void CalculateStatisticsDependent(int profile)
     {
         statisticsProfilesDependent[profile, displacementPerHit] =
             statisticsProfilesIndependent[profile, displacement]
