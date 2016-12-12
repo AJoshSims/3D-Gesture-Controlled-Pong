@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 using Windows.Kinect;
 
@@ -132,7 +133,7 @@ public class PaddleBehaviour : MonoBehaviour
                 movementAcrossxAxis, movementAcrossYAxis, movementAcrossZAxis);
         }
 
-        return transform.position.z - previousPositionZ;
+        return Math.Abs(transform.position.z - previousPositionZ);
     }
 
     private float moveAIPaddle()
@@ -169,7 +170,7 @@ public class PaddleBehaviour : MonoBehaviour
                 nextPositionZ);
         }
 
-        return transform.position.z - previousPositionZ;
+        return Math.Abs(transform.position.z - previousPositionZ);
     }
 
     private void OnCollisionEnter(Collision collision)

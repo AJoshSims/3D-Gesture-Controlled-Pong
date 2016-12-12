@@ -44,6 +44,11 @@ internal class Settings : MonoBehaviour
         return profileIndexPlayerOne;
     }
 
+    public string getProfileNamePlayerOne()
+    {
+        return (string) settingsProfiles[profileIndexPlayerOne, profileNameIndex];
+    }
+
     public void setProfileIndexPlayerOne(int profileIndexPlayerOne)
     {
         this.profileIndexPlayerOne = profileIndexPlayerOne;
@@ -52,6 +57,11 @@ internal class Settings : MonoBehaviour
     public int getProfileIndexPlayerTwo()
     {
         return profileIndexPlayerTwo;
+    }
+
+    public string getProfileNamePlayerTwo()
+    {
+        return (string) settingsProfiles[profileIndexPlayerTwo, profileNameIndex];
     }
 
     public void setProfileIndexPlayerTwo(int profileIndexPlayerTwo)

@@ -43,8 +43,8 @@ public class GoalZoneConsumesBall : MonoBehaviour
         thisGoalZoneX = transform.position.x;
         thisGoalZoneZ = transform.position.z;
 
-        player01ScoreDisplay.text = "Player One: " + player01Goals;
-        player02ScoreDisplay.text = "Player Two: " + player02Goals;
+        player01ScoreDisplay.text = Settings.settings.getProfileNamePlayerOne() + ": " + player01Goals;
+        player02ScoreDisplay.text = Settings.settings.getProfileNamePlayerTwo() + ": " + player02Goals;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -113,8 +113,7 @@ public class GoalZoneConsumesBall : MonoBehaviour
                     1);
             }
 
-            player01ScoreDisplay.text =
-                "Player One: " + player01Goals;
+            player01ScoreDisplay.text = Settings.settings.getProfileNamePlayerOne() + ": " + player01Goals;
         }
 
         else if (thisGoalZoneX == goalZone01X)
@@ -177,8 +176,7 @@ public class GoalZoneConsumesBall : MonoBehaviour
                     1);
             }
 
-            player02ScoreDisplay.text =
-                "Player Two: " + player02Goals;
+            player02ScoreDisplay.text = Settings.settings.getProfileNamePlayerTwo() + ": " + player02Goals;
         }
 
         Statistics.statistics.Save();
