@@ -94,7 +94,10 @@ public class PaddleBehaviour : MonoBehaviour
                     movePlayerPaddle(Input.GetAxis("PongPlayer02")));
                 break;
             case PaddleUser.AI:
-                moveAIPaddle();
+                Statistics.statistics.UpdateStatisticIndependent(
+                    0,
+                    Statistics.displacement,
+                    moveAIPaddle());
                 break;
         }
     }
@@ -132,8 +135,10 @@ public class PaddleBehaviour : MonoBehaviour
         return transform.position.z - previousPositionZ;
     }
 
-    private void moveAIPaddle()
+    private float moveAIPaddle()
     {
+        float previousPositionZ = transform.position.z;
+
         float nextPositionZ = Mathf.SmoothDamp(
             transform.position.z, 
             ball.transform.position.z, 
@@ -163,6 +168,8 @@ public class PaddleBehaviour : MonoBehaviour
                 fixedYPositionOfPaddle,
                 nextPositionZ);
         }
+
+        return transform.position.z - previousPositionZ;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -182,6 +189,12 @@ public class PaddleBehaviour : MonoBehaviour
                 case PaddleUser.Player02:
                     Statistics.statistics.UpdateStatisticIndependent(
                         Settings.settings.getProfileIndexPlayerTwo(),
+                        Statistics.hits,
+                        1);
+                    break;
+                case PaddleUser.AI:
+                    Statistics.statistics.UpdateStatisticIndependent(
+                        0,
                         Statistics.hits,
                         1);
                     break;
