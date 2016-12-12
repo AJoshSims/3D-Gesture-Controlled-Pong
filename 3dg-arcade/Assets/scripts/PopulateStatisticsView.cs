@@ -34,6 +34,8 @@ public class PopulateStatisticsView : MonoBehaviour
         thisDropdown.value = 0;
         thisDropdown.captionText.text = thisDropdown.options[0].text;
 
+        Statistics.statistics.CalculateStatisticsDependent(0);
+
         GameObject statistic = null;
         float changeBy = 0;
         statisticTexts = 
@@ -120,6 +122,8 @@ public class PopulateStatisticsView : MonoBehaviour
 
         else
         {
+            Statistics.statistics.CalculateStatisticsDependent(thisDropdown.value);
+
             for (
                 int i = 0;
                 i < Statistics.statisticsIndependentNum;
