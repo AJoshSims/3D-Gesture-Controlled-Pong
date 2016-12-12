@@ -12,7 +12,7 @@ public class PopulateStatisticsView : MonoBehaviour
 
     private Text[] statisticTexts;
 
-    void Start()
+    private void Start()
     {
         thisDropdown = gameObject.GetComponent<Dropdown>();
 
@@ -81,9 +81,66 @@ public class PopulateStatisticsView : MonoBehaviour
             statisticTexts[statisticTextsIndex] = statisticTextText;
             statisticTextText.text =
                 Statistics.statistics.
-                statisticsDependentNames[statisticIndex] + ": " + +Statistics.statistics.getStatisticDependent(0, statisticIndex);
+                statisticsDependentNames[statisticIndex] + ": " + Statistics.statistics.getStatisticDependent(0, statisticIndex);
 
             ++statisticTextsIndex;
+        }
+    }
+
+    void Select()
+    {
+        int statisticTextsIndex = 0;
+
+        if (thisDropdown.captionText.text.Equals("unavailable"))
+        {
+            for (
+                int i = 0;
+                i < Statistics.statisticsIndependentNum;
+                ++i)
+            {
+                statisticTexts[statisticTextsIndex].text = Statistics.statistics.
+                    statisticsIndependentNames[i] + ": ";
+
+                ++statisticTextsIndex;
+            }
+
+            for (
+                int i = 0;
+                i < Statistics.statisticsDependentNum;
+                ++i)
+            {
+                statisticTexts[statisticTextsIndex].text = Statistics.statistics.
+                    statisticsIndependentNames[i] + ": ";
+
+                ++statisticTextsIndex;
+            }
+
+
+        }
+
+        else
+        {
+            for (
+                int i = 0;
+                i < Statistics.statisticsIndependentNum;
+                ++i)
+            {
+                statisticTexts[statisticTextsIndex].text = Statistics.statistics.
+                    statisticsIndependentNames[i] + ": " + Statistics.statistics.getStatisticIndependent(thisDropdown.value, i);
+
+                ++statisticTextsIndex;
+            }
+
+            for (
+                int i = 0;
+                i < Statistics.statisticsDependentNum;
+                ++i)
+            {
+                statisticTexts[statisticTextsIndex].text = Statistics.statistics.
+                    statisticsIndependentNames[i] + ": " + Statistics.statistics.getStatisticDependent(thisDropdown.value, i);
+
+                ++statisticTextsIndex;
+            }
         }
     }
 }

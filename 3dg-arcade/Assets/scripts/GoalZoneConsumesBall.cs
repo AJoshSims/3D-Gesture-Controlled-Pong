@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GoalZoneConsumesBall : MonoBehaviour
 {
@@ -55,7 +56,6 @@ public class GoalZoneConsumesBall : MonoBehaviour
 
         if (thisGoalZoneX == goalZone02X)
         {
-            ++player01Goals;
             Statistics.statistics.UpdateStatisticIndependent(
                 Settings.settings.getProfileIndexPlayerOne(),
                 Statistics.winGoals,
@@ -67,6 +67,7 @@ public class GoalZoneConsumesBall : MonoBehaviour
 
             if (thisGoalZoneZ == goalZone02RightZ)
             {
+                ++player01Goals;
                 Statistics.statistics.UpdateStatisticIndependent(
                     Settings.settings.getProfileIndexPlayerOne(),
                     Statistics.winGoalsLeft,
@@ -79,6 +80,7 @@ public class GoalZoneConsumesBall : MonoBehaviour
 
             else if (thisGoalZoneZ == goalZone02MiddleZ)
             {
+                ++player01Goals;
                 Statistics.statistics.UpdateStatisticIndependent(
                     Settings.settings.getProfileIndexPlayerOne(),
                     Statistics.winGoalsMiddle,
@@ -91,6 +93,7 @@ public class GoalZoneConsumesBall : MonoBehaviour
 
             else if (thisGoalZoneZ == goalZone02LeftZ)
             {
+                ++player01Goals;
                 Statistics.statistics.UpdateStatisticIndependent(
                     Settings.settings.getProfileIndexPlayerOne(),
                     Statistics.winGoalsRight,
@@ -111,6 +114,8 @@ public class GoalZoneConsumesBall : MonoBehaviour
                     Settings.settings.getProfileIndexPlayerTwo(),
                     Statistics.losses,
                     1);
+
+                SceneManager.LoadScene(1, LoadSceneMode.Single);
             }
 
             player01ScoreDisplay.text = Settings.settings.getProfileNamePlayerOne() + ": " + player01Goals;
@@ -118,7 +123,6 @@ public class GoalZoneConsumesBall : MonoBehaviour
 
         else if (thisGoalZoneX == goalZone01X)
         {
-            ++player02Goals;
             Statistics.statistics.UpdateStatisticIndependent(
                 Settings.settings.getProfileIndexPlayerTwo(),
                 Statistics.winGoals,
@@ -130,6 +134,7 @@ public class GoalZoneConsumesBall : MonoBehaviour
 
             if (thisGoalZoneZ == goalZone01RightZ)
             {
+                ++player02Goals;
                 Statistics.statistics.UpdateStatisticIndependent(
                     Settings.settings.getProfileIndexPlayerTwo(),
                     Statistics.winGoalsLeft,
@@ -142,6 +147,7 @@ public class GoalZoneConsumesBall : MonoBehaviour
 
             else if (thisGoalZoneZ == goalZone01MiddleZ)
             {
+                ++player02Goals;
                 Statistics.statistics.UpdateStatisticIndependent(
                     Settings.settings.getProfileIndexPlayerTwo(),
                     Statistics.winGoalsMiddle,
@@ -154,6 +160,7 @@ public class GoalZoneConsumesBall : MonoBehaviour
 
             else if (thisGoalZoneZ == goalZone01LeftZ)
             {
+                ++player02Goals;
                 Statistics.statistics.UpdateStatisticIndependent(
                     Settings.settings.getProfileIndexPlayerTwo(),
                     Statistics.winGoalsRight,
@@ -174,6 +181,8 @@ public class GoalZoneConsumesBall : MonoBehaviour
                     Settings.settings.getProfileIndexPlayerOne(),
                     Statistics.losses,
                     1);
+
+                SceneManager.LoadScene(1, LoadSceneMode.Single);
             }
 
             player02ScoreDisplay.text = Settings.settings.getProfileNamePlayerTwo() + ": " + player02Goals;
