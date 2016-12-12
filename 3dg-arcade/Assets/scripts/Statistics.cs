@@ -226,14 +226,14 @@ internal class Statistics : MonoBehaviour
         }
     }
 
-    internal float[,] getStatisticsIndependent(int profile)
+    internal float getStatisticIndependent(int profile, int statistic)
     {
-        return statisticsProfilesIndependent;
+        return statisticsProfilesIndependent[profile, statistic];
     }
 
-    internal float[,] getStatisticsDependent(int profile)
+    internal float getStatisticDependent(int profile, int statistic)
     {
-        return statisticsProfilesDependent;
+        return statisticsProfilesDependent[profile, statistic];
     }
 
     internal void CalculateStatisticsDependent(int profile)
