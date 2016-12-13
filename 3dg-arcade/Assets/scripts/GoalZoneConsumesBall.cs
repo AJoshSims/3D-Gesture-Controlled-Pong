@@ -86,7 +86,7 @@ public class GoalZoneConsumesBall : MonoBehaviour
                     1);
             }
 
-            else if (thisGoalZoneZ == goalZone02MiddleZ)
+            if (thisGoalZoneZ == goalZone02MiddleZ)
             {
                 Statistics.statistics.UpdateStatisticIndependent(
                     Settings.settings.getProfileIndexPlayerOne(),
@@ -98,7 +98,7 @@ public class GoalZoneConsumesBall : MonoBehaviour
                     1);
             }
 
-            else if (Mathf.Abs(thisGoalZoneZ - goalZone02LeftZ) < 1)
+            if (Mathf.Abs(thisGoalZoneZ - goalZone02LeftZ) < 1)
             {
                 Statistics.statistics.UpdateStatisticIndependent(
                     Settings.settings.getProfileIndexPlayerOne(),
@@ -249,5 +249,13 @@ public class GoalZoneConsumesBall : MonoBehaviour
         player02ScoreDisplay.text = Settings.settings.getProfileNamePlayerTwo() + ": " + player02Goals;
 
         SceneManager.LoadScene(1, LoadSceneMode.Single);
+    }
+
+    public void nullifyPlayScores()
+    {
+        player01Goals = 0;
+        player02Goals = 0;
+        player01ScoreDisplay.text = Settings.settings.getProfileNamePlayerOne() + ": " + player01Goals;
+        player02ScoreDisplay.text = Settings.settings.getProfileNamePlayerTwo() + ": " + player02Goals;
     }
 }
