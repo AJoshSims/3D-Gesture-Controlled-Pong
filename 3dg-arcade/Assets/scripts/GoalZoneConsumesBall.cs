@@ -110,6 +110,8 @@ public class GoalZoneConsumesBall : MonoBehaviour
                     1);
             }
 
+            player01ScoreDisplay.text = Settings.settings.getProfileNamePlayerOne() + ": " + player01Goals;
+
             if ((player01Goals % 5) == 0)
             {
                 Statistics.statistics.UpdateStatisticIndependent(
@@ -127,7 +129,6 @@ public class GoalZoneConsumesBall : MonoBehaviour
             }
             else
             {
-                player02ScoreDisplay.text = Settings.settings.getProfileNamePlayerTwo() + ": " + player02Goals;
                 StartCoroutine(WaitAndInitiateBallMovementRelativeToGoal(ball));
             }
         }
@@ -181,6 +182,8 @@ public class GoalZoneConsumesBall : MonoBehaviour
                     1);
             }
 
+            player02ScoreDisplay.text = Settings.settings.getProfileNamePlayerTwo() + ": " + player02Goals;
+
             if ((player02Goals % 5) == 0)
             {
                 Statistics.statistics.UpdateStatisticIndependent(
@@ -198,7 +201,6 @@ public class GoalZoneConsumesBall : MonoBehaviour
             }
             else
             {
-                player02ScoreDisplay.text = Settings.settings.getProfileNamePlayerTwo() + ": " + player02Goals;
                 StartCoroutine(WaitAndInitiateBallMovementRelativeToGoal(ball));
             }
         }
