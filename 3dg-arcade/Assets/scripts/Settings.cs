@@ -27,7 +27,6 @@ internal class Settings : MonoBehaviour
     public string getProfileName(int profileIndex)
     {
         string profileName = null;
-
         if (profileIndex < profilesMax)
         {
             object maybeProfileName =
@@ -35,7 +34,6 @@ internal class Settings : MonoBehaviour
 
             profileName = (string) maybeProfileName;
         }
-
         return profileName;
     }
 
@@ -46,7 +44,8 @@ internal class Settings : MonoBehaviour
 
     public string getProfileNamePlayerOne()
     {
-        return (string) settingsProfiles[profileIndexPlayerOne, profileNameIndex];
+        return (string) settingsProfiles[
+            profileIndexPlayerOne, profileNameIndex];
     }
 
     public void setProfileIndexPlayerOne(int profileIndexPlayerOne)
@@ -61,7 +60,8 @@ internal class Settings : MonoBehaviour
 
     public string getProfileNamePlayerTwo()
     {
-        return (string) settingsProfiles[profileIndexPlayerTwo, profileNameIndex];
+        return (string) settingsProfiles[
+            profileIndexPlayerTwo, profileNameIndex];
     }
 
     public void setProfileIndexPlayerTwo(int profileIndexPlayerTwo)
@@ -76,6 +76,7 @@ internal class Settings : MonoBehaviour
             DontDestroyOnLoad(gameObject);
             settings = this;
         }
+
         else if (settings != this)
         {
             Destroy(gameObject);
@@ -102,7 +103,8 @@ internal class Settings : MonoBehaviour
             settingsFile.Close();
 
             settingsProfiles = settingsSerializable.settingsProfiles;
-            profilesActual = settingsSerializable.profilesActual;        }
+            profilesActual = settingsSerializable.profilesActual;
+        }
 
         else
         {
@@ -136,6 +138,7 @@ internal class Settings : MonoBehaviour
     {
         settingsProfiles[profileIndex, profileNameIndex] = 
             profileName;
+
         Save();
     }
 

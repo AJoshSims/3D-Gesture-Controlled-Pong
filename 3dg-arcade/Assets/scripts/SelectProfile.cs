@@ -40,7 +40,6 @@ internal class SelectProfile : MonoBehaviour
                 new Dropdown.OptionData(
                 Settings.settings.getProfileName(profileIndex));
         }
-
         thisDropdown.value = 0;
         thisDropdown.captionText.text = thisDropdown.options[0].text;
 
@@ -65,12 +64,13 @@ internal class SelectProfile : MonoBehaviour
             inputField.GetComponent<InputField>();
 
         string profileEnteredLower = profileEntered.text.ToLower();
-
         bool invalidProfileEntered = false;
+
         if (profileEnteredLower.Equals(""))
         {
             invalidProfileEntered = true;
         }
+
         foreach (Dropdown.OptionData profile in thisDropdown.options)
         {
             if (profile.text.ToLower().Equals(profileEnteredLower))
@@ -78,6 +78,7 @@ internal class SelectProfile : MonoBehaviour
                 invalidProfileEntered = true;
             }
         }
+
         if (invalidProfileEntered == true)
         {
             placeholder.text = "unavailable";
@@ -90,12 +91,14 @@ internal class SelectProfile : MonoBehaviour
             new Dropdown.OptionData(profileEntered.text);
         playerTwoDropdown.options[thisDropdown.value] =
             new Dropdown.OptionData(profileEntered.text);
+
         Settings.settings.CreateProfile(
             profileEntered.text, thisDropdown.value);
 
         placeholder.text = originalPlaceholderText;
         inputFieldClearable.text = "";
         inputField.transform.position = new Vector3(-999, -999, -999);
+
         gameObject.transform.position = originalPosition;
         thisDropdown.itemText = profileEntered;
     }

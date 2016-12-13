@@ -4,22 +4,19 @@ using Windows.Kinect;
 
 public class DetectJoint : MonoBehaviour
 {
-    private GameObject RightHand;
-
-
-    void Start() {
-    }
+    private GameObject rightHand;
 
     void Update()
     {
-        if(RightHand == null)
+        if(rightHand == null)
         {
-            RightHand = GameObject.Find("HandRight");
+            rightHand = GameObject.Find("HandRight");
         }
+
         else
         {
-            gameObject.transform.position = new Vector3(0, 0,
-                RightHand.transform.position.z);
+            gameObject.transform.position = 
+                new Vector3(0, 0, rightHand.transform.position.z);
         }
     }
 }

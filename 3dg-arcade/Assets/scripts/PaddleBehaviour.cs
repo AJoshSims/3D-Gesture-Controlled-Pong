@@ -61,6 +61,7 @@ public class PaddleBehaviour : MonoBehaviour
                     break;
             }
         }
+
         else
         {
             switch (paddleSpeed)
@@ -88,12 +89,14 @@ public class PaddleBehaviour : MonoBehaviour
                     Statistics.displacement,
                     movePlayerPaddle(Input.GetAxis("PongPlayer01")));
                 break;
+
             case PaddleUser.Player02:
                 Statistics.statistics.UpdateStatisticIndependent(
                     Settings.settings.getProfileIndexPlayerTwo(), 
                     Statistics.displacement,
                     movePlayerPaddle(Input.GetAxis("PongPlayer02")));
                 break;
+
             case PaddleUser.AI:
                 Statistics.statistics.UpdateStatisticIndependent(
                     0,
@@ -106,9 +109,7 @@ public class PaddleBehaviour : MonoBehaviour
     private float movePlayerPaddle(float userInput)
     {
         movementAcrossZAxis = userInput * paddleSpeedFactor * Time.deltaTime;
-
         float previousPositionZ = transform.position.z;
-
         float nextPositionZ = previousPositionZ + movementAcrossZAxis;
 
         if (nextPositionZ < positionBoundaryZ01)
@@ -139,7 +140,6 @@ public class PaddleBehaviour : MonoBehaviour
     private float moveAIPaddle()
     {
         float previousPositionZ = transform.position.z;
-
         float nextPositionZ = Mathf.SmoothDamp(
             transform.position.z, 
             ball.transform.position.z, 
@@ -176,7 +176,6 @@ public class PaddleBehaviour : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         GameObject ball = collision.gameObject;
-
         if (ball.GetComponent<BallBehaviour>() != null)
         {
             switch (paddleUser)
@@ -187,12 +186,14 @@ public class PaddleBehaviour : MonoBehaviour
                         Statistics.hits,
                         1);
                     break;
+
                 case PaddleUser.Player02:
                     Statistics.statistics.UpdateStatisticIndependent(
                         Settings.settings.getProfileIndexPlayerTwo(),
                         Statistics.hits,
                         1);
                     break;
+
                 case PaddleUser.AI:
                     Statistics.statistics.UpdateStatisticIndependent(
                         0,

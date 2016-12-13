@@ -159,6 +159,7 @@ internal class Statistics : MonoBehaviour
             DontDestroyOnLoad(gameObject);
             statistics = this;
         }
+
         else if (statistics != this)
         {
             Destroy(gameObject);

@@ -13,19 +13,19 @@ public class GoalZoneConsumesBall : MonoBehaviour
 
     private const float goalZone01X = 10;
 
-    private const float goalZone01LeftZ = -(9 / 3);
+    private const float goalZone01LeftZ = -(19 / 6);
 
     private const float goalZone01MiddleZ = 0;
 
-    private const float goalZone01RightZ = (9 / 3);
+    private const float goalZone01RightZ = (19 / 6);
 
     private const float goalZone02X = -10;
 
-    private const float goalZone02LeftZ = (9 / 3);
+    private const float goalZone02LeftZ = (19 / 6);
 
     private const float goalZone02MiddleZ = 0;
 
-    private const float goalZone02RightZ = -(9 / 3);
+    private const float goalZone02RightZ = -(19 / 6);
 
     public Text player01ScoreDisplay;
 
@@ -51,8 +51,10 @@ public class GoalZoneConsumesBall : MonoBehaviour
         thisGoalZoneX = transform.position.x;
         thisGoalZoneZ = transform.position.z;
 
-        player01ScoreDisplay.text = Settings.settings.getProfileNamePlayerOne() + ": " + player01Goals;
-        player02ScoreDisplay.text = Settings.settings.getProfileNamePlayerTwo() + ": " + player02Goals;
+        player01ScoreDisplay.text = 
+            Settings.settings.getProfileNamePlayerOne() + ": " + player01Goals;
+        player02ScoreDisplay.text = 
+            Settings.settings.getProfileNamePlayerTwo() + ": " + player02Goals;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -110,7 +112,9 @@ public class GoalZoneConsumesBall : MonoBehaviour
                     1);
             }
 
-            player01ScoreDisplay.text = Settings.settings.getProfileNamePlayerOne() + ": " + player01Goals;
+            player01ScoreDisplay.text = 
+                Settings.settings.getProfileNamePlayerOne() + ": " + 
+                player01Goals;
 
             if ((player01Goals % 5) == 0)
             {
@@ -182,7 +186,9 @@ public class GoalZoneConsumesBall : MonoBehaviour
                     1);
             }
 
-            player02ScoreDisplay.text = Settings.settings.getProfileNamePlayerTwo() + ": " + player02Goals;
+            player02ScoreDisplay.text = 
+                Settings.settings.getProfileNamePlayerTwo() + ": " + 
+                player02Goals;
 
             if ((player02Goals % 5) == 0)
             {
@@ -243,10 +249,7 @@ public class GoalZoneConsumesBall : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(1.5F);
 
-        player01Goals = 0;
-        player02Goals = 0;
-        player01ScoreDisplay.text = Settings.settings.getProfileNamePlayerOne() + ": " + player01Goals;
-        player02ScoreDisplay.text = Settings.settings.getProfileNamePlayerTwo() + ": " + player02Goals;
+        nullifyPlayScores();
 
         SceneManager.LoadScene(1, LoadSceneMode.Single);
     }
@@ -255,7 +258,12 @@ public class GoalZoneConsumesBall : MonoBehaviour
     {
         player01Goals = 0;
         player02Goals = 0;
-        player01ScoreDisplay.text = Settings.settings.getProfileNamePlayerOne() + ": " + player01Goals;
-        player02ScoreDisplay.text = Settings.settings.getProfileNamePlayerTwo() + ": " + player02Goals;
+
+        player01ScoreDisplay.text = 
+            Settings.settings.getProfileNamePlayerOne() + ": " + 
+            player01Goals;
+        player02ScoreDisplay.text = 
+            Settings.settings.getProfileNamePlayerTwo() + ": " + 
+            player02Goals;
     }
 }
