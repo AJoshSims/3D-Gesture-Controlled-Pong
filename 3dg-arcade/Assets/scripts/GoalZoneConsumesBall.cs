@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class GoalZoneConsumesBall : MonoBehaviour
 {
+    public GameObject gameOver;
+
     private float thisGoalZoneX;
 
     private float thisGoalZoneZ;
@@ -39,6 +41,11 @@ public class GoalZoneConsumesBall : MonoBehaviour
 
     private const float beginningZPositionOfBall = 0;
 
+    private void Awake()
+    {
+        gameOver.SetActive(false);
+    }
+
     private void Start()
     {
         thisGoalZoneX = transform.position.x;
@@ -56,6 +63,8 @@ public class GoalZoneConsumesBall : MonoBehaviour
 
         if (thisGoalZoneX == goalZone02X)
         {
+            ++player01Goals;
+
             Statistics.statistics.UpdateStatisticIndependent(
                 Settings.settings.getProfileIndexPlayerOne(),
                 Statistics.winGoals,
@@ -67,7 +76,6 @@ public class GoalZoneConsumesBall : MonoBehaviour
 
             if (Mathf.Abs(thisGoalZoneZ - goalZone02RightZ) < 1)
             {
-                ++player01Goals;
                 Statistics.statistics.UpdateStatisticIndependent(
                     Settings.settings.getProfileIndexPlayerOne(),
                     Statistics.winGoalsLeft,
@@ -80,7 +88,6 @@ public class GoalZoneConsumesBall : MonoBehaviour
 
             else if (thisGoalZoneZ == goalZone02MiddleZ)
             {
-                ++player01Goals;
                 Statistics.statistics.UpdateStatisticIndependent(
                     Settings.settings.getProfileIndexPlayerOne(),
                     Statistics.winGoalsMiddle,
@@ -93,7 +100,6 @@ public class GoalZoneConsumesBall : MonoBehaviour
 
             else if (Mathf.Abs(thisGoalZoneZ - goalZone02LeftZ) < 1)
             {
-                ++player01Goals;
                 Statistics.statistics.UpdateStatisticIndependent(
                     Settings.settings.getProfileIndexPlayerOne(),
                     Statistics.winGoalsRight,
@@ -115,19 +121,21 @@ public class GoalZoneConsumesBall : MonoBehaviour
                     Statistics.losses,
                     1);
 
-                player01Goals = 0;
-                player02Goals = 0;
-                player01ScoreDisplay.text = Settings.settings.getProfileNamePlayerOne() + ": " + player01Goals;
-                player02ScoreDisplay.text = Settings.settings.getProfileNamePlayerTwo() + ": " + player02Goals;
+                gameOver.SetActive(true);
 
-                SceneManager.LoadScene(1, LoadSceneMode.Single);
+                StartCoroutine(WaitAndEndGame());
             }
-
-            player01ScoreDisplay.text = Settings.settings.getProfileNamePlayerOne() + ": " + player01Goals;
+            else
+            {
+                player02ScoreDisplay.text = Settings.settings.getProfileNamePlayerTwo() + ": " + player02Goals;
+                StartCoroutine(WaitAndInitiateBallMovementRelativeToGoal(ball));
+            }
         }
 
         else if (thisGoalZoneX == goalZone01X)
         {
+            ++player02Goals;
+
             Statistics.statistics.UpdateStatisticIndependent(
                 Settings.settings.getProfileIndexPlayerTwo(),
                 Statistics.winGoals,
@@ -139,7 +147,6 @@ public class GoalZoneConsumesBall : MonoBehaviour
 
             if (Mathf.Abs(thisGoalZoneZ - goalZone01RightZ) < 1)
             {
-                ++player02Goals;
                 Statistics.statistics.UpdateStatisticIndependent(
                     Settings.settings.getProfileIndexPlayerTwo(),
                     Statistics.winGoalsLeft,
@@ -152,7 +159,6 @@ public class GoalZoneConsumesBall : MonoBehaviour
 
             else if (thisGoalZoneZ == goalZone01MiddleZ)
             {
-                ++player02Goals;
                 Statistics.statistics.UpdateStatisticIndependent(
                     Settings.settings.getProfileIndexPlayerTwo(),
                     Statistics.winGoalsMiddle,
@@ -165,7 +171,6 @@ public class GoalZoneConsumesBall : MonoBehaviour
 
             else if (Mathf.Abs(thisGoalZoneZ - goalZone01LeftZ) < 1)
             {
-                ++player02Goals;
                 Statistics.statistics.UpdateStatisticIndependent(
                     Settings.settings.getProfileIndexPlayerTwo(),
                     Statistics.winGoalsRight,
@@ -187,15 +192,15 @@ public class GoalZoneConsumesBall : MonoBehaviour
                     Statistics.losses,
                     1);
 
-                player01Goals = 0;
-                player02Goals = 0;
-                player01ScoreDisplay.text = Settings.settings.getProfileNamePlayerOne() + ": " + player01Goals;
-                player02ScoreDisplay.text = Settings.settings.getProfileNamePlayerTwo() + ": " + player02Goals;
+                gameOver.SetActive(true);
 
-                SceneManager.LoadScene(1, LoadSceneMode.Single);
+                StartCoroutine(WaitAndEndGame());
             }
-
-            player02ScoreDisplay.text = Settings.settings.getProfileNamePlayerTwo() + ": " + player02Goals;
+            else
+            {
+                player02ScoreDisplay.text = Settings.settings.getProfileNamePlayerTwo() + ": " + player02Goals;
+                StartCoroutine(WaitAndInitiateBallMovementRelativeToGoal(ball));
+            }
         }
 
         Statistics.statistics.Save();
@@ -204,8 +209,6 @@ public class GoalZoneConsumesBall : MonoBehaviour
     private void ResetBall(GameObject ball)
     {
         ResetBallPosition(ball);
-
-        StartCoroutine(WaitAndInitiateBallMovementRelativeToGoal(ball));
     }
 
     private void ResetBallPosition(GameObject ball)
@@ -232,5 +235,17 @@ public class GoalZoneConsumesBall : MonoBehaviour
         float xVelocity = ball.GetComponent<BallBehaviour>().speed *
             Mathf.Sign(transform.position.x);
         ball.GetComponent<BallBehaviour>().InitiateBallMovement(xVelocity);
+    }
+
+    public IEnumerator WaitAndEndGame()
+    {
+        yield return new WaitForSecondsRealtime(1.5F);
+
+        player01Goals = 0;
+        player02Goals = 0;
+        player01ScoreDisplay.text = Settings.settings.getProfileNamePlayerOne() + ": " + player01Goals;
+        player02ScoreDisplay.text = Settings.settings.getProfileNamePlayerTwo() + ": " + player02Goals;
+
+        SceneManager.LoadScene(1, LoadSceneMode.Single);
     }
 }
