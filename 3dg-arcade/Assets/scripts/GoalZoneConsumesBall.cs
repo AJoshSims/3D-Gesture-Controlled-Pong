@@ -86,7 +86,7 @@ public class GoalZoneConsumesBall : MonoBehaviour
                     1);
             }
 
-            if (thisGoalZoneZ == goalZone02MiddleZ)
+            else if (thisGoalZoneZ == goalZone02MiddleZ)
             {
                 Statistics.statistics.UpdateStatisticIndependent(
                     Settings.settings.getProfileIndexPlayerOne(),
@@ -98,7 +98,7 @@ public class GoalZoneConsumesBall : MonoBehaviour
                     1);
             }
 
-            if (Mathf.Abs(thisGoalZoneZ - goalZone02LeftZ) < 1)
+            else if (Mathf.Abs(thisGoalZoneZ - goalZone02LeftZ) < 1)
             {
                 Statistics.statistics.UpdateStatisticIndependent(
                     Settings.settings.getProfileIndexPlayerOne(),
