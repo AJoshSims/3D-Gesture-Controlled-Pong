@@ -89,7 +89,7 @@ public class PopulateStatisticsView : MonoBehaviour
         }
     }
 
-    void Select()
+    public void Select()
     {
         int statisticTextsIndex = 0;
 
