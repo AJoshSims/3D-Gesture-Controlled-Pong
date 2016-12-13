@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 using Windows.Kinect;
 
@@ -82,15 +83,22 @@ public class PaddleBehaviour : MonoBehaviour
         switch (paddleUser)
         {
             case PaddleUser.Player01:
-                Statistics.statistics.pongPlayer01Displacement +=
-                    movePlayerPaddle(Input.GetAxis("PongPlayer01"));
+                Statistics.statistics.UpdateStatisticIndependent(
+                    Settings.settings.getProfileIndexPlayerOne(),
+                    Statistics.displacement,
+                    movePlayerPaddle(Input.GetAxis("PongPlayer01")));
                 break;
             case PaddleUser.Player02:
-                Statistics.statistics.pongPlayer02Displacement += 
-                    movePlayerPaddle(Input.GetAxis("PongPlayer02"));
+                Statistics.statistics.UpdateStatisticIndependent(
+                    Settings.settings.getProfileIndexPlayerTwo(), 
+                    Statistics.displacement,
+                    movePlayerPaddle(Input.GetAxis("PongPlayer02")));
                 break;
             case PaddleUser.AI:
-                moveAIPaddle();
+                Statistics.statistics.UpdateStatisticIndependent(
+                    0,
+                    Statistics.displacement,
+                    moveAIPaddle());
                 break;
         }
     }
@@ -125,11 +133,13 @@ public class PaddleBehaviour : MonoBehaviour
                 movementAcrossxAxis, movementAcrossYAxis, movementAcrossZAxis);
         }
 
-        return transform.position.z - previousPositionZ;
+        return Math.Abs(transform.position.z - previousPositionZ);
     }
 
-    private void moveAIPaddle()
+    private float moveAIPaddle()
     {
+        float previousPositionZ = transform.position.z;
+
         float nextPositionZ = Mathf.SmoothDamp(
             transform.position.z, 
             ball.transform.position.z, 
@@ -159,6 +169,8 @@ public class PaddleBehaviour : MonoBehaviour
                 fixedYPositionOfPaddle,
                 nextPositionZ);
         }
+
+        return Math.Abs(transform.position.z - previousPositionZ);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -170,10 +182,22 @@ public class PaddleBehaviour : MonoBehaviour
             switch (paddleUser)
             {
                 case PaddleUser.Player01:
-                    ++Statistics.statistics.pongPlayer01Hits;
+                    Statistics.statistics.UpdateStatisticIndependent(
+                        Settings.settings.getProfileIndexPlayerOne(),
+                        Statistics.hits,
+                        1);
                     break;
                 case PaddleUser.Player02:
-                    ++Statistics.statistics.pongPlayer02Hits;
+                    Statistics.statistics.UpdateStatisticIndependent(
+                        Settings.settings.getProfileIndexPlayerTwo(),
+                        Statistics.hits,
+                        1);
+                    break;
+                case PaddleUser.AI:
+                    Statistics.statistics.UpdateStatisticIndependent(
+                        0,
+                        Statistics.hits,
+                        1);
                     break;
             }
 
