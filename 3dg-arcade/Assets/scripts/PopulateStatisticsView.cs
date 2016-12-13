@@ -112,7 +112,7 @@ public class PopulateStatisticsView : MonoBehaviour
                 ++i)
             {
                 statisticTexts[statisticTextsIndex].text = Statistics.statistics.
-                    statisticsIndependentNames[i] + ": ";
+                    statisticsDependentNames[i] + ": ";
 
                 ++statisticTextsIndex;
             }
@@ -141,7 +141,7 @@ public class PopulateStatisticsView : MonoBehaviour
                 ++i)
             {
                 statisticTexts[statisticTextsIndex].text = Statistics.statistics.
-                    statisticsIndependentNames[i] + ": " + Statistics.statistics.getStatisticDependent(thisDropdown.value, i);
+                    statisticsDependentNames[i] + ": " + Statistics.statistics.getStatisticDependent(thisDropdown.value, i);
 
                 ++statisticTextsIndex;
             }
