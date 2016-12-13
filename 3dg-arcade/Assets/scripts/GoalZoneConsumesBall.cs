@@ -11,19 +11,19 @@ public class GoalZoneConsumesBall : MonoBehaviour
 
     private const float goalZone01X = 10;
 
-    private const float goalZone01LeftZ = -(9 / 3);
+    private const float goalZone01LeftZ = -(19 / 6);
 
     private const float goalZone01MiddleZ = 0;
 
-    private const float goalZone01RightZ = (9 / 3);
+    private const float goalZone01RightZ = (19 / 6);
 
     private const float goalZone02X = -10;
 
-    private const float goalZone02LeftZ = (9 / 3);
+    private const float goalZone02LeftZ = (19 / 6);
 
     private const float goalZone02MiddleZ = 0;
 
-    private const float goalZone02RightZ = -(9 / 3);
+    private const float goalZone02RightZ = -(19 / 6);
 
     public Text player01ScoreDisplay;
 
@@ -56,6 +56,7 @@ public class GoalZoneConsumesBall : MonoBehaviour
 
         if (thisGoalZoneX == goalZone02X)
         {
+            ++player01Goals;
             Statistics.statistics.UpdateStatisticIndependent(
                 Settings.settings.getProfileIndexPlayerOne(),
                 Statistics.winGoals,
@@ -67,7 +68,6 @@ public class GoalZoneConsumesBall : MonoBehaviour
 
             if (thisGoalZoneZ == goalZone02RightZ)
             {
-                ++player01Goals;
                 Statistics.statistics.UpdateStatisticIndependent(
                     Settings.settings.getProfileIndexPlayerOne(),
                     Statistics.winGoalsLeft,
@@ -80,7 +80,6 @@ public class GoalZoneConsumesBall : MonoBehaviour
 
             else if (thisGoalZoneZ == goalZone02MiddleZ)
             {
-                ++player01Goals;
                 Statistics.statistics.UpdateStatisticIndependent(
                     Settings.settings.getProfileIndexPlayerOne(),
                     Statistics.winGoalsMiddle,
@@ -93,7 +92,6 @@ public class GoalZoneConsumesBall : MonoBehaviour
 
             else if (thisGoalZoneZ == goalZone02LeftZ)
             {
-                ++player01Goals;
                 Statistics.statistics.UpdateStatisticIndependent(
                     Settings.settings.getProfileIndexPlayerOne(),
                     Statistics.winGoalsRight,
@@ -115,6 +113,11 @@ public class GoalZoneConsumesBall : MonoBehaviour
                     Statistics.losses,
                     1);
 
+                player01Goals = 0;
+                player02Goals = 0;
+                player01ScoreDisplay.text = Settings.settings.getProfileNamePlayerOne() + ": " + player01Goals;
+                player02ScoreDisplay.text = Settings.settings.getProfileNamePlayerTwo() + ": " + player02Goals;
+
                 SceneManager.LoadScene(1, LoadSceneMode.Single);
             }
 
@@ -123,6 +126,7 @@ public class GoalZoneConsumesBall : MonoBehaviour
 
         else if (thisGoalZoneX == goalZone01X)
         {
+            ++player02Goals;
             Statistics.statistics.UpdateStatisticIndependent(
                 Settings.settings.getProfileIndexPlayerTwo(),
                 Statistics.winGoals,
@@ -134,7 +138,6 @@ public class GoalZoneConsumesBall : MonoBehaviour
 
             if (thisGoalZoneZ == goalZone01RightZ)
             {
-                ++player02Goals;
                 Statistics.statistics.UpdateStatisticIndependent(
                     Settings.settings.getProfileIndexPlayerTwo(),
                     Statistics.winGoalsLeft,
@@ -147,7 +150,6 @@ public class GoalZoneConsumesBall : MonoBehaviour
 
             else if (thisGoalZoneZ == goalZone01MiddleZ)
             {
-                ++player02Goals;
                 Statistics.statistics.UpdateStatisticIndependent(
                     Settings.settings.getProfileIndexPlayerTwo(),
                     Statistics.winGoalsMiddle,
@@ -160,7 +162,6 @@ public class GoalZoneConsumesBall : MonoBehaviour
 
             else if (thisGoalZoneZ == goalZone01LeftZ)
             {
-                ++player02Goals;
                 Statistics.statistics.UpdateStatisticIndependent(
                     Settings.settings.getProfileIndexPlayerTwo(),
                     Statistics.winGoalsRight,
@@ -181,6 +182,11 @@ public class GoalZoneConsumesBall : MonoBehaviour
                     Settings.settings.getProfileIndexPlayerOne(),
                     Statistics.losses,
                     1);
+
+                player01Goals = 0;
+                player02Goals = 0;
+                player01ScoreDisplay.text = Settings.settings.getProfileNamePlayerOne() + ": " + player01Goals;
+                player02ScoreDisplay.text = Settings.settings.getProfileNamePlayerTwo() + ": " + player02Goals;
 
                 SceneManager.LoadScene(1, LoadSceneMode.Single);
             }

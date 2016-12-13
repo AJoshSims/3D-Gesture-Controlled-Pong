@@ -239,104 +239,114 @@ internal class Statistics : MonoBehaviour
     internal void CalculateStatisticsDependent(int profile)
     {
         statisticsProfilesDependent[profile, displacementPerHit] =
-            statisticsProfilesIndependent[profile, displacement]
-            / statisticsProfilesIndependent[profile, hits];
+            valueCheck(statisticsProfilesIndependent[profile, displacement]
+            / statisticsProfilesIndependent[profile, hits]);
         statisticsProfilesDependent[profile, displacementPerWinGoal] =
-            statisticsProfilesIndependent[profile, displacement]
-            / statisticsProfilesIndependent[profile, winGoals];
+            valueCheck(statisticsProfilesIndependent[profile, displacement]
+            / statisticsProfilesIndependent[profile, winGoals]);
         statisticsProfilesDependent[profile, displacementPerWinGoalLeft] =
-            statisticsProfilesIndependent[profile, displacement]
-            / statisticsProfilesIndependent[profile, winGoalsLeft];
+            valueCheck(statisticsProfilesIndependent[profile, displacement]
+            / statisticsProfilesIndependent[profile, winGoalsLeft]);
         statisticsProfilesDependent[profile, displacementPerWinGoalMiddle] =
-            statisticsProfilesIndependent[profile, displacement]
-            / statisticsProfilesIndependent[profile, winGoalsMiddle];
+            valueCheck(statisticsProfilesIndependent[profile, displacement]
+            / statisticsProfilesIndependent[profile, winGoalsMiddle]);
         statisticsProfilesDependent[profile, displacementPerWinGoalRight] =
-            statisticsProfilesIndependent[profile, displacement]
-            / statisticsProfilesIndependent[profile, winGoalsRight];
+            valueCheck(statisticsProfilesIndependent[profile, displacement]
+            / statisticsProfilesIndependent[profile, winGoalsRight]);
         statisticsProfilesDependent[profile, displacementPerWin] =
-            statisticsProfilesIndependent[profile, displacement]
-            / statisticsProfilesIndependent[profile, wins];
+            valueCheck(statisticsProfilesIndependent[profile, displacement]
+            / statisticsProfilesIndependent[profile, wins]);
         statisticsProfilesDependent[profile, displacementPerLossGoal] =
-            statisticsProfilesIndependent[profile, displacement]
-            / statisticsProfilesIndependent[profile, lossGoals];
+            valueCheck(statisticsProfilesIndependent[profile, displacement]
+            / statisticsProfilesIndependent[profile, lossGoals]);
         statisticsProfilesDependent[profile, displacementPerLossGoalLeft] =
-            statisticsProfilesIndependent[profile, displacement]
-            / statisticsProfilesIndependent[profile, lossGoalsLeft];
+            valueCheck(statisticsProfilesIndependent[profile, displacement]
+            / statisticsProfilesIndependent[profile, lossGoalsLeft]);
         statisticsProfilesDependent[profile, displacementPerLossGoalMiddle] =
-            statisticsProfilesIndependent[profile, displacement]
-            / statisticsProfilesIndependent[profile, lossGoalsMiddle];
+            valueCheck(statisticsProfilesIndependent[profile, displacement]
+            / statisticsProfilesIndependent[profile, lossGoalsMiddle]);
         statisticsProfilesDependent[profile, displacementPerLossGoalRight] =
-            statisticsProfilesIndependent[profile, displacement]
-            / statisticsProfilesIndependent[profile, lossGoalsRight];
+            valueCheck(statisticsProfilesIndependent[profile, displacement]
+            / statisticsProfilesIndependent[profile, lossGoalsRight]);
         statisticsProfilesDependent[profile, displacementPerLoss] =
-            statisticsProfilesIndependent[profile, displacement]
-            / statisticsProfilesIndependent[profile, losses];
+            valueCheck(statisticsProfilesIndependent[profile, displacement]
+            / statisticsProfilesIndependent[profile, losses]);
         statisticsProfilesDependent[profile, hitsPerWinGoal] =
-            statisticsProfilesIndependent[profile, hits]
-            / statisticsProfilesIndependent[profile, winGoals];
+            valueCheck(statisticsProfilesIndependent[profile, hits]
+            / statisticsProfilesIndependent[profile, winGoals]);
         statisticsProfilesDependent[profile, hitsPerWinGoalLeft] =
-            statisticsProfilesIndependent[profile, hits]
-            / statisticsProfilesIndependent[profile, winGoalsLeft];
+            valueCheck(statisticsProfilesIndependent[profile, hits]
+            / statisticsProfilesIndependent[profile, winGoalsLeft]);
         statisticsProfilesDependent[profile, hitsPerWinGoalMiddle] =
-            statisticsProfilesIndependent[profile, hits]
-            / statisticsProfilesIndependent[profile, winGoalsMiddle];
+            valueCheck(statisticsProfilesIndependent[profile, hits]
+            / statisticsProfilesIndependent[profile, winGoalsMiddle]);
         statisticsProfilesDependent[profile, hitsPerWinGoalRight] =
-            statisticsProfilesIndependent[profile, hits]
-            / statisticsProfilesIndependent[profile, winGoalsRight];
+            valueCheck(statisticsProfilesIndependent[profile, hits]
+            / statisticsProfilesIndependent[profile, winGoalsRight]);
         statisticsProfilesDependent[profile, hitsPerWin] =
-            statisticsProfilesIndependent[profile, hits]
-            / statisticsProfilesIndependent[profile, wins];
+            valueCheck(statisticsProfilesIndependent[profile, hits]
+            / statisticsProfilesIndependent[profile, wins]);
         statisticsProfilesDependent[profile, hitsPerLossGoal] =
-            statisticsProfilesIndependent[profile, hits]
-            / statisticsProfilesIndependent[profile, lossGoals];
+            valueCheck(statisticsProfilesIndependent[profile, hits]
+            / statisticsProfilesIndependent[profile, lossGoals]);
         statisticsProfilesDependent[profile, hitsPerLossGoalLeft] =
-            statisticsProfilesIndependent[profile, hits]
-            / statisticsProfilesIndependent[profile, lossGoalsLeft];
+            valueCheck(statisticsProfilesIndependent[profile, hits]
+            / statisticsProfilesIndependent[profile, lossGoalsLeft]);
         statisticsProfilesDependent[profile, hitsPerLossGoalMiddle] =
-            statisticsProfilesIndependent[profile, hits]
-            / statisticsProfilesIndependent[profile, lossGoalsMiddle];
+            valueCheck(statisticsProfilesIndependent[profile, hits]
+            / statisticsProfilesIndependent[profile, lossGoalsMiddle]);
         statisticsProfilesDependent[profile, hitsPerLossGoalRight] =
-            statisticsProfilesIndependent[profile, hits]
-            / statisticsProfilesIndependent[profile, lossGoalsRight];
+            valueCheck(statisticsProfilesIndependent[profile, hits]
+            / statisticsProfilesIndependent[profile, lossGoalsRight]);
         statisticsProfilesDependent[profile, hitsPerLoss] =
-            statisticsProfilesIndependent[profile, hits]
-            / statisticsProfilesIndependent[profile, losses];
+            valueCheck(statisticsProfilesIndependent[profile, hits]
+            / statisticsProfilesIndependent[profile, losses]);
         statisticsProfilesDependent[profile, winGoalsLeftPerWinGoal] =
-            statisticsProfilesIndependent[profile, winGoalsLeft]
-            / statisticsProfilesIndependent[profile, winGoals];
+            valueCheck(statisticsProfilesIndependent[profile, winGoalsLeft]
+            / statisticsProfilesIndependent[profile, winGoals]);
         statisticsProfilesDependent[profile, winGoalsMiddlePerWinGoal] =
-            statisticsProfilesIndependent[profile, winGoalsMiddle]
-            / statisticsProfilesIndependent[profile, winGoals];
+            valueCheck(statisticsProfilesIndependent[profile, winGoalsMiddle]
+            / statisticsProfilesIndependent[profile, winGoals]);
         statisticsProfilesDependent[profile, winGoalsRightPerWinGoal] =
-            statisticsProfilesIndependent[profile, winGoalsRight]
-            / statisticsProfilesIndependent[profile, winGoals];
+            valueCheck(statisticsProfilesIndependent[profile, winGoalsRight]
+            / statisticsProfilesIndependent[profile, winGoals]);
         statisticsProfilesDependent[profile, winGoalsLeftPerWin] =
-            statisticsProfilesIndependent[profile, winGoalsLeft]
-            / statisticsProfilesIndependent[profile, wins];
+            valueCheck(statisticsProfilesIndependent[profile, winGoalsLeft]
+            / statisticsProfilesIndependent[profile, wins]);
         statisticsProfilesDependent[profile, winGoalsMiddlePerWin] =
-            statisticsProfilesIndependent[profile, winGoalsMiddle]
-            / statisticsProfilesIndependent[profile, wins];
+            valueCheck(statisticsProfilesIndependent[profile, winGoalsMiddle]
+            / statisticsProfilesIndependent[profile, wins]);
         statisticsProfilesDependent[profile, winGoalsRightPerWin] =
-            statisticsProfilesIndependent[profile, winGoalsRight]
-            / statisticsProfilesIndependent[profile, wins];
+            valueCheck(statisticsProfilesIndependent[profile, winGoalsRight]
+            / statisticsProfilesIndependent[profile, wins]);
         statisticsProfilesDependent[profile, lossGoalsLeftPerLossGoal] =
-            statisticsProfilesIndependent[profile, lossGoalsLeft]
-            / statisticsProfilesIndependent[profile, lossGoals];
+            valueCheck(statisticsProfilesIndependent[profile, lossGoalsLeft]
+            / statisticsProfilesIndependent[profile, lossGoals]);
         statisticsProfilesDependent[profile, lossGoalsMiddlePerLossGoal] =
-            statisticsProfilesIndependent[profile, lossGoalsMiddle]
-            / statisticsProfilesIndependent[profile, lossGoals];
+            valueCheck(statisticsProfilesIndependent[profile, lossGoalsMiddle]
+            / statisticsProfilesIndependent[profile, lossGoals]);
         statisticsProfilesDependent[profile, lossGoalsRightPerLossGoal] =
-            statisticsProfilesIndependent[profile, lossGoalsRight]
-            / statisticsProfilesIndependent[profile, lossGoals];
+            valueCheck(statisticsProfilesIndependent[profile, lossGoalsRight]
+            / statisticsProfilesIndependent[profile, lossGoals]);
         statisticsProfilesDependent[profile, lossGoalsLeftPerLoss] =
-            statisticsProfilesIndependent[profile, lossGoalsLeft]
-            / statisticsProfilesIndependent[profile, losses];
+            valueCheck(statisticsProfilesIndependent[profile, lossGoalsLeft]
+            / statisticsProfilesIndependent[profile, losses]);
         statisticsProfilesDependent[profile, lossGoalsMiddlePerLoss] =
-            statisticsProfilesIndependent[profile, lossGoalsMiddle]
-            / statisticsProfilesIndependent[profile, losses];
+            valueCheck(statisticsProfilesIndependent[profile, lossGoalsMiddle]
+            / statisticsProfilesIndependent[profile, losses]);
         statisticsProfilesDependent[profile, lossGoalsRightPerLoss] =
-            statisticsProfilesIndependent[profile, lossGoalsRight]
-            / statisticsProfilesIndependent[profile, lossGoals];
+            valueCheck(statisticsProfilesIndependent[profile, lossGoalsRight]
+            / statisticsProfilesIndependent[profile, lossGoals]);
+    }
+
+    private float valueCheck(float value)
+    {
+        if (Double.IsInfinity(value) || Double.IsNaN(value))
+        {
+            return 0;
+        }
+
+        return value;
     }
 
     [Serializable]
