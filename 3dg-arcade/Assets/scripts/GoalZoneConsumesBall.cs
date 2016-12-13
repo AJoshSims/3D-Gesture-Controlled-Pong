@@ -66,7 +66,7 @@ public class GoalZoneConsumesBall : MonoBehaviour
                 Statistics.lossGoals,
                 1);
 
-            if (thisGoalZoneZ == goalZone02RightZ)
+            if (Mathf.Abs((thisGoalZoneZ - goalZone02RightZ)) < 1)
             {
                 Statistics.statistics.UpdateStatisticIndependent(
                     Settings.settings.getProfileIndexPlayerOne(),
@@ -76,6 +76,8 @@ public class GoalZoneConsumesBall : MonoBehaviour
                     Settings.settings.getProfileIndexPlayerTwo(),
                     Statistics.lossGoalsRight,
                     1);
+
+                player01ScoreDisplay.text = Settings.settings.getProfileNamePlayerOne() + ": " + player01Goals;
             }
 
             else if (thisGoalZoneZ == goalZone02MiddleZ)
@@ -88,9 +90,11 @@ public class GoalZoneConsumesBall : MonoBehaviour
                     Settings.settings.getProfileIndexPlayerTwo(),
                     Statistics.lossGoalsMiddle,
                     1);
+
+                player01ScoreDisplay.text = Settings.settings.getProfileNamePlayerOne() + ": " + player01Goals;
             }
 
-            else if (thisGoalZoneZ == goalZone02LeftZ)
+            else if (Mathf.Abs((thisGoalZoneZ - goalZone02LeftZ)) < 1)
             {
                 Statistics.statistics.UpdateStatisticIndependent(
                     Settings.settings.getProfileIndexPlayerOne(),
@@ -100,6 +104,8 @@ public class GoalZoneConsumesBall : MonoBehaviour
                     Settings.settings.getProfileIndexPlayerTwo(),
                     Statistics.lossGoalsLeft,
                     1);
+
+                player01ScoreDisplay.text = Settings.settings.getProfileNamePlayerOne() + ": " + player01Goals;
             }
 
             if ((player01Goals % 5) == 0)
@@ -120,8 +126,6 @@ public class GoalZoneConsumesBall : MonoBehaviour
 
                 SceneManager.LoadScene(1, LoadSceneMode.Single);
             }
-
-            player01ScoreDisplay.text = Settings.settings.getProfileNamePlayerOne() + ": " + player01Goals;
         }
 
         else if (thisGoalZoneX == goalZone01X)
@@ -136,7 +140,7 @@ public class GoalZoneConsumesBall : MonoBehaviour
                 Statistics.lossGoals,
                 1);
 
-            if (thisGoalZoneZ == goalZone01RightZ)
+            if (Mathf.Abs((thisGoalZoneZ - goalZone01RightZ)) < 1)
             {
                 Statistics.statistics.UpdateStatisticIndependent(
                     Settings.settings.getProfileIndexPlayerTwo(),
@@ -146,6 +150,9 @@ public class GoalZoneConsumesBall : MonoBehaviour
                     Settings.settings.getProfileIndexPlayerOne(),
                     Statistics.lossGoalsRight,
                     1);
+
+                player02ScoreDisplay.text = Settings.settings.getProfileNamePlayerTwo() + ": " + player02Goals;
+
             }
 
             else if (thisGoalZoneZ == goalZone01MiddleZ)
@@ -158,9 +165,12 @@ public class GoalZoneConsumesBall : MonoBehaviour
                     Settings.settings.getProfileIndexPlayerOne(),
                     Statistics.lossGoalsMiddle,
                     1);
+
+                player02ScoreDisplay.text = Settings.settings.getProfileNamePlayerTwo() + ": " + player02Goals;
+
             }
 
-            else if (thisGoalZoneZ == goalZone01LeftZ)
+            else if (Mathf.Abs((thisGoalZoneZ - goalZone01LeftZ)) < 1)
             {
                 Statistics.statistics.UpdateStatisticIndependent(
                     Settings.settings.getProfileIndexPlayerTwo(),
@@ -170,6 +180,9 @@ public class GoalZoneConsumesBall : MonoBehaviour
                     Settings.settings.getProfileIndexPlayerOne(),
                     Statistics.lossGoalsLeft,
                     1);
+
+                player02ScoreDisplay.text = Settings.settings.getProfileNamePlayerTwo() + ": " + player02Goals;
+
             }
 
             if ((player02Goals % 5) == 0)
@@ -191,7 +204,6 @@ public class GoalZoneConsumesBall : MonoBehaviour
                 SceneManager.LoadScene(1, LoadSceneMode.Single);
             }
 
-            player02ScoreDisplay.text = Settings.settings.getProfileNamePlayerTwo() + ": " + player02Goals;
         }
 
         Statistics.statistics.Save();
