@@ -5,8 +5,6 @@ public class BallBehaviour : MonoBehaviour
 {
     public int speed;
 
-    //public GameObject AIPaddle;
-
 	private void Start()
     {
         StartCoroutine(WaitAndInitiateBallMovement());
