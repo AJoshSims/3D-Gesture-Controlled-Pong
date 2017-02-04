@@ -16,7 +16,7 @@ public class DetectJoint : MonoBehaviour
         else
         {
             gameObject.transform.position = 
-                new Vector3(0, 0, rightHand.transform.position.z);
+                new Vector3(rightHand.transform.position.x, rightHand.transform.position.y, rightHand.transform.position.z);
         }
     }
 }
