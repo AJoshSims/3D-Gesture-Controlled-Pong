@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2015
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3d-pong.Plugins", "3d-pong.Plugins.csproj", "{A2DC6079-77AD-3559-0357-85E63CE6D4A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3d-pong", "3d-pong.csproj", "{8637920B-C8BD-1B28-B7E4-12AB3BB39B3C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3d-pong.Editor.Plugins", "3d-pong.Editor.Plugins.csproj", "{CE576013-9CC1-4F5B-E392-4DF7E9B85E0B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A2DC6079-77AD-3559-0357-85E63CE6D4A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2DC6079-77AD-3559-0357-85E63CE6D4A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2DC6079-77AD-3559-0357-85E63CE6D4A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2DC6079-77AD-3559-0357-85E63CE6D4A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8637920B-C8BD-1B28-B7E4-12AB3BB39B3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8637920B-C8BD-1B28-B7E4-12AB3BB39B3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8637920B-C8BD-1B28-B7E4-12AB3BB39B3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8637920B-C8BD-1B28-B7E4-12AB3BB39B3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE576013-9CC1-4F5B-E392-4DF7E9B85E0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE576013-9CC1-4F5B-E392-4DF7E9B85E0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE576013-9CC1-4F5B-E392-4DF7E9B85E0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE576013-9CC1-4F5B-E392-4DF7E9B85E0B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

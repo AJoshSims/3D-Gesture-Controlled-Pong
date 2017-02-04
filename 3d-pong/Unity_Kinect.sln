@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2015
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity_Kinect.Plugins", "Unity_Kinect.Plugins.csproj", "{5BC132A9-C125-7456-4845-EBE73DFCB093}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity_Kinect", "Unity_Kinect.csproj", "{E7946084-D663-92C7-7DD9-95A8C7C24A25}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity_Kinect.Editor.Plugins", "Unity_Kinect.Editor.Plugins.csproj", "{69F0F528-2287-CEFF-110E-41DD6DADEDEB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5BC132A9-C125-7456-4845-EBE73DFCB093}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BC132A9-C125-7456-4845-EBE73DFCB093}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BC132A9-C125-7456-4845-EBE73DFCB093}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BC132A9-C125-7456-4845-EBE73DFCB093}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7946084-D663-92C7-7DD9-95A8C7C24A25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7946084-D663-92C7-7DD9-95A8C7C24A25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7946084-D663-92C7-7DD9-95A8C7C24A25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7946084-D663-92C7-7DD9-95A8C7C24A25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69F0F528-2287-CEFF-110E-41DD6DADEDEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69F0F528-2287-CEFF-110E-41DD6DADEDEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69F0F528-2287-CEFF-110E-41DD6DADEDEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69F0F528-2287-CEFF-110E-41DD6DADEDEB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
