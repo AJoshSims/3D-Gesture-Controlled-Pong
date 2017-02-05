@@ -18,12 +18,12 @@ public class BallBehaviour : MonoBehaviour
 
     }
 
-    internal void InitiateBallMovement(float xVelocityAsSpecifiedBySpeed)
+    internal void InitiateBallMovement(float zVelocityAsSpecifiedBySpeed)
     {
+        const float xVelocityOfZero = 0;
         const float yVelocityOfZero = 0;
-        const float zVelocityOfZero = 0;
         GetComponent<Rigidbody>().AddForce(
-            xVelocityAsSpecifiedBySpeed, yVelocityOfZero, zVelocityOfZero, 
+            xVelocityOfZero, yVelocityOfZero, zVelocityAsSpecifiedBySpeed, 
             ForceMode.Impulse);
     }
 }
