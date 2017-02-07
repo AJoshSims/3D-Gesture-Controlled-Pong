@@ -23,9 +23,21 @@ public class BallBehaviour : MonoBehaviour
     //public static GameObject goalZoneSegmentPlayer0203;
     //public static GameObject goalZoneSegmentPlayer0204;
 
+    private bool hasAlertedArtificialIntelligence;
+
     private void Start()
     {
+        hasAlertedArtificialIntelligence = false;
+
         StartCoroutine(WaitAndInitiateBallMovement(zPositionGoalZonePlayer01));
+    }
+
+    private void Update()
+    {
+        if ((transform.position.z > 0) && !hasAlertedArtificialIntelligence)
+        {
+
+        }
     }
 
     private void ResetBall(float zPositionGoalZone)
