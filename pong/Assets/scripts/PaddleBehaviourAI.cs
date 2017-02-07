@@ -10,7 +10,7 @@ public class PaddleBehaviourAI : MonoBehaviour
 
     public enum ArtificialIntelligenceLevel
     {
-        High, Medium, Low
+        Low, Medium, High
     }
 
     public ArtificialIntelligenceLevel artificalIntelligenceLevelSelected;
@@ -35,7 +35,7 @@ public class PaddleBehaviourAI : MonoBehaviour
         transform.localPosition = new Vector3(0, 0, 30);
 	}
 	
-	void Update ()
+	void FixedUpdate ()
     {
         if (transform.localPosition.z > 2)
         {
