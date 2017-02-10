@@ -65,11 +65,22 @@ public class PaddleBehaviourAI : MonoBehaviour
 
             if (ballTarget != null)
             {
-                transform.position = Vector3.MoveTowards(
-                    transform.position,
-                    ballTarget.transform.position,
+                transform.localPosition = Vector3.MoveTowards(
+                    transform.localPosition,
+                    new Vector3(
+                    ballTarget.transform.localPosition.x, 
+                    ballTarget.transform.localPosition.y, 
+                    30),
                     speed * Time.deltaTime);
             }
+        }
+
+        else
+        {
+            transform.localPosition = Vector3.MoveTowards(
+                transform.localPosition,
+                new Vector3(0, 0, 30),
+                speed * Time.deltaTime);
         }
 	}
 

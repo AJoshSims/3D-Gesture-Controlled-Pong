@@ -7,7 +7,7 @@ public class PaddleBehaviourPlayer : MonoBehaviour
 {
     private GameObject rightHand;
 
-    void Update()
+    void FixedUpdate()
     {
         if (rightHand == null)
         {
@@ -17,9 +17,9 @@ public class PaddleBehaviourPlayer : MonoBehaviour
         else
         {
             gameObject.transform.position = new Vector3
-                (rightHand.transform.position.x, 
-                rightHand.transform.position.y, 
-                rightHand.transform.position.z);
+                (rightHand.transform.position.x,
+                rightHand.transform.position.y,
+                -10);
         }
     }
 }
