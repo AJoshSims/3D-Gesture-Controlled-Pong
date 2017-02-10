@@ -23,20 +23,49 @@ public class BallBehaviour : MonoBehaviour
     //public static GameObject goalZoneSegmentPlayer0203;
     //public static GameObject goalZoneSegmentPlayer0204;
 
+    public GameObject paddleArtificialIntelligence;
+
+    private PaddleBehaviourAI paddleBehaviourAI;
+
     private bool hasAlertedArtificialIntelligence;
+
+    private bool hasBeenHitByAI;
+
+    internal void setHasAlertedArtificialIntelligence()
+    {
+        hasAlertedArtificialIntelligence = false;
+    }
+
+    internal void setHasBeenHitByAI()
+    {
+        hasBeenHitByAI = true;
+    }
 
     private void Start()
     {
+        paddleBehaviourAI = 
+            paddleArtificialIntelligence.GetComponent<PaddleBehaviourAI>();
+
         hasAlertedArtificialIntelligence = false;
+        hasBeenHitByAI = false;
 
         StartCoroutine(WaitAndInitiateBallMovement(zPositionGoalZonePlayer01));
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        if ((transform.position.z > 0) && !hasAlertedArtificialIntelligence)
+        if (
+            (hasAlertedArtificialIntelligence == false)
+            && (transform.position.z > 1))
         {
+            paddleBehaviourAI.AddBallToQueue(this.gameObject);
+            hasAlertedArtificialIntelligence = true;
+        }
 
+        else if (hasBeenHitByAI == true && transform.position.z <= 1)
+        {
+            hasAlertedArtificialIntelligence = false;
+            hasBeenHitByAI = false;
         }
     }
 
@@ -81,6 +110,7 @@ public class BallBehaviour : MonoBehaviour
             if (goalZoneSegmentBehaviour.isAbleToConsumeBall())
             {
                 ResetBall(-collidedWith.transform.position.z);
+                paddleBehaviourAI.removeBallFromQueue();
             }
         }
 

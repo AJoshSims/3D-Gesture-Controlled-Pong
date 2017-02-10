@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class PaddleBehaviourAI : MonoBehaviour
 {
-    // Change this because we need to accomodate multiple balls.
-    // We are going to need a queue.
-    public GameObject ball;
+    private Queue<GameObject> balls = null;
 
     public enum ArtificialIntelligenceLevel
     {
@@ -17,39 +15,83 @@ public class PaddleBehaviourAI : MonoBehaviour
 
     private float speed;
 
-    void Start ()
+    internal void AddBallToQueue(GameObject ball)
+    {
+        balls.Enqueue(ball);
+    }
+
+    internal void removeBallFromQueue()
+    {
+        if ((balls.Count > 0) && (balls.Peek() != null))
+        {
+            GameObject ballTargeted = balls.Dequeue();
+
+            BallBehaviour ballBehaviour =
+                ballTargeted.GetComponent<BallBehaviour>();
+
+            ballBehaviour.setHasAlertedArtificialIntelligence();
+            ballBehaviour.setHasBeenHitByAI();
+        }
+    }
+
+    private void Awake()
+    {
+        balls = new Queue<GameObject>(5);
+    }
+
+    private void Start ()
     {
         switch (artificalIntelligenceLevelSelected)
         {
             case ArtificialIntelligenceLevel.High:
-                speed = 50;
-                break;
-            case ArtificialIntelligenceLevel.Medium:
                 speed = 30;
                 break;
-            case ArtificialIntelligenceLevel.Low:
+            case ArtificialIntelligenceLevel.Medium:
                 speed = 20;
+                break;
+            case ArtificialIntelligenceLevel.Low:
+                speed = 10;
                 break;
         }
 
         transform.localPosition = new Vector3(0, 0, 30);
 	}
 	
-	void FixedUpdate ()
+	private void FixedUpdate ()
     {
-        if (transform.localPosition.z > 2)
+        if (balls.Count > 0)
         {
-            transform.position = Vector3.MoveTowards(
-                transform.position,
-                ball.transform.position,
-                speed * Time.deltaTime);
+            GameObject ballTarget = balls.Peek();
+
+            if (ballTarget != null)
+            {
+                transform.localPosition = Vector3.MoveTowards(
+                    transform.localPosition,
+                    new Vector3(
+                    ballTarget.transform.localPosition.x, 
+                    ballTarget.transform.localPosition.y, 
+                    30),
+                    speed * Time.deltaTime);
+            }
         }
+
         else
         {
             transform.localPosition = Vector3.MoveTowards(
-                transform.position,
+                transform.localPosition,
                 new Vector3(0, 0, 30),
                 speed * Time.deltaTime);
         }
 	}
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if ((balls.Count > 0) && (balls.Peek() != null))
+        {
+            GameObject ballTargeted = balls.Dequeue();
+
+            ballTargeted.GetComponent<BallBehaviour>()
+                .setHasBeenHitByAI();
+        }
+    }
 }
