@@ -17,9 +17,13 @@ public class Effects : MonoBehaviour
 
     private GameObject[] goalZoneSegmentsPlayerTwo;
 
-    private int[] goalZoneSegmentIndicesAbleToConsume;
+    private Queue<GameObject> goalZoneSegmentsAbleToConsumePlayerOne;
 
-    private int[] goalZoneSegmentIndicesPoints;
+    private Queue<GameObject> goalZoneSegmentsAbleToConsumePlayerTwo;
+
+    private Queue<GameObject> goalZoneSegmentsPointsPlayerOne;
+
+    private Queue<GameObject> goalZoneSegmentsPointsPlayerTwo;
 
     private const int numOfGoalZoneSegmentsPerPlayer = 4;
 
@@ -53,10 +57,15 @@ public class Effects : MonoBehaviour
         goalZoneSegmentsPlayerTwo = 
             new GameObject[numOfGoalZoneSegmentsPerPlayer];
 
-        goalZoneSegmentIndicesAbleToConsume = 
-            new int[numOfGoalZoneSegmentsPerPlayer * 2];
-        goalZoneSegmentIndicesPoints = 
-            new int[numOfGoalZoneSegmentsPerPlayer * 2];
+        goalZoneSegmentsAbleToConsumePlayerOne =
+            new Queue<GameObject>(numOfGoalZoneSegmentsPerPlayer);
+        goalZoneSegmentsAbleToConsumePlayerTwo =
+            new Queue<GameObject>(numOfGoalZoneSegmentsPerPlayer);
+
+        goalZoneSegmentsPointsPlayerOne =
+            new Queue<GameObject>(numOfGoalZoneSegmentsPerPlayer);
+        goalZoneSegmentsPointsPlayerTwo =
+            new Queue<GameObject>(numOfGoalZoneSegmentsPerPlayer);
 
         lastTime01 = 0;
         lastTime02 = 0;
@@ -66,7 +75,7 @@ public class Effects : MonoBehaviour
 
 	void Update ()
     {
-		if ((Time.time - lastTime01) > 5)
+        if (Time.time > 0 || Time.time > 25)
         {
             // TODO Change to random number
             int randomGoalZoneSegmentIndex = randomNumGenerator.Next(4);
@@ -77,16 +86,30 @@ public class Effects : MonoBehaviour
                 affectedGoalZoneSegment
                 .GetComponent<GoalZoneSegmentBehavior>();
             goalZoneSegmentBehaviour.setAbleToConsumeBall(false);
-            goalZoneSegmentIndicesAbleToConsume
+
+            goalZoneSegmentsAbleToConsumePlayerTwo.Enqueue(
+                affectedGoalZoneSegment);
 
             // TODO reenable ability to consume ball
-            lastTime01 = Time.deltaTime;
+            lastTime01 = Time.time;
             //affectedGoalZoneSegment.
         }
 
-        if ((Time.time - lastTime02) > 10)
+        if (Time.time > 15 && Time.time < 25)
         {
+            if (goalZoneSegmentsAbleToConsumePlayerTwo.Count > 0)
+            {
+                GameObject resetGoalZoneSegment = 
+                    goalZoneSegmentsAbleToConsumePlayerTwo.Dequeue();
 
+                GoalZoneSegmentBehavior goalZoneSegmentBehaviourReset =
+                    resetGoalZoneSegment
+                    .GetComponent<GoalZoneSegmentBehavior>();
+
+                goalZoneSegmentBehaviourReset.setAbleToConsumeBall(true);
+
+                lastTime02 = Time.time;
+            }
         }
 	}
 }
