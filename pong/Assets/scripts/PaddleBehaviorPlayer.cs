@@ -3,7 +3,7 @@ using System;
 using System.Collections;
 using Windows.Kinect;
 
-public class PaddleBehaviourPlayer : MonoBehaviour
+public class PaddleBehaviorPlayer : MonoBehaviour
 {
     private GameObject rightHand;
 
