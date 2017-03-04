@@ -27,6 +27,8 @@ public class Effects : MonoBehaviour
 
     private const int numOfGoalZoneSegmentsPerPlayer = 4;
 
+    public Color wallSideColor;
+
     internal void addToGoalZoneSegmentsPlayerOne(
         int index, GameObject goalZoneSegment)
     {
@@ -93,6 +95,10 @@ public class Effects : MonoBehaviour
             // TODO reenable ability to consume ball
             lastTime01 = Time.time;
             //affectedGoalZoneSegment.
+
+            Material affectedMaterial =
+                affectedGoalZoneSegment.GetComponent<MeshRenderer>().material;
+            affectedMaterial.color = wallSideColor;
         }
 
         if (Time.time > 15 && Time.time < 25)
@@ -109,6 +115,10 @@ public class Effects : MonoBehaviour
                 goalZoneSegmentBehaviourReset.setAbleToConsumeBall(true);
 
                 lastTime02 = Time.time;
+
+                Material resetMaterial = 
+                    resetGoalZoneSegment.GetComponent<MeshRenderer>().material;
+                resetMaterial.color = Color.black;
             }
         }
 	}
