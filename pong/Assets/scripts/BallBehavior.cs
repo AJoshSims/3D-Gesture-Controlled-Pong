@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class BallBehaviour : MonoBehaviour
+public class BallBehavior : MonoBehaviour
 {
     private const float beginningXPositionOfBall = 0;
     private const float beginningYPositionOfBall = 0;
@@ -25,7 +25,7 @@ public class BallBehaviour : MonoBehaviour
 
     public GameObject paddleArtificialIntelligence;
 
-    private PaddleBehaviourAI paddleBehaviourAI;
+    private PaddleBehaviorAI paddleBehaviourAI;
 
     private bool hasAlertedArtificialIntelligence;
 
@@ -44,7 +44,7 @@ public class BallBehaviour : MonoBehaviour
     private void Start()
     {
         paddleBehaviourAI = 
-            paddleArtificialIntelligence.GetComponent<PaddleBehaviourAI>();
+            paddleArtificialIntelligence.GetComponent<PaddleBehaviorAI>();
 
         hasAlertedArtificialIntelligence = false;
         hasBeenHitByAI = false;
@@ -90,20 +90,27 @@ public class BallBehaviour : MonoBehaviour
 
     internal void InitiateBallMovement(float zPositionGoalZone)
     {
-        const float xVelocityOfZero = 0;
-        const float yVelocityOfZero = 0;
+        // TODO reset to normal
+        //const float xVelocityOfZero = 0;
+        //const float yVelocityOfZero = 0;
+        //GetComponent<Rigidbody>().velocity = new Vector3(
+        //    xVelocityOfZero, 
+        //    yVelocityOfZero, 
+        //    speed * Mathf.Sign(zPositionGoalZone));
+        const float xVelocityOfZero = 5;
+        const float yVelocityOfZero = 2;
         GetComponent<Rigidbody>().velocity = new Vector3(
-            xVelocityOfZero, 
-            yVelocityOfZero, 
-            speed * Mathf.Sign(zPositionGoalZone));
+            xVelocityOfZero,
+            yVelocityOfZero,
+            speed * 1);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         GameObject collidedWith = collision.collider.gameObject;
 
-        GoalZoneSegmentBehaviour goalZoneSegmentBehaviour =
-            collidedWith.GetComponent<GoalZoneSegmentBehaviour>();
+        GoalZoneSegmentBehavior goalZoneSegmentBehaviour =
+            collidedWith.GetComponent<GoalZoneSegmentBehavior>();
 
         if (goalZoneSegmentBehaviour != null)
         {

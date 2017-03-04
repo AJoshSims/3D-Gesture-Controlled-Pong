@@ -81,13 +81,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\scripts\BallBehaviour.cs" />
+    <Compile Include="Assets\scripts\BallBehavior.cs" />
     <Compile Include="Assets\scripts\BodySourceManager.cs" />
     <Compile Include="Assets\scripts\BodySourceView.cs" />
+    <Compile Include="Assets\scripts\Effects.cs" />
     <Compile Include="Assets\scripts\GoalZoneConsumesBall.cs" />
-    <Compile Include="Assets\scripts\GoalZoneSegmentBehaviour.cs" />
-    <Compile Include="Assets\scripts\PaddleBehaviourAI.cs" />
-    <Compile Include="Assets\scripts\PaddleBehaviourPlayer.cs" />
+    <Compile Include="Assets\scripts\GoalZoneSegmentBehavior.cs" />
+    <Compile Include="Assets\scripts\PaddleBehaviorAI.cs" />
+    <Compile Include="Assets\scripts\PaddleBehaviorPlayer.cs" />
     <Compile Include="Assets\scripts\PopulateStatisticsView.cs" />
     <Compile Include="Assets\scripts\PrepGamePong.cs" />
     <Compile Include="Assets\scripts\SelectProfile.cs" />

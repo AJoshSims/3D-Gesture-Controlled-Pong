@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PaddleBehaviourAI : MonoBehaviour
+public class PaddleBehaviorAI : MonoBehaviour
 {
     private Queue<GameObject> balls = null;
 
@@ -26,8 +26,8 @@ public class PaddleBehaviourAI : MonoBehaviour
         {
             GameObject ballTargeted = balls.Dequeue();
 
-            BallBehaviour ballBehaviour =
-                ballTargeted.GetComponent<BallBehaviour>();
+            BallBehavior ballBehaviour =
+                ballTargeted.GetComponent<BallBehavior>();
 
             ballBehaviour.setHasAlertedArtificialIntelligence();
             ballBehaviour.setHasBeenHitByAI();
@@ -43,6 +43,16 @@ public class PaddleBehaviourAI : MonoBehaviour
     {
         switch (artificalIntelligenceLevelSelected)
         {
+            // TODO reset to default
+            //case ArtificialIntelligenceLevel.High:
+            //    speed = 30;
+            //    break;
+            //case ArtificialIntelligenceLevel.Medium:
+            //    speed = 20;
+            //    break;
+            //case ArtificialIntelligenceLevel.Low:
+            //    speed = 10;
+            //    break;
             case ArtificialIntelligenceLevel.High:
                 speed = 30;
                 break;
@@ -50,7 +60,7 @@ public class PaddleBehaviourAI : MonoBehaviour
                 speed = 20;
                 break;
             case ArtificialIntelligenceLevel.Low:
-                speed = 10;
+                speed = 0;
                 break;
         }
 
@@ -90,7 +100,7 @@ public class PaddleBehaviourAI : MonoBehaviour
         {
             GameObject ballTargeted = balls.Dequeue();
 
-            ballTargeted.GetComponent<BallBehaviour>()
+            ballTargeted.GetComponent<BallBehavior>()
                 .setHasBeenHitByAI();
         }
     }
