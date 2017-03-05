@@ -43,16 +43,6 @@ public class PaddleBehaviorAI : MonoBehaviour
     {
         switch (artificalIntelligenceLevelSelected)
         {
-            // TODO reset to default
-            //case ArtificialIntelligenceLevel.High:
-            //    speed = 30;
-            //    break;
-            //case ArtificialIntelligenceLevel.Medium:
-            //    speed = 20;
-            //    break;
-            //case ArtificialIntelligenceLevel.Low:
-            //    speed = 10;
-            //    break;
             case ArtificialIntelligenceLevel.High:
                 speed = 30;
                 break;
@@ -60,7 +50,7 @@ public class PaddleBehaviorAI : MonoBehaviour
                 speed = 20;
                 break;
             case ArtificialIntelligenceLevel.Low:
-                speed = 0;
+                speed = 10;
                 break;
         }
 
