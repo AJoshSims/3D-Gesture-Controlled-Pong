@@ -90,19 +90,12 @@ public class BallBehavior : MonoBehaviour
 
     internal void InitiateBallMovement(float zPositionGoalZone)
     {
-        // TODO reset to normal
-        //const float xVelocityOfZero = 0;
-        //const float yVelocityOfZero = 0;
-        //GetComponent<Rigidbody>().velocity = new Vector3(
-        //    xVelocityOfZero, 
-        //    yVelocityOfZero, 
-        //    speed * Mathf.Sign(zPositionGoalZone));
-        const float xVelocityOfZero = 5;
-        const float yVelocityOfZero = 2;
+        const float xVelocityOfZero = 0;
+        const float yVelocityOfZero = 0;
         GetComponent<Rigidbody>().velocity = new Vector3(
             xVelocityOfZero,
             yVelocityOfZero,
-            speed * 1);
+            speed * Mathf.Sign(zPositionGoalZone));
     }
 
     private void OnCollisionEnter(Collision collision)
