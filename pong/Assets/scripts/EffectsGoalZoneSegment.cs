@@ -50,7 +50,7 @@ public class EffectsGoalZoneSegment : MonoBehaviour
             new GoalZoneSegmentBehavior[numOfGoalZoneSegmentsPerPlayer];
 
         timeUntilDisableGoalZoneSegment =
-            (int)Time.time + randomNumGenerator.Next(10, 31);
+            (int)Time.time + randomNumGenerator.Next(5, 11);
     }
     
     void Update ()
@@ -67,7 +67,7 @@ public class EffectsGoalZoneSegment : MonoBehaviour
             else
             {
                 goalZoneSegmentsToSelectFrom =
-                    goalZoneSegmentBehaviorsPlayerTwo;
+                    goalZoneSegmentBehaviorsPlayerOne;
             }
 
             GoalZoneSegmentBehavior affectedGoalZoneSegmentBehavior =
@@ -77,7 +77,7 @@ public class EffectsGoalZoneSegment : MonoBehaviour
             affectedGoalZoneSegmentBehavior.setAbleToConsumeBall(false);
 
             timeUntilDisableGoalZoneSegment =
-                (int)Time.time + randomNumGenerator.Next(10, 31);
+                (int)Time.time + randomNumGenerator.Next(5, 11);
         }
 	}
 }
