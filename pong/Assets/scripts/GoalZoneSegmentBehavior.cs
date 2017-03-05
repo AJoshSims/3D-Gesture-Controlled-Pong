@@ -14,6 +14,8 @@ public class GoalZoneSegmentBehavior : MonoBehaviour
 
     private int timeUntilEnabled;
 
+    private int timeUntilPointsNormalized;
+
     private System.Random randomNumGenerator;
 
     internal void setAbleToConsumeBall(bool ableToConsumeBall)
@@ -52,12 +54,12 @@ public class GoalZoneSegmentBehavior : MonoBehaviour
             {
                 if (Mathf.Sign(transform.position.y) == 1)
                 {
-                    EffectsGoalZoneSegment.effects
+                    EffectGoalZoneSegmentDisable.effects
                         .addToGoalZoneSegmentsPlayerOne(0, this);
                 }
                 else
                 {
-                    EffectsGoalZoneSegment.effects.
+                    EffectGoalZoneSegmentDisable.effects.
                         addToGoalZoneSegmentsPlayerOne(1, this);
                 }
             }
@@ -66,12 +68,12 @@ public class GoalZoneSegmentBehavior : MonoBehaviour
             {
                 if (Mathf.Sign(transform.position.y) == -1)
                 {
-                    EffectsGoalZoneSegment.effects.
+                    EffectGoalZoneSegmentDisable.effects.
                         addToGoalZoneSegmentsPlayerOne(2, this);
                 }
                 else
                 {
-                    EffectsGoalZoneSegment.effects.
+                    EffectGoalZoneSegmentDisable.effects.
                         addToGoalZoneSegmentsPlayerOne(3, this);
                 }
             }
@@ -83,12 +85,12 @@ public class GoalZoneSegmentBehavior : MonoBehaviour
             {
                 if (Mathf.Sign(transform.position.y) == 1)
                 {
-                    EffectsGoalZoneSegment.effects.
+                    EffectGoalZoneSegmentDisable.effects.
                         addToGoalZoneSegmentsPlayerTwo(0, this);
                 }
                 else
                 {
-                    EffectsGoalZoneSegment.effects.
+                    EffectGoalZoneSegmentDisable.effects.
                         addToGoalZoneSegmentsPlayerTwo(1, this);
                 }
             }
@@ -97,12 +99,12 @@ public class GoalZoneSegmentBehavior : MonoBehaviour
             {
                 if (Mathf.Sign(transform.position.y) == -1)
                 {
-                    EffectsGoalZoneSegment.effects.
+                    EffectGoalZoneSegmentDisable.effects.
                         addToGoalZoneSegmentsPlayerTwo(2, this);
                 }
                 else
                 {
-                    EffectsGoalZoneSegment.effects.
+                    EffectGoalZoneSegmentDisable.effects.
                         addToGoalZoneSegmentsPlayerTwo(3, this);
                 }
             }

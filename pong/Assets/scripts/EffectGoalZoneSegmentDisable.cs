@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 
-public class EffectsGoalZoneSegment : MonoBehaviour
+public class EffectGoalZoneSegmentDisable : MonoBehaviour
 {
-    public static EffectsGoalZoneSegment effects;
+    public static EffectGoalZoneSegmentDisable effects;
 
     private System.Random randomNumGenerator;
 
