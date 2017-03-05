@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class EffectGoalZoneSegmentDisable : MonoBehaviour
 {
-    public static EffectGoalZoneSegmentDisable effects;
+    public static EffectGoalZoneSegmentDisable effectGoalZoneSegmentDisable;
 
     private System.Random randomNumGenerator;
 
@@ -31,13 +31,13 @@ public class EffectGoalZoneSegmentDisable : MonoBehaviour
 
     private void Awake()
     {
-        if (effects == null)
+        if (effectGoalZoneSegmentDisable == null)
         {
             DontDestroyOnLoad(gameObject);
-            effects = this;
+            effectGoalZoneSegmentDisable = this;
         }
 
-        else if (effects != this)
+        else if (effectGoalZoneSegmentDisable != this)
         {
             Destroy(gameObject);
         }
