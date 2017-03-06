@@ -33,7 +33,6 @@ public class EffectGoalZoneSegmentDisable : MonoBehaviour
     {
         if (effectGoalZoneSegmentDisable == null)
         {
-            DontDestroyOnLoad(gameObject);
             effectGoalZoneSegmentDisable = this;
         }
 

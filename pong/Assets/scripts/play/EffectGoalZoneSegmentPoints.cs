@@ -33,7 +33,6 @@ public class EffectGoalZoneSegmentPoints : MonoBehaviour
     {
         if (effectGoalZoneSegmentPoints == null)
         {
-            DontDestroyOnLoad(gameObject);
             effectGoalZoneSegmentPoints = this;
         }
 
