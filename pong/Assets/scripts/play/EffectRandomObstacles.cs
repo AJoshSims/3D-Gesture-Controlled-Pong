@@ -56,7 +56,7 @@ public class EffectRandomObstacles : MonoBehaviour
                 randomObstacle.GetComponent<RandomObstacleBehavior>();
 
             randomObstacleBehavior.setTimeUntilDestroy(
-                (int) Time.time + 30);
+                (int) Time.time + 20);
 
             timeUntilRandomObstacle =
                 (int)Time.time + randomNumGenerator.Next(5, 10);
