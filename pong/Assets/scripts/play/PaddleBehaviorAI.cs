@@ -44,13 +44,13 @@ public class PaddleBehaviorAI : MonoBehaviour
         switch (artificalIntelligenceLevelSelected)
         {
             case ArtificialIntelligenceLevel.High:
-                speed = 30;
+                speed = 10;
                 break;
             case ArtificialIntelligenceLevel.Medium:
-                speed = 20;
+                speed = 5;
                 break;
             case ArtificialIntelligenceLevel.Low:
-                speed = 10;
+                speed = 3;
                 break;
         }
 
