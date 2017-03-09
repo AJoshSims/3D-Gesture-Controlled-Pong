@@ -42,7 +42,7 @@ public class EffectRandomObstacles : MonoBehaviour
                 new Vector3(
                 randomNumGenerator.Next(-9, 10),
                 randomNumGenerator.Next(-5, 6),
-                randomNumGenerator.Next(-10, 11)),
+                0),
                 Quaternion.LookRotation(ball.transform.position),
                 arena.transform);
 
