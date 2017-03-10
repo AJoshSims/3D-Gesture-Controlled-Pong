@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PaddleBehaviorAI : MonoBehaviour
 {
-    private Queue<GameObject> balls = null;
+    private Queue<GameObject> ballsToPursue = null;
 
     public enum ArtificialIntelligenceLevel
     {
@@ -17,26 +17,12 @@ public class PaddleBehaviorAI : MonoBehaviour
 
     internal void AddBallToQueue(GameObject ball)
     {
-        balls.Enqueue(ball);
-    }
-
-    internal void removeBallFromQueue()
-    {
-        if ((balls.Count > 0) && (balls.Peek() != null))
-        {
-            GameObject ballTargeted = balls.Dequeue();
-
-            BallBehavior ballBehaviour =
-                ballTargeted.GetComponent<BallBehavior>();
-
-            ballBehaviour.setHasAlertedArtificialIntelligence();
-            ballBehaviour.setHasBeenHitByAI();
-        }
+        ballsToPursue.Enqueue(ball);
     }
 
     private void Awake()
     {
-        balls = new Queue<GameObject>(5);
+        ballsToPursue = new Queue<GameObject>(5);
     }
 
     private void Start ()
@@ -44,7 +30,7 @@ public class PaddleBehaviorAI : MonoBehaviour
         switch (artificalIntelligenceLevelSelected)
         {
             case ArtificialIntelligenceLevel.High:
-                speed = 10;
+                speed = 30;
                 break;
             case ArtificialIntelligenceLevel.Medium:
                 speed = 5;
@@ -59,19 +45,35 @@ public class PaddleBehaviorAI : MonoBehaviour
 	
 	private void FixedUpdate ()
     {
-        if (balls.Count > 0)
+        if (ballsToPursue.Count > 0)
         {
-            GameObject ballTarget = balls.Peek();
+            GameObject ballTarget = ballsToPursue.Peek();
 
             if (ballTarget != null)
             {
-                transform.localPosition = Vector3.MoveTowards(
-                    transform.localPosition,
-                    new Vector3(
-                    ballTarget.transform.localPosition.x, 
-                    ballTarget.transform.localPosition.y, 
-                    30),
-                    speed * Time.deltaTime);
+               BallBehavior ballTargetBehavior = 
+                    ballTarget.GetComponent<BallBehavior>();
+
+                if (ballTargetBehavior.ToBePursued == true)
+                {
+                    transform.localPosition = Vector3.MoveTowards(
+                        transform.localPosition,
+                        new Vector3(
+                        ballTarget.transform.localPosition.x, 
+                        ballTarget.transform.localPosition.y, 
+                        30),
+                        speed * Time.deltaTime);
+                }
+
+                else
+                {
+                    ballsToPursue.Dequeue();
+                }
+            }
+
+            else
+            {
+                ballsToPursue.Dequeue();
             }
         }
 
@@ -86,12 +88,25 @@ public class PaddleBehaviorAI : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if ((balls.Count > 0) && (balls.Peek() != null))
-        {
-            GameObject ballTargeted = balls.Dequeue();
+        GameObject collidedWith = collision.collider.gameObject;
 
-            ballTargeted.GetComponent<BallBehavior>()
-                .setHasBeenHitByAI();
+        BallBehavior ballBehavior = collidedWith.GetComponent<BallBehavior>();
+
+        if (ballBehavior != null)
+        {
+            if (ballsToPursue.Count > 0 
+                && collidedWith == ballsToPursue.Peek())
+            {
+                ballsToPursue.Dequeue();
+                ballBehavior.ToBePursued = false;
+                ballBehavior.IsAway = true;
+            }
+
+            else if(ballBehavior.ToBePursued == true)
+            {
+                ballBehavior.ToBePursued = false;
+                ballBehavior.IsAway = true;
+            }
         }
     }
 }

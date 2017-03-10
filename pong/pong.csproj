@@ -88,9 +88,12 @@
     <Compile Include="Assets\scripts\Settings.cs" />
     <Compile Include="Assets\scripts\Statistics.cs" />
     <Compile Include="Assets\scripts\play\BallBehavior.cs" />
+    <Compile Include="Assets\scripts\play\BallBehaviorExtra.cs" />
+    <Compile Include="Assets\scripts\play\BallBehaviorMain.cs" />
     <Compile Include="Assets\scripts\play\BlinkColor.cs" />
     <Compile Include="Assets\scripts\play\BodySourceManager.cs" />
     <Compile Include="Assets\scripts\play\BodySourceView.cs" />
+    <Compile Include="Assets\scripts\play\EffectExtraBalls.cs" />
     <Compile Include="Assets\scripts\play\EffectGoalZoneSegmentDisable.cs" />
     <Compile Include="Assets\scripts\play\EffectGoalZoneSegmentPoints.cs" />
     <Compile Include="Assets\scripts\play\EffectRandomObstacles.cs" />

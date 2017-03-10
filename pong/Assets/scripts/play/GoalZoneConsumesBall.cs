@@ -240,9 +240,9 @@ public class GoalZoneConsumesBall : MonoBehaviour
 
     private void InitiateBallMovementRelativeToGoal(GameObject ball)
     {
-        float xVelocity = ball.GetComponent<BallBehavior>().speed *
+        float xVelocity = ball.GetComponent<BallBehaviorMain>().speed *
             Mathf.Sign(transform.position.x);
-        ball.GetComponent<BallBehavior>().InitiateBallMovement(xVelocity);
+        ball.GetComponent<BallBehaviorMain>().InitiateBallMovement(xVelocity);
     }
 
     public IEnumerator WaitAndEndGame()
