@@ -84,6 +84,7 @@ public class BallBehaviorExtra : MonoBehaviour, BallBehavior
         {
             if (goalZoneSegmentBehaviour.isAbleToConsumeBall() == true)
             {
+                EffectExtraBalls.effectExtraBalls.decrementNumOfExtraBalls();
                 Destroy(gameObject);
             }
             else
