@@ -97,11 +97,17 @@ public class EffectExtraBalls : MonoBehaviour
                     ballMain.transform.rotation,
                     arenaTransform);
 
+            extraBall.GetComponent<BallBehaviorExtra>().BallBehaviorMainRef =
+                ballMain.GetComponent<BallBehaviorMain>();
+
             extraBall.GetComponent<BallBehaviorExtra>().PaddleBehaviorAI =
                  paddleBehaviorAI;
 
             extraBall.GetComponent<Rigidbody>().velocity =
-                new Vector3(0, 0, 20);
+                new Vector3(
+                0, 
+                0,
+                ballMain.GetComponent<BallBehaviorMain>().Speed);
         }
 
         timeUntilExtraBalls = (int)Time.time + 5;

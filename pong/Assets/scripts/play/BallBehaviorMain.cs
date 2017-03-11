@@ -19,6 +19,14 @@ public class BallBehaviorMain : MonoBehaviour, BallBehavior
 
     private bool isAway;
 
+    public int Speed
+    {
+        get
+        {
+            return speed;
+        }
+    }
+
     public PaddleBehaviorAI PaddleBehaviorAI
     {
         get
@@ -112,6 +120,12 @@ public class BallBehaviorMain : MonoBehaviour, BallBehavior
             && (isAway == true))
         {
             isAway = false;
+        }
+
+        if (GetComponent<Rigidbody>().velocity.magnitude < speed)
+        {
+            GetComponent<Rigidbody>().velocity =
+                GetComponent<Rigidbody>().velocity.normalized * speed;
         }
     }
 

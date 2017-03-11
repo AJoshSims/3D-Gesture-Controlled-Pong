@@ -11,6 +11,16 @@ public class BallBehaviorExtra : MonoBehaviour, BallBehavior
 
     private bool isAway;
 
+    private BallBehaviorMain ballBehaviorMainRef;
+
+    public BallBehaviorMain BallBehaviorMainRef
+    {
+        set
+        {
+            ballBehaviorMainRef = value;
+        }
+    }
+
     public PaddleBehaviorAI PaddleBehaviorAI
     {
         get
@@ -70,6 +80,14 @@ public class BallBehaviorExtra : MonoBehaviour, BallBehavior
             && (isAway == true))
         {
             isAway = false;
+        }
+
+        if (GetComponent<Rigidbody>().velocity.magnitude
+            < ballBehaviorMainRef.Speed)
+        {
+            GetComponent<Rigidbody>().velocity = 
+                GetComponent<Rigidbody>().velocity.normalized
+                * ballBehaviorMainRef.speed;
         }
     }
 
