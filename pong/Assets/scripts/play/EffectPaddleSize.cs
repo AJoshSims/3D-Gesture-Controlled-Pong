@@ -50,7 +50,8 @@ public class EffectPaddleSize : MonoBehaviour
 
             paddle.mutateSize(0.5F, randomNumGenerator.Next(10, 21) + 0.0F);
 
-            timeUntilPaddleSizeChange = randomNumGenerator.Next(30, 61);
+            timeUntilPaddleSizeChange = 
+                (int)Time.time + randomNumGenerator.Next(30, 61);
         }
     }
 }

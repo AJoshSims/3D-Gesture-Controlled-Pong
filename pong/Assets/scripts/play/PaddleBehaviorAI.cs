@@ -66,7 +66,12 @@ public class PaddleBehaviorAI : MonoBehaviour, MutableSize
                BallBehavior ballTargetBehavior = 
                     ballTarget.GetComponent<BallBehavior>();
 
-                if (ballTargetBehavior.ToBePursued == true)
+                if (ballTarget.transform.position.z <= 0)
+                {
+                    ballsToPursue.Dequeue();
+                }
+
+                else if (ballTargetBehavior.ToBePursued == true)
                 {
                     transform.localPosition = Vector3.MoveTowards(
                         transform.localPosition,

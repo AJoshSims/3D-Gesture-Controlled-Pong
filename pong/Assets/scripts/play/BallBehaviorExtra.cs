@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BallBehaviorExtra : MonoBehaviour, BallBehavior
 {
@@ -97,14 +98,26 @@ public class BallBehaviorExtra : MonoBehaviour, BallBehavior
     {
         GameObject collidedWith = collision.collider.gameObject;
 
-        GoalZoneSegmentBehavior goalZoneSegmentBehaviour =
+        GoalZoneSegmentBehavior goalZoneSegmentBehavior =
             collidedWith.GetComponent<GoalZoneSegmentBehavior>();
 
-        if (goalZoneSegmentBehaviour != null)
+        if (goalZoneSegmentBehavior != null)
         {
-            if (goalZoneSegmentBehaviour.isAbleToConsumeBall() == true)
+            if (goalZoneSegmentBehavior.isAbleToConsumeBall() == true)
             {
                 EffectExtraBalls.effectExtraBalls.decrementNumOfExtraBalls();
+
+                if (goalZoneSegmentBehavior.player01Owner == true)
+                {
+                    ScoreKeeperBehavior.scoreKeeperBehavior.incrementScore(
+                        false, goalZoneSegmentBehavior.Points);
+                }
+                else
+                {
+                    ScoreKeeperBehavior.scoreKeeperBehavior.incrementScore(
+                        true, goalZoneSegmentBehavior.Points);
+                }
+
                 Destroy(gameObject);
             }
             else

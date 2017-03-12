@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GoalZoneSegmentBehavior : MonoBehaviour
 {
+    private bool player01GoalZoneSegment;
+
     public Color wallSideColor;
 
     private int goalZoneSegmentIndex;
@@ -25,6 +27,14 @@ public class GoalZoneSegmentBehavior : MonoBehaviour
     private int timeUntilPointsNormalized;
 
     private System.Random randomNumGenerator;
+
+    public bool player01Owner
+    {
+        get
+        {
+            return player01GoalZoneSegment;
+        }
+    }
 
     internal void setAbleToConsumeBall(bool ableToConsumeBall)
     {
@@ -50,9 +60,12 @@ public class GoalZoneSegmentBehavior : MonoBehaviour
         return ableToConsumeBall;
     }
 
-    internal int getPoints()
+    public int Points
     {
-        return points;
+        get
+        {
+            return points;
+        }
     }
 
     internal void setPointsModified(bool pointsModified)
@@ -79,6 +92,8 @@ public class GoalZoneSegmentBehavior : MonoBehaviour
     {
         ableToConsumeBall = true;
 
+        points = pointsNormal;
+
         pointsModified = false;
 
         randomNumGenerator = new System.Random();
@@ -88,6 +103,8 @@ public class GoalZoneSegmentBehavior : MonoBehaviour
     {
         if (Mathf.Sign(transform.position.z) == zPositionPlayerOne)
         {
+            player01GoalZoneSegment = true;
+
             if (Mathf.Sign(transform.position.x) == -1)
             {
                 if (Mathf.Sign(transform.position.y) == 1)
@@ -131,6 +148,8 @@ public class GoalZoneSegmentBehavior : MonoBehaviour
 
         else
         {
+            player01GoalZoneSegment = false;
+
             if (Mathf.Sign(transform.position.x) == 1)
             {
                 if (Mathf.Sign(transform.position.y) == 1)

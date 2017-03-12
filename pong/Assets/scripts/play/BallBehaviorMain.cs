@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System;
+using UnityEngine.UI;
 
 public class BallBehaviorMain : MonoBehaviour, BallBehavior
 {
@@ -134,15 +135,26 @@ public class BallBehaviorMain : MonoBehaviour, BallBehavior
     {
         GameObject collidedWith = collision.collider.gameObject;
 
-        GoalZoneSegmentBehavior goalZoneSegmentBehaviour =
+        GoalZoneSegmentBehavior goalZoneSegmentBehavior =
             collidedWith.GetComponent<GoalZoneSegmentBehavior>();
 
         if (
-            (goalZoneSegmentBehaviour != null)
-            && goalZoneSegmentBehaviour.isAbleToConsumeBall())
+            (goalZoneSegmentBehavior != null)
+            && goalZoneSegmentBehavior.isAbleToConsumeBall())
         {
             ResetBall(-collidedWith.transform.position.z);
-        }
+
+            if (goalZoneSegmentBehavior.player01Owner == true)
+            {
+                ScoreKeeperBehavior.scoreKeeperBehavior.incrementScore(
+                    false, goalZoneSegmentBehavior.Points);
+            }
+            else
+            {
+                ScoreKeeperBehavior.scoreKeeperBehavior.incrementScore(
+                    true, goalZoneSegmentBehavior.Points);
+            }
+        }      
 
         // Else if it was an additive effect object...
     }
