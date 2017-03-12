@@ -122,7 +122,8 @@ public class BallBehaviorMain : MonoBehaviour, BallBehavior
             isAway = false;
         }
 
-        if (GetComponent<Rigidbody>().velocity.magnitude < speed)
+        if ((GetComponent<Rigidbody>().velocity.magnitude < speed)
+            || (GetComponent<Rigidbody>().velocity.magnitude > speed))
         {
             GetComponent<Rigidbody>().velocity =
                 GetComponent<Rigidbody>().velocity.normalized * speed;

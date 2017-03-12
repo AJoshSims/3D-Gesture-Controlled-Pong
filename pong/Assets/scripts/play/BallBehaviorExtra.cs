@@ -82,12 +82,14 @@ public class BallBehaviorExtra : MonoBehaviour, BallBehavior
             isAway = false;
         }
 
-        if (GetComponent<Rigidbody>().velocity.magnitude
+        if ((GetComponent<Rigidbody>().velocity.magnitude
             < ballBehaviorMainRef.Speed)
+            || (GetComponent<Rigidbody>().velocity.magnitude
+            > ballBehaviorMainRef.Speed))
         {
             GetComponent<Rigidbody>().velocity = 
                 GetComponent<Rigidbody>().velocity.normalized
-                * ballBehaviorMainRef.speed;
+                * (ballBehaviorMainRef.speed / 2);
         }
     }
 
