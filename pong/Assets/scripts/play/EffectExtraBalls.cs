@@ -10,7 +10,7 @@ public class EffectExtraBalls : MonoBehaviour
 
     private System.Random randomNumGenerator;
 
-    private const int maxNumOfExtraBalls = 5;
+    private const int maxNumOfExtraBalls = 4;
 
     private int numOfExtraBalls;
 
@@ -55,7 +55,7 @@ public class EffectExtraBalls : MonoBehaviour
         if (
             (Time.time > timeUntilExtraBalls) 
             && (ballMainBlinking == false) 
-            && (numOfExtraBalls != maxNumOfExtraBalls))
+            && (numOfExtraBalls < maxNumOfExtraBalls))
         {
             ballMainBlinking = true;
 
@@ -107,7 +107,7 @@ public class EffectExtraBalls : MonoBehaviour
                 new Vector3(
                 0, 
                 0,
-                ballMain.GetComponent<BallBehaviorMain>().Speed);
+                ballMain.GetComponent<BallBehaviorMain>().Speed / 2);
         }
 
         timeUntilExtraBalls = (int)Time.time + 5;
