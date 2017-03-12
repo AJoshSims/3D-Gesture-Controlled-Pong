@@ -96,9 +96,11 @@
     <Compile Include="Assets\scripts\play\EffectExtraBalls.cs" />
     <Compile Include="Assets\scripts\play\EffectGoalZoneSegmentDisable.cs" />
     <Compile Include="Assets\scripts\play\EffectGoalZoneSegmentPoints.cs" />
+    <Compile Include="Assets\scripts\play\EffectPaddleSize.cs" />
     <Compile Include="Assets\scripts\play\EffectRandomObstacles.cs" />
     <Compile Include="Assets\scripts\play\GoalZoneConsumesBall.cs" />
     <Compile Include="Assets\scripts\play\GoalZoneSegmentBehavior.cs" />
+    <Compile Include="Assets\scripts\play\MutableSize.cs" />
     <Compile Include="Assets\scripts\play\PaddleBehaviorAI.cs" />
     <Compile Include="Assets\scripts\play\PaddleBehaviorPlayer.cs" />
     <Compile Include="Assets\scripts\play\RandomObstacleBehavior.cs" />

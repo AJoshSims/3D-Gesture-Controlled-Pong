@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PaddleBehaviorAI : MonoBehaviour
+public class PaddleBehaviorAI : MonoBehaviour, MutableSize
 {
     private Queue<GameObject> ballsToPursue = null;
 
@@ -15,6 +15,12 @@ public class PaddleBehaviorAI : MonoBehaviour
 
     private float speed;
 
+    private bool sizeChanged;
+
+    private Vector3 originalSize;
+
+    private float timeUntilOriginalSize;
+
     internal void AddBallToQueue(GameObject ball)
     {
         ballsToPursue.Enqueue(ball);
@@ -23,6 +29,12 @@ public class PaddleBehaviorAI : MonoBehaviour
     private void Awake()
     {
         ballsToPursue = new Queue<GameObject>(5);
+
+        sizeChanged = false;
+
+        originalSize = transform.localScale;
+
+        timeUntilOriginalSize = 0;
     }
 
     private void Start ()
@@ -84,7 +96,14 @@ public class PaddleBehaviorAI : MonoBehaviour
                 new Vector3(0, 0, 30),
                 speed * Time.deltaTime);
         }
-	}
+
+        if ((sizeChanged == true) && (Time.time > timeUntilOriginalSize))
+        {
+            transform.localScale = originalSize;
+
+            sizeChanged = false;
+        }
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -108,5 +127,14 @@ public class PaddleBehaviorAI : MonoBehaviour
                 ballBehavior.IsAway = true;
             }
         }
+    }
+
+    public void mutateSize(float value, float timeUntilOriginalSize)
+    {
+        transform.localScale = transform.localScale * value;
+
+        this.timeUntilOriginalSize = timeUntilOriginalSize;
+
+        sizeChanged = true;
     }
 }
