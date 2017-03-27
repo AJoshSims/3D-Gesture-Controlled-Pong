@@ -6,13 +6,15 @@ public class EffectExtraBalls : MonoBehaviour
 {
     public static EffectExtraBalls effectExtraBalls;
 
-    private int timeUntilExtraBalls;
+    private int timeUntilBallExtras;
 
     private System.Random randomNumGenerator;
 
-    private const int maxNumOfExtraBalls = 4;
+    private const int maxNumOfBallsExtras = 4;
 
-    private int numOfExtraBalls;
+    private BallBehaviorExtra[] ballExtras;
+
+    private bool canSpawnBallsExtra;
 
     public PaddleBehaviorAI paddleBehaviorAI;
 
@@ -24,9 +26,16 @@ public class EffectExtraBalls : MonoBehaviour
 
     private bool ballMainBlinking;
 
-    public void decrementNumOfExtraBalls()
+    internal void prepareBallExtra(
+        BallBehaviorExtra ballExtra, 
+        int ballExtraIndex)
     {
-        --numOfExtraBalls;
+        ballExtras[ballExtraIndex] = ballExtra;
+    }
+
+    internal void confirmCanSpawnBallsExtra()
+    {
+        canSpawnBallsExtra = true;   
     }
 
     private void Awake()
@@ -40,12 +49,14 @@ public class EffectExtraBalls : MonoBehaviour
             Destroy(gameObject);
         }
 
-        numOfExtraBalls = 0;
+        ballExtras = new BallBehaviorExtra[maxNumOfBallsExtras];
+
+        canSpawnBallsExtra = true;
 
         randomNumGenerator = new System.Random();
 
         // timeUntilExtraBalls = randomNumGenerator.Next(30, 61);
-        timeUntilExtraBalls = 5;
+        timeUntilBallExtras = 5;
 
         ballMainBlinking = false;
     }
@@ -53,17 +64,17 @@ public class EffectExtraBalls : MonoBehaviour
     private void Update()
     {
         if (
-            (Time.time > timeUntilExtraBalls) 
-            && (ballMainBlinking == false) 
-            && (numOfExtraBalls < maxNumOfExtraBalls))
+            (Time.time > timeUntilBallExtras) 
+            && (ballMainBlinking == false)
+            && (canSpawnBallsExtra == true))
         {
             ballMainBlinking = true;
 
-            StartCoroutine(waitAndSpawnExtraBalls());
+            StartCoroutine(waitAndSpawnBallsExtra());
         }
     }
 
-    private IEnumerator waitAndSpawnExtraBalls()
+    private IEnumerator waitAndSpawnBallsExtra()
     {
         BlinkColor ballMainBlink = ballMain.GetComponent<BlinkColor>();
         ballMainBlink.setBlinkActive(true);
@@ -74,42 +85,49 @@ public class EffectExtraBalls : MonoBehaviour
 
         ballMainBlinking = false;
 
-        spawnExtraBalls();
+        spawnBallsExtra();
     }
 
-    private void spawnExtraBalls()
+    private void spawnBallsExtra()
     {
-        GameObject extraBall;
+        int numOfBallsExtraActive = 0;
 
-        int numOfBallsToSpawn = randomNumGenerator.Next(
-            1, maxNumOfExtraBalls - numOfExtraBalls);
-
-        numOfExtraBalls += numOfBallsToSpawn;
+        int ballExtraIndex = 0;
 
         for (
-            ;
-            numOfBallsToSpawn > 0;
-            --numOfBallsToSpawn)
+            ballExtraIndex = 0; 
+            ballExtraIndex < maxNumOfBallsExtras; 
+            ++ballExtraIndex)
         {
-            extraBall = (GameObject)Instantiate(
-                    extraBallPrefab,
-                    ballMain.transform.position,
-                    ballMain.transform.rotation,
-                    arenaTransform);
-
-            extraBall.GetComponent<BallBehaviorExtra>().BallBehaviorMainRef =
-                ballMain.GetComponent<BallBehaviorMain>();
-
-            extraBall.GetComponent<BallBehaviorExtra>().PaddleBehaviorAI =
-                 paddleBehaviorAI;
-
-            extraBall.GetComponent<Rigidbody>().velocity =
-                new Vector3(
-                0, 
-                0,
-                ballMain.GetComponent<BallBehaviorMain>().Speed / 2);
+            if (ballExtras[ballExtraIndex].Active == true)
+            {
+                ++numOfBallsExtraActive;
+            }
         }
 
-        timeUntilExtraBalls = (int)Time.time + 5;
+        int numOfBallsExtraToActivate = randomNumGenerator.Next(
+            1, maxNumOfBallsExtras - numOfBallsExtraActive);
+
+        if (
+            (numOfBallsExtraToActivate + numOfBallsExtraActive) 
+            == maxNumOfBallsExtras)
+        {
+            canSpawnBallsExtra = false;
+        }
+
+        for (
+            ballExtraIndex = 0; 
+            (ballExtraIndex < maxNumOfBallsExtras)
+            && (numOfBallsExtraToActivate > 0); 
+            ++ballExtraIndex)
+        {
+            if (ballExtras[ballExtraIndex].Active == false)
+            {
+                ballExtras[ballExtraIndex].Activate();
+                --numOfBallsExtraToActivate;
+            }
+        }
+
+        timeUntilBallExtras = (int)Time.time + 5;
     }
 }

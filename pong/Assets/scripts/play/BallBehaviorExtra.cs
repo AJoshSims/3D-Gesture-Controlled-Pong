@@ -6,21 +6,19 @@ using UnityEngine.UI;
 
 public class BallBehaviorExtra : MonoBehaviour, BallBehavior
 {
-    private PaddleBehaviorAI paddleBehaviorAI;
+    public PaddleBehaviorAI paddleBehaviorAI;
+
+    private bool active;
+
+    public int ballExtraIndex;
 
     private bool toBePursued;
 
     private bool isAway;
 
-    private BallBehaviorMain ballBehaviorMainRef;
+    public BallBehaviorMain ballBehaviorMainRef;
 
-    public BallBehaviorMain BallBehaviorMainRef
-    {
-        set
-        {
-            ballBehaviorMainRef = value;
-        }
-    }
+    private Vector3 originalPosition;
 
     public PaddleBehaviorAI PaddleBehaviorAI
     {
@@ -60,16 +58,41 @@ public class BallBehaviorExtra : MonoBehaviour, BallBehavior
         }
     }
 
+    public bool Active
+    {
+        get
+        {
+            return active;
+        }
+    }
+
+    internal void Activate()
+    {
+        active = true;
+
+        transform.position = ballBehaviorMainRef.transform.position;
+        GetComponent<Rigidbody>().velocity =
+            new Vector3(0, 0, ballBehaviorMainRef.Speed / 2);
+    }
+
     private void Awake()
     {
         toBePursued = false;
         isAway = false;
+        originalPosition = transform.position;
+    }
+
+    private void Start()
+    {
+        EffectExtraBalls.effectExtraBalls.prepareBallExtra(
+            this, ballExtraIndex);
     }
 
     public void FixedUpdate()
     {
         if (
-            (transform.position.z > 0)
+            (active == true)
+            && (transform.position.z > 0)
             && (toBePursued == false)
             && (isAway == false))
         {
@@ -77,7 +100,9 @@ public class BallBehaviorExtra : MonoBehaviour, BallBehavior
             toBePursued = true;
         }
 
-        else if ((transform.position.z <= 0)
+        else if (
+            (active == true)
+            && (transform.position.z <= 0)
             && (isAway == true))
         {
             isAway = false;
@@ -105,7 +130,11 @@ public class BallBehaviorExtra : MonoBehaviour, BallBehavior
         {
             if (goalZoneSegmentBehavior.isAbleToConsumeBall() == true)
             {
-                EffectExtraBalls.effectExtraBalls.decrementNumOfExtraBalls();
+                active = false;
+                GetComponent<Rigidbody>().velocity = Vector3.zero;
+                transform.position = originalPosition;
+
+                EffectExtraBalls.effectExtraBalls.confirmCanSpawnBallsExtra();
 
                 if (goalZoneSegmentBehavior.player01Owner == true)
                 {
@@ -117,9 +146,8 @@ public class BallBehaviorExtra : MonoBehaviour, BallBehavior
                     ScoreKeeperBehavior.scoreKeeperBehavior.incrementScore(
                         true, goalZoneSegmentBehavior.Points);
                 }
-
-                Destroy(gameObject);
             }
+
             else
             {
                 toBePursued = false;
