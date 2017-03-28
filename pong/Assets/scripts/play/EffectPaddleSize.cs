@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EffectPaddleSize : MonoBehaviour
 {
-    private static EffectPaddleSize effectPaddleSize;
+    internal static EffectPaddleSize effectPaddleSize;
 
     private System.Random randomNumGenerator;
 
@@ -24,6 +24,8 @@ public class EffectPaddleSize : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        enabled = false;
 
         randomNumGenerator = new System.Random();
 

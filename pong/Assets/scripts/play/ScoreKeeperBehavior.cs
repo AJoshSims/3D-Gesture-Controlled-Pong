@@ -50,4 +50,43 @@ public class ScoreKeeperBehavior : MonoBehaviour
             scorePlayer02Text.text = scorePlayer02Prefix + scorePlayer02;
         }
     }
+
+    private void Update()
+    {
+        if (
+            (scorePlayer01 > 20)
+            && (EffectExtraBalls
+            .effectExtraBalls.enabled == false))
+        {
+            EffectExtraBalls.effectExtraBalls.enabled = true;
+        }
+        if (
+            (scorePlayer01 > 15)
+            && (EffectPaddleSize
+            .effectPaddleSize.enabled == false))
+        {
+            EffectPaddleSize.effectPaddleSize.enabled = true;
+        }
+        if (
+            (scorePlayer01 > 10)
+            && (EffectRandomObstacles
+            .effectRandomObstacles.enabled == false))
+        {
+            EffectRandomObstacles.effectRandomObstacles.enabled = true;
+        }
+        if (
+            (scorePlayer01 > 5)
+            && (EffectGoalZoneSegmentDisable
+            .effectGoalZoneSegmentDisable.enabled == false))
+        {
+            EffectGoalZoneSegmentDisable
+                .effectGoalZoneSegmentDisable.enabled = true;
+        }
+        if (EffectGoalZoneSegmentPoints
+            .effectGoalZoneSegmentPoints.enabled == false)
+        {
+            EffectGoalZoneSegmentPoints
+                .effectGoalZoneSegmentPoints.enabled = true;
+        }
+    }
 }

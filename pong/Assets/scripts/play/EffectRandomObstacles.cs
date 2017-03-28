@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EffectRandomObstacles : MonoBehaviour
 {
-    private EffectRandomObstacles effectRandomObstacles;
+    internal static EffectRandomObstacles effectRandomObstacles;
 
     private int timeUntilRandomObstacle;
 
@@ -26,6 +26,8 @@ public class EffectRandomObstacles : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        enabled = false;
 
         randomNumGenerator = new System.Random();
 

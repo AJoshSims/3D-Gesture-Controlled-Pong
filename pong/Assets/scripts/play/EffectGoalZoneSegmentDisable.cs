@@ -41,6 +41,8 @@ public class EffectGoalZoneSegmentDisable : MonoBehaviour
             Destroy(gameObject);
         }
 
+        enabled = false;
+
         randomNumGenerator = new System.Random();
 
         goalZoneSegmentBehaviorsPlayerOne = 

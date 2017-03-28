@@ -49,6 +49,8 @@ public class EffectExtraBalls : MonoBehaviour
             Destroy(gameObject);
         }
 
+        enabled = false;
+
         ballExtras = new BallBehaviorExtra[maxNumOfBallsExtras];
 
         canSpawnBallsExtra = true;
