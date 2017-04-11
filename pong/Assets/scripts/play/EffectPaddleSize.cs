@@ -6,6 +6,8 @@ public class EffectPaddleSize : MonoBehaviour
 {
     internal static EffectPaddleSize effectPaddleSize;
 
+    private Settings.GameplayEffectMode mode;
+
     private System.Random randomNumGenerator;
 
     private int timeUntilPaddleSizeChange;
@@ -13,6 +15,19 @@ public class EffectPaddleSize : MonoBehaviour
     public GameObject paddlePlayer01;
 
     public GameObject paddlePlayer02;
+
+    internal Settings.GameplayEffectMode Mode
+    {
+        get
+        {
+            return mode;
+        }
+
+        set
+        {
+            mode = value;
+        }
+    }
 
     private void Awake()
     {
@@ -25,12 +40,24 @@ public class EffectPaddleSize : MonoBehaviour
             Destroy(gameObject);
         }
 
-        enabled = false;
-
         randomNumGenerator = new System.Random();
 
         //timeUntilPaddleSizeChange =
         //(int) Time.time + randomNumGenerator.Next(30, 61);
+    }
+
+    private void Start()
+    {
+        if (Settings.settings.getGameplayEffectMode(
+            Settings.shrinkPaddle)
+            == Settings.GameplayEffectMode.Immediate)
+        {
+            enabled = true;
+        }
+        else
+        {
+            enabled = false;
+        }
 
         timeUntilPaddleSizeChange = (int)Time.time + 2;
     }

@@ -6,7 +6,7 @@ using System.IO;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
-internal class Settings : MonoBehaviour
+public class Settings : MonoBehaviour
 {
     public static Settings settings;
 
@@ -23,6 +23,20 @@ internal class Settings : MonoBehaviour
     private int profileIndexPlayerOne = -1;
 
     private int profileIndexPlayerTwo = -1;
+
+    private const int numOfGameplayEffects = 5;
+
+    private GameplayEffectMode[] gameplayEffectModes;
+
+    internal const int goalZoneSegmentExtraPoints = 0;
+
+    internal const int goalZoneSegmentDisable = 1;
+
+    internal const int obstacles = 2;
+
+    internal const int shrinkPaddle = 3;
+
+    internal const int extraBalls = 4;
 
     public string getProfileName(int profileIndex)
     {
@@ -69,6 +83,17 @@ internal class Settings : MonoBehaviour
         this.profileIndexPlayerTwo = profileIndexPlayerTwo;
     }
 
+    internal GameplayEffectMode getGameplayEffectMode(int gameplayEffect)
+    {
+        return gameplayEffectModes[gameplayEffect];
+    }
+
+    internal void setGameplayEffectMode(
+        int gameplayEffect, GameplayEffectMode mode)
+    {
+        gameplayEffectModes[gameplayEffect] = mode;
+    }
+
     public void Awake()
     {
         if (settings == null)
@@ -81,10 +106,7 @@ internal class Settings : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
 
-    private void Start()
-    {
         Load();
     }
 
@@ -103,6 +125,8 @@ internal class Settings : MonoBehaviour
             settingsFile.Close();
 
             settingsProfiles = settingsSerializable.settingsProfiles;
+            gameplayEffectModes = settingsSerializable.gameplayEffectModes; 
+
             profilesActual = settingsSerializable.profilesActual;
         }
 
@@ -114,6 +138,17 @@ internal class Settings : MonoBehaviour
             {
                 settingsProfiles[profile, profileNameIndex] = 
                     "<create profile>";
+            }
+
+            gameplayEffectModes =
+                new GameplayEffectMode[numOfGameplayEffects];
+            for (
+                int gameplayEffectMode = 0; 
+                gameplayEffectMode < gameplayEffectModes.Length;
+                ++gameplayEffectMode)
+            {
+                gameplayEffectModes[gameplayEffectMode] = 
+                    GameplayEffectMode.ScoreDependent;
             }
         }
     }
@@ -127,6 +162,7 @@ internal class Settings : MonoBehaviour
         SettingsSerializable settingsSerializable = new SettingsSerializable();
         settingsSerializable.settingsProfiles = settingsProfiles;
         settingsSerializable.profilesActual = profilesActual;
+        settingsSerializable.gameplayEffectModes = gameplayEffectModes;
 
         BinaryFormatter serializer = new BinaryFormatter();
         serializer.Serialize(settingsFile, settingsSerializable);
@@ -148,5 +184,12 @@ internal class Settings : MonoBehaviour
         internal object[,] settingsProfiles;
 
         internal int profilesActual;
+
+        internal GameplayEffectMode[] gameplayEffectModes;
+    }
+
+    public enum GameplayEffectMode
+    {
+        ScoreDependent, Immediate, Off 
     }
 }

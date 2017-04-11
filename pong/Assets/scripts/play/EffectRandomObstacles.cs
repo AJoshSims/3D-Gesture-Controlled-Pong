@@ -6,6 +6,8 @@ public class EffectRandomObstacles : MonoBehaviour
 {
     internal static EffectRandomObstacles effectRandomObstacles;
 
+    private Settings.GameplayEffectMode mode;
+
     private int timeUntilRandomObstacle;
 
     private System.Random randomNumGenerator;
@@ -15,6 +17,19 @@ public class EffectRandomObstacles : MonoBehaviour
     public Object randomObstaclePrefab;
 
     public GameObject ball;
+    
+    internal Settings.GameplayEffectMode Mode
+    {
+        get
+        {
+            return mode;
+        }
+
+        set
+        {
+            mode = value;
+        }
+    }
 
     private void Awake()
     {
@@ -27,12 +42,24 @@ public class EffectRandomObstacles : MonoBehaviour
             Destroy(gameObject);
         }
 
-        enabled = false;
-
         randomNumGenerator = new System.Random();
+    }
 
-        timeUntilRandomObstacle = 
-            (int) Time.time + randomNumGenerator.Next(5, 10);
+    private void Start()
+    {
+        if (Settings.settings.getGameplayEffectMode(
+            Settings.obstacles)
+            == Settings.GameplayEffectMode.Immediate)
+        {
+            enabled = true;
+        }
+        else
+        {
+            enabled = false;
+        }
+
+        timeUntilRandomObstacle =
+            (int)Time.time + randomNumGenerator.Next(5, 10);
     }
 
     private void Update()

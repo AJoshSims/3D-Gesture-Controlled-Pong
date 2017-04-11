@@ -6,6 +6,8 @@ public class EffectExtraBalls : MonoBehaviour
 {
     public static EffectExtraBalls effectExtraBalls;
 
+    private Settings.GameplayEffectMode mode;
+
     private int timeUntilBallExtras;
 
     private System.Random randomNumGenerator;
@@ -25,6 +27,19 @@ public class EffectExtraBalls : MonoBehaviour
     public GameObject ballMain;
 
     private bool ballMainBlinking;
+
+    internal Settings.GameplayEffectMode Mode
+    {
+        get
+        {
+            return mode;
+        }
+
+        set
+        {
+            mode = value;
+        }
+    }
 
     internal void prepareBallExtra(
         BallBehaviorExtra ballExtra, 
@@ -49,8 +64,6 @@ public class EffectExtraBalls : MonoBehaviour
             Destroy(gameObject);
         }
 
-        enabled = false;
-
         ballExtras = new BallBehaviorExtra[maxNumOfBallsExtras];
 
         canSpawnBallsExtra = true;
@@ -58,9 +71,24 @@ public class EffectExtraBalls : MonoBehaviour
         randomNumGenerator = new System.Random();
 
         // timeUntilExtraBalls = randomNumGenerator.Next(30, 61);
-        timeUntilBallExtras = 5;
 
         ballMainBlinking = false;
+    }
+
+    private void Start()
+    {
+        if (Settings.settings.getGameplayEffectMode(
+            Settings.extraBalls)
+            == Settings.GameplayEffectMode.Immediate)
+        {
+            enabled = true;
+        }
+        else
+        {
+            enabled = false;
+        }
+
+        timeUntilBallExtras = 5;
     }
 
     private void Update()

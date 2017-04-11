@@ -81,6 +81,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\scripts\ChoiceGameplayEffectMode.cs" />
     <Compile Include="Assets\scripts\PopulateStatisticsView.cs" />
     <Compile Include="Assets\scripts\PrepGamePong.cs" />
     <Compile Include="Assets\scripts\SelectProfile.cs" />

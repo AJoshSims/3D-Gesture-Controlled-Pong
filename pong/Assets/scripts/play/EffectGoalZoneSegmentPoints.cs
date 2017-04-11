@@ -7,6 +7,8 @@ public class EffectGoalZoneSegmentPoints : MonoBehaviour
 {
     public static EffectGoalZoneSegmentPoints effectGoalZoneSegmentPoints;
 
+    private Settings.GameplayEffectMode mode;
+
     private System.Random randomNumGenerator;
 
     private const int numOfGoalZoneSegmentsPerPlayer = 4;
@@ -16,6 +18,19 @@ public class EffectGoalZoneSegmentPoints : MonoBehaviour
     private GoalZoneSegmentBehavior[] goalZoneSegmentBehaviorsPlayerTwo;
 
     private int timeUntilModifyGoalZoneSegmentPoints;
+
+    internal Settings.GameplayEffectMode Mode
+    {
+        get
+        {
+            return mode;
+        }
+
+        set
+        {
+            mode = value;
+        }
+    }
 
     internal void addToGoalZoneSegmentsPlayerOne(
         int index, GoalZoneSegmentBehavior goalZoneSegmentBehavior)
@@ -41,14 +56,30 @@ public class EffectGoalZoneSegmentPoints : MonoBehaviour
             Destroy(gameObject);
         }
 
-        enabled = false;
-
         randomNumGenerator = new System.Random();
 
         goalZoneSegmentBehaviorsPlayerOne =
             new GoalZoneSegmentBehavior[numOfGoalZoneSegmentsPerPlayer];
         goalZoneSegmentBehaviorsPlayerTwo =
             new GoalZoneSegmentBehavior[numOfGoalZoneSegmentsPerPlayer];
+    }
+
+    private void Start()
+    {
+        if (
+            (Settings.settings.getGameplayEffectMode(
+            Settings.goalZoneSegmentExtraPoints)
+            == Settings.GameplayEffectMode.Immediate)
+            || (Settings.settings.getGameplayEffectMode(
+            Settings.goalZoneSegmentExtraPoints)
+            == Settings.GameplayEffectMode.ScoreDependent))
+        {
+            enabled = true;
+        }
+        else
+        {
+            enabled = false;
+        }
 
         timeUntilModifyGoalZoneSegmentPoints =
             (int)Time.time + randomNumGenerator.Next(20, 31);

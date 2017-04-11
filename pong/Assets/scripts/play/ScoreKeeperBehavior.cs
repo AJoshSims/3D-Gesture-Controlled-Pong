@@ -56,37 +56,43 @@ public class ScoreKeeperBehavior : MonoBehaviour
         if (
             (scorePlayer01 > 20)
             && (EffectExtraBalls
-            .effectExtraBalls.enabled == false))
+            .effectExtraBalls.enabled == false)
+            && (Settings.settings.getGameplayEffectMode(
+            Settings.extraBalls)
+            == Settings.GameplayEffectMode.ScoreDependent))
         {
             EffectExtraBalls.effectExtraBalls.enabled = true;
         }
         if (
             (scorePlayer01 > 15)
             && (EffectPaddleSize
-            .effectPaddleSize.enabled == false))
+            .effectPaddleSize.enabled == false)
+            && (Settings.settings.getGameplayEffectMode(
+            Settings.shrinkPaddle) 
+            == Settings.GameplayEffectMode.ScoreDependent))
         {
             EffectPaddleSize.effectPaddleSize.enabled = true;
         }
         if (
             (scorePlayer01 > 10)
             && (EffectRandomObstacles
-            .effectRandomObstacles.enabled == false))
+            .effectRandomObstacles.enabled == false)
+            && (Settings.settings.getGameplayEffectMode(
+            Settings.obstacles)
+            == Settings.GameplayEffectMode.ScoreDependent))
         {
             EffectRandomObstacles.effectRandomObstacles.enabled = true;
         }
         if (
             (scorePlayer01 > 5)
             && (EffectGoalZoneSegmentDisable
-            .effectGoalZoneSegmentDisable.enabled == false))
+            .effectGoalZoneSegmentDisable.enabled == false)
+            && (Settings.settings.getGameplayEffectMode(
+            Settings.goalZoneSegmentDisable)
+            == Settings.GameplayEffectMode.ScoreDependent))
         {
             EffectGoalZoneSegmentDisable
                 .effectGoalZoneSegmentDisable.enabled = true;
-        }
-        if (EffectGoalZoneSegmentPoints
-            .effectGoalZoneSegmentPoints.enabled == false)
-        {
-            EffectGoalZoneSegmentPoints
-                .effectGoalZoneSegmentPoints.enabled = true;
         }
     }
 }
