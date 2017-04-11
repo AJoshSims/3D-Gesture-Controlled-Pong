@@ -14,6 +14,22 @@ public class ChoiceGameplayEffectMode : MonoBehaviour
         GetComponent<Dropdown>().onValueChanged.AddListener(choose);
     }
 
+    public void Start()
+    {
+        switch (Settings.settings.getGameplayEffectMode(gameplayEffect))
+        {
+            case Settings.GameplayEffectMode.ScoreDependent:
+                GetComponent<Dropdown>().value = 0;
+                break;
+            case Settings.GameplayEffectMode.Immediate:
+                GetComponent<Dropdown>().value = 1;
+                break;
+            case Settings.GameplayEffectMode.Off:
+                GetComponent<Dropdown>().value = 2;
+                break;
+        }
+    }
+
     public void Choose(int i)
     {
         switch (GetComponent<Dropdown>().value)
