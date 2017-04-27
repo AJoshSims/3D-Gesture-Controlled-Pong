@@ -11,13 +11,13 @@ public class ScoreKeeperBehavior : MonoBehaviour
 
     public Text scorePlayer01Text;
 
-    private const string scorePlayer01Prefix = "Player 1: ";
+    private const string scorePlayer01Prefix = "player 1: ";
 
     private int scorePlayer02;
 
     public Text scorePlayer02Text;
 
-    private const string scorePlayer02Prefix = "Player 2: ";
+    private const string scorePlayer02Prefix = "player 2: ";
 
     private void Awake()
     {

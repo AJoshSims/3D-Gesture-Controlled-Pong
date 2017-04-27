@@ -82,7 +82,9 @@ public class EffectGoalZoneSegmentPoints : MonoBehaviour
         }
 
         timeUntilModifyGoalZoneSegmentPoints =
-            (int)Time.time + randomNumGenerator.Next(20, 31);
+            (int)Time.time;
+        //timeUntilModifyGoalZoneSegmentPoints =
+        //    (int)Time.time + randomNumGenerator.Next(20, 31);
     }
 
     void Update()
@@ -109,7 +111,9 @@ public class EffectGoalZoneSegmentPoints : MonoBehaviour
             affectedGoalZoneSegmentBehavior.setPointsModified(true);
 
             timeUntilModifyGoalZoneSegmentPoints =
-                (int) Time.time + randomNumGenerator.Next(20, 31);
+                (int)Time.time + 5;
+            //timeUntilModifyGoalZoneSegmentPoints =
+            //    (int) Time.time + randomNumGenerator.Next(20, 31);
         }
     }
 }

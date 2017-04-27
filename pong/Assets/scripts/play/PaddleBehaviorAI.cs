@@ -45,17 +45,15 @@ public class PaddleBehaviorAI : MonoBehaviour, MutableSize
                 speed = 30;
                 break;
             case ArtificialIntelligenceLevel.Medium:
-                speed = 5;
+                speed = 15;
                 break;
             case ArtificialIntelligenceLevel.Low:
-                // TODO change
-                speed = 0;
+                speed = 5;
                 break;
         }
 
-        // TODO change
-        //transform.localPosition = new Vector3(0, 0, 30);
-	}
+        transform.localPosition = new Vector3(0, 0, 30);
+    }
 	
 	private void FixedUpdate ()
     {
