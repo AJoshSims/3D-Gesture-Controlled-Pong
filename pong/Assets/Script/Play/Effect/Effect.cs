@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface Effect
+public interface Effect : Observable
 {
 
 }

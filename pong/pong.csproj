@@ -97,11 +97,11 @@
     <Compile Include="Assets\Script\Play\Effect\EffectPaddleSize.cs" />
     <Compile Include="Assets\Script\Play\Effect\EffectRandomObstacles.cs" />
     <Compile Include="Assets\Script\Play\GoalZone\GoalZone.cs" />
-    <Compile Include="Assets\Script\Play\GoalZoneSegmentBehavior.cs" />
+    <Compile Include="Assets\Script\Play\GoalZone\GoalZoneSegmentBehavior.cs" />
     <Compile Include="Assets\Script\Play\Obstacle\RandomObstacleBehavior.cs" />
     <Compile Include="Assets\Script\Play\Paddle\PaddleBehaviorAI.cs" />
     <Compile Include="Assets\Script\Play\Paddle\PaddleBehaviorPlayer.cs" />
-    <Compile Include="Assets\Script\Play\ScoreKeeperBehavior.cs" />
+    <Compile Include="Assets\Script\Play\ScoreKeeper\ScoreKeeperBehavior.cs" />
     <Compile Include="Assets\Script\UserInput\Kinect\BodySourceManager.cs" />
     <Compile Include="Assets\Script\UserInput\Kinect\BodySourceView.cs" />
     <Compile Include="Assets\Script\Utility\BlinkColor.cs" />
