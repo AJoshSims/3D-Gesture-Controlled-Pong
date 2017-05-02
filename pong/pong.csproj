@@ -90,13 +90,11 @@
     <Compile Include="Assets\Script\Play\Ball\BallBehavior.cs" />
     <Compile Include="Assets\Script\Play\Ball\BallBehaviorExtra.cs" />
     <Compile Include="Assets\Script\Play\Ball\BallBehaviorMain.cs" />
-    <Compile Include="Assets\Script\Play\Effect\Effect.cs" />
     <Compile Include="Assets\Script\Play\Effect\EffectExtraBalls.cs" />
     <Compile Include="Assets\Script\Play\Effect\EffectGoalZoneSegmentDisable.cs" />
     <Compile Include="Assets\Script\Play\Effect\EffectGoalZoneSegmentPoints.cs" />
     <Compile Include="Assets\Script\Play\Effect\EffectPaddleSize.cs" />
     <Compile Include="Assets\Script\Play\Effect\EffectRandomObstacles.cs" />
-    <Compile Include="Assets\Script\Play\GoalZone\GoalZone.cs" />
     <Compile Include="Assets\Script\Play\GoalZone\GoalZoneSegmentBehavior.cs" />
     <Compile Include="Assets\Script\Play\Obstacle\RandomObstacleBehavior.cs" />
     <Compile Include="Assets\Script\Play\Paddle\PaddleBehaviorAI.cs" />
