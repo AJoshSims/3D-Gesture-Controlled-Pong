@@ -79,6 +79,9 @@ public class BallBehaviorMain : MonoBehaviour, BallBehavior
 
     private void ResetBall(float zPositionGoalZone)
     {
+        toBePursued = false;
+        isAway = false;
+
         transform.position = new Vector3(
             beginningXPositionOfBall,
             beginningYPositionOfBall,
@@ -138,21 +141,28 @@ public class BallBehaviorMain : MonoBehaviour, BallBehavior
         GoalZoneSegmentBehavior goalZoneSegmentBehavior =
             collidedWith.GetComponent<GoalZoneSegmentBehavior>();
 
-        if (
-            (goalZoneSegmentBehavior != null)
-            && goalZoneSegmentBehavior.isAbleToConsumeBall())
+        if (goalZoneSegmentBehavior != null)
         {
-            ResetBall(-collidedWith.transform.position.z);
-
-            if (goalZoneSegmentBehavior.player01Owner == true)
+            if (goalZoneSegmentBehavior.isAbleToConsumeBall())
             {
-                ScoreKeeperBehavior.scoreKeeperBehavior.incrementScore(
-                    false, goalZoneSegmentBehavior.Points);
+                ResetBall(-collidedWith.transform.position.z);
+
+                if (goalZoneSegmentBehavior.player01Owner == true)
+                {
+                    ScoreKeeperBehavior.scoreKeeperBehavior.incrementScore(
+                        false, goalZoneSegmentBehavior.Points);
+                }
+                else
+                {
+                    ScoreKeeperBehavior.scoreKeeperBehavior.incrementScore(
+                        true, goalZoneSegmentBehavior.Points);
+                }
             }
+
             else
             {
-                ScoreKeeperBehavior.scoreKeeperBehavior.incrementScore(
-                    true, goalZoneSegmentBehavior.Points);
+                toBePursued = false;
+                isAway = true;
             }
         }      
 

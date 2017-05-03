@@ -131,6 +131,9 @@ public class BallBehaviorExtra : MonoBehaviour, BallBehavior
             if (goalZoneSegmentBehavior.isAbleToConsumeBall() == true)
             {
                 active = false;
+                toBePursued = false;
+                isAway = false;
+
                 GetComponent<Rigidbody>().velocity = Vector3.zero;
                 transform.position = originalPosition;
 

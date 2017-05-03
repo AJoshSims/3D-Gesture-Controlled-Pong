@@ -45,7 +45,7 @@ public class PaddleBehaviorAI : MonoBehaviour, MutableSize
                 speed = 30;
                 break;
             case ArtificialIntelligenceLevel.Medium:
-                speed = 15;
+                speed = 8;
                 break;
             case ArtificialIntelligenceLevel.Low:
                 speed = 5;
